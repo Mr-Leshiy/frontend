@@ -1,0 +1,14 @@
+.button {
+    gap: 10px;
+    width: fit-content;
+    font-family: $--worksans-semibold;
+    padding: 10px 16px;
+    border-radius: 60px;
+    cursor: pointer;
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #8a2be2, #800080)
+}
+
+.button:hover {
+    background-image: linear-gradient(to bottom, #800080, #8a2be2);
+}
