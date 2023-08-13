@@ -6,7 +6,7 @@ import classes from './Header.module.css'
 const Header = (props) => {
     return (
         <header className={classes['header']}>
-                <Button className={classes['connect-wallet-button']}><h3>Connect Wallet</h3></Button>
+                <Button className={classes['connect-wallet-button']}>Connect Wallet</Button>
         </header>
     );
 };
