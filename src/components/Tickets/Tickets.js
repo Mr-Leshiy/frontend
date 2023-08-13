@@ -68,6 +68,46 @@ const DUMMY_TICKETS = [
         id: 13,
         title: "Ticket 13",
         date: new Date(2023, 8, 31),
+    },
+    {
+        id: 14,
+        title: "Ticket 14",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 15,
+        title: "Ticket 15",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 16,
+        title: "Ticket 16",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 17,
+        title: "Ticket 17",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 18,
+        title: "Ticket 18",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 19,
+        title: "Ticket 19",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 20,
+        title: "Ticket 20",
+        date: new Date(2023, 8, 31),
+    },
+    {
+        id: 21,
+        title: "Ticket 21",
+        date: new Date(2023, 8, 31),
     }
 ];
 
