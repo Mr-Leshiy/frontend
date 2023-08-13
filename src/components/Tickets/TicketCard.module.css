@@ -1,0 +1,7 @@
+.ticket-card {
+    border: 2px solid #c39bd3;
+    box-shadow: 0px 14px 34px rgba(124, 137, 247, 0.4);
+    margin: 20px;
+    padding: 17px 20px;
+    border-radius: 10px;
+}
