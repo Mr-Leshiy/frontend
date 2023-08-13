@@ -6,7 +6,6 @@
     background-image: linear-gradient(to bottom, #a55df6, #9b26b0);
     border: none;
     box-shadow: 0px 14px 34px rgba(124,137,247,0.4);
-    float: right;
 }
 
 .button:hover {
