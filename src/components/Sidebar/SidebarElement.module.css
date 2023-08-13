@@ -1,0 +1,10 @@
+.sidebar-element {
+    width: fit-content;
+    cursor: pointer;
+    padding: 17px 37.5px;
+    border-radius: 20px;
+}
+
+.sidebar-element:hover {
+    background-color: #e9edf9;
+}
