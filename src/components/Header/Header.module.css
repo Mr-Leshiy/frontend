@@ -1,6 +1,7 @@
 .header {
-  padding: 10px;
-  }
+  display: flex;
+  align-items: center;
+}
 
 .connect-wallet-button {
   font-size: 18px;
@@ -8,4 +9,5 @@
   border-radius: 60px;
   float: right;
   font-weight: 600;
+  margin-left: auto;
 }
