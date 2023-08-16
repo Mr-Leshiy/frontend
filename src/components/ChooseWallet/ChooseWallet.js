@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
-import classes from "./ConnectWallet.module.css";
+import classes from "./ChooseWallet.module.css";
 import Button from "../UI/Button/Button";
 import WalletElement from "./WalletElement";
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../UI/Button/Button.js";
 
 import classes from "./Header.module.css";
-import ConnectWallet from "../ConnectWallet/ConnectWallet.js";
+import ConnectWallet from "../ChooseWallet/ChooseWallet.js";
 
 const Header = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
