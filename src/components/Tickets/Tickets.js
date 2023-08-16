@@ -112,7 +112,7 @@ const DUMMY_TICKETS = [
 ];
 
 const Tickets = (props) => {
-  const [tickets, _] = useState(DUMMY_TICKETS);
+  const [tickets] = useState(DUMMY_TICKETS);
 
   const tickets_view = tickets.map((ticket) => {
     return <TicketCard title={ticket.title} date={ticket.date} />;

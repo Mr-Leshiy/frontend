@@ -28,7 +28,7 @@ const WALLETS = [
 ];
 
 const ConnectWallet = (props) => {
-  const [wallets, _] = useState(WALLETS);
+  const [wallets] = useState(WALLETS);
 
   const wallets_view = wallets.map((wallet) => {
     return <WalletElement name={wallet.name} />;
