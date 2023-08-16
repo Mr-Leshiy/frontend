@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
 import classes from "./ConnectWallet.module.css";
 import Button from "../UI/Button/Button";
+import WalletElement from "./WalletElement";
 
 const customStyles = {
   content: {
@@ -17,9 +18,22 @@ const customStyles = {
   },
 };
 
-const walletsList = [];
+const WALLETS = [
+  {
+    name: "Nami",
+  },
+  {
+    name: "Ethernal",
+  },
+];
 
 const ConnectWallet = (props) => {
+  const [wallets, _] = useState(WALLETS);
+
+  const wallets_view = wallets.map((wallet) => {
+    return <WalletElement name={wallet.name} />;
+  });
+
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -28,6 +42,7 @@ const ConnectWallet = (props) => {
     >
       <div className={classes["choose-wallet"]}>
         <h1>Choose the wallet</h1>
+        {wallets_view}
         <Button onClick={props.closeModal} className={classes["close-button"]}>
           Close
         </Button>
