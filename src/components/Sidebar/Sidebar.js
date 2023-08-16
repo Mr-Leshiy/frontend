@@ -8,10 +8,10 @@ const Sidebar = (props) => {
     <div className={classes["sidebar"]}>
       <ul className={classes["nav-elements"]}>
         <li>
-          <SidebarElement text="Home"/>
+          <SidebarElement text="Home" />
         </li>
         <li>
-          <SidebarElement text="About"/>
+          <SidebarElement text="About" />
         </li>
       </ul>
     </div>
