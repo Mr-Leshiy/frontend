@@ -21,11 +21,11 @@ const customStyles = {
 const WALLETS = [
   {
     name: "Nami",
-    url: "https://namiwallet.io/"
+    url: "https://namiwallet.io/",
   },
   {
     name: "Eternl",
-    url: "https://eternl.io/"
+    url: "https://eternl.io/",
   },
 ];
 
@@ -33,7 +33,9 @@ const ConnectWallet = (props) => {
   const [wallets] = useState(WALLETS);
 
   const wallets_view = wallets.map((wallet) => {
-    return <WalletElement wallet={wallet} />;
+    return (
+      <WalletElement wallet={wallet} closeChooseWallet={props.closeModal} />
+    );
   });
 
   return (

@@ -5,7 +5,7 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 import WalletErrorModal from "./WalletErrorModal";
 
 const WalletElement = (props) => {
-  const { connect } = useCardano();
+  const { connect, accountBalance, usedAddresses } = useCardano();
   const [errorIsOpen, setErrorIsOpen] = useState(false);
 
   function closeError() {
@@ -15,7 +15,7 @@ const WalletElement = (props) => {
   function connectWallet() {
     connect(
       props.wallet.name,
-      () => {},
+      () => props.closeChooseWallet(),
       () => setErrorIsOpen(true),
     );
   }
@@ -25,7 +25,11 @@ const WalletElement = (props) => {
       <div className={classes["wallet-element"]} onClick={connectWallet}>
         {props.wallet.name}
       </div>
-      <WalletErrorModal modalIsOpen={errorIsOpen} closeModal={closeError} name={props.wallet.name} />
+      <WalletErrorModal
+        modalIsOpen={errorIsOpen}
+        closeModal={closeError}
+        name={props.wallet.name}
+      />
     </>
   );
 };
