@@ -4,11 +4,14 @@
   align-items: center;
 }
 
+.wallet-info {
+  margin-left: auto;
+}
+
 .connect-wallet-button {
   font-size: 18px;
   padding: 17px 37.5px;
   border-radius: 60px;
-  float: right;
   font-weight: 600;
   margin-left: auto;
 }
