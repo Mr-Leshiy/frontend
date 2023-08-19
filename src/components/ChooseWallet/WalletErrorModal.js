@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-import classes from "./TicketCardModal.module.css";
+import classes from "./WalletErrorModal.module.css";
 
 const customStyles = {
   content: {
@@ -16,25 +16,18 @@ const customStyles = {
   },
 };
 
-const TicketCardModal = (props) => {
+const WalletErrorModal = (props) => {
   return (
     <Modal
       isOpen={props.modalIsOpen}
       onRequestClose={props.closeModal}
       style={customStyles}
     >
-      <div className={classes["ticket-card"]}>
-        <h5>{props.title}</h5>
-        <h5>
-          {props.date.toLocaleDateString("en-us", {
-            day: "numeric",
-            year: "numeric",
-            month: "short",
-          })}
-        </h5>
+      <div className={classes["wallet-error-modal"]}>
+        Cannot connect to {props.name} wallet
       </div>
     </Modal>
   );
 };
 
-export default TicketCardModal;
+export default WalletErrorModal;
