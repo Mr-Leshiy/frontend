@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-import classes from "./TicketCardModal.module.css";
+import classes from "./TicketCardFull.module.css";
 
 const customStyles = {
   content: {

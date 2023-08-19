@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-import classes from "./WalletErrorModal.module.css";
+import classes from "./WalletError.module.css";
 
 const customStyles = {
   content: {

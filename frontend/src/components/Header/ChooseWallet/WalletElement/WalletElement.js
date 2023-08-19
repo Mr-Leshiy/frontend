@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./WalletElement.module.css";
-import WalletErrorModal from "./WalletErrorModal";
+import WalletErrorModal from "../WalletError/WalletError.js";
 
 const WalletElement = (props) => {
   const { connect } = useCardano();
