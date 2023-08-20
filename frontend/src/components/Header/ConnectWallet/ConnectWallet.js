@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
-import classes from "./ChooseWallet.module.css";
+import classes from "./ConnectWallet.module.css";
 import Button from "../../UI/Button/Button";
 import WalletElement from "./WalletElement/WalletElement.js";
+import { walletsInfo } from "../../../lib/WalletsInfo";
 
 const customStyles = {
   content: {
@@ -11,7 +12,6 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     background: "none",
     border: "none",
@@ -23,14 +23,10 @@ const WALLETS = [
     name: "Nami",
     url: "https://namiwallet.io/",
   },
-  {
-    name: "Eternl",
-    url: "https://eternl.io/",
-  },
 ];
 
 const ConnectWallet = (props) => {
-  const [wallets] = useState(WALLETS);
+  const [wallets] = useState(walletsInfo());
 
   const wallets_view = wallets.map((wallet) => {
     return (
@@ -44,9 +40,10 @@ const ConnectWallet = (props) => {
       onRequestClose={props.closeModal}
       style={customStyles}
     >
-      <div className={classes["choose-wallet"]}>
-        <h1>Choose the wallet</h1>
-        {wallets_view}
+      <div className={classes["connect-wallet"]}>
+        <h2>Connect a wallet</h2>
+        <h5>Select the wallet you want to connect below.</h5>
+        <div className={classes["wallets-list"]}>{wallets_view}</div>
         <Button onClick={props.closeModal} className={classes["close-button"]}>
           Close
         </Button>
