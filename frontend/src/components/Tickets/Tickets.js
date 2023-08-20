@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import TicketCard from "./TicketCard.js";
+import TicketCard from "./TicketCard/TicketCard.js";
 import classes from "./Tickets.module.css";
 
 const DUMMY_TICKETS = [

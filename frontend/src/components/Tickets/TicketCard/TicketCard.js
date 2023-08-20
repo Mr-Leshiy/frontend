@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import classes from "./TicketCard.module.css";
-import TicketCardModal from "./TicketCardModal";
+import TicketCardModal from "../TicketCardFull/TicketCardFull.js";
 
 const TicketCard = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);

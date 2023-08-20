@@ -1,7 +1,7 @@
 import React from "react";
 
 import classes from "./Sidebar.module.css";
-import SidebarElement from "./SidebarElement";
+import SidebarElement from "./SidebarElement/SidebarElement.js";
 
 const Sidebar = (props) => {
   return (
