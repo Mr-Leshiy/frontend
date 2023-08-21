@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import TicketCard from "./TicketCard/TicketCard.js";
-import classes from "./Tickets.module.css";
+import classes from "./TicketsList.module.css";
+import TicketCard from "../TicketCard/TicketCard.js";
 
 const DUMMY_TICKETS = [
   {
@@ -111,14 +111,21 @@ const DUMMY_TICKETS = [
   },
 ];
 
-const Tickets = (props) => {
+const TicketsList = (props) => {
   const [tickets] = useState(DUMMY_TICKETS);
 
-  const tickets_view = tickets.map((ticket) => {
+  const filteredTickets = tickets.filter((ticket) => {
+    if (props.filterOptions.title) {
+      return ticket.title.includes(props.filterOptions.title);
+    }
+    return true;
+  });
+
+  const tickets_view = filteredTickets.map((ticket) => {
     return <TicketCard title={ticket.title} date={ticket.date} />;
   });
 
-  return <div className={classes["tickets"]}>{tickets_view}</div>;
+  return <div className={classes["tickets-list"]}>{tickets_view}</div>;
 };
 
-export default Tickets;
+export default TicketsList;

@@ -18,13 +18,6 @@ const customStyles = {
   },
 };
 
-const WALLETS = [
-  {
-    name: "Nami",
-    url: "https://namiwallet.io/",
-  },
-];
-
 const ConnectWallet = (props) => {
   const [wallets] = useState(walletsInfo());
 
