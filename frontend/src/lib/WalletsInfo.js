@@ -1,7 +1,6 @@
 export function walletsInfo() {
   if (window.cardano) {
     const { nami, yoroi, typhon, eternl } = window.cardano;
-    console.log(window.cardano);
 
     const wallets = [];
     if (nami) {

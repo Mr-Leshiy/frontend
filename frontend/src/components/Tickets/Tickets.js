@@ -126,7 +126,7 @@ const Tickets = (props) => {
         <div className={classes["tickets"]}>{tickets_view}</div>
       ) : (
         <div className={classes["inform-message"]}>
-        <h2>Please connect your wallet</h2>
+          <h2>Please connect your wallet</h2>
         </div>
       )}
     </>
