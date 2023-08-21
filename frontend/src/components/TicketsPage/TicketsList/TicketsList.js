@@ -112,7 +112,7 @@ const DUMMY_TICKETS = [
 ];
 
 const TicketsList = (props) => {
-  const [tickets, setTickets] = useState(DUMMY_TICKETS);
+  const [tickets] = useState(DUMMY_TICKETS);
 
   const filteredTickets = tickets.filter((ticket) => {
     if (props.filterOptions.title) {

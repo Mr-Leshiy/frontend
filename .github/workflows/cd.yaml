@@ -11,8 +11,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - run: cd frontend | yarn install
-      - run: cd frontend | yarn build
+      - run: |
+          cd frontend
+          yarn install
+      - run: |
+          cd frontend
+          yarn build
 
       - name: gh-pages deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.0
