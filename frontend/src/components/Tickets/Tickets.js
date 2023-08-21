@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import TicketCard from "./TicketCard/TicketCard.js";
 import classes from "./Tickets.module.css";
+import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 const DUMMY_TICKETS = [
   {
@@ -112,13 +113,24 @@ const DUMMY_TICKETS = [
 ];
 
 const Tickets = (props) => {
+  const { isConnected } = useCardano();
   const [tickets] = useState(DUMMY_TICKETS);
 
   const tickets_view = tickets.map((ticket) => {
     return <TicketCard title={ticket.title} date={ticket.date} />;
   });
 
-  return <div className={classes["tickets"]}>{tickets_view}</div>;
+  return (
+    <>
+      {isConnected ? (
+        <div className={classes["tickets"]}>{tickets_view}</div>
+      ) : (
+        <div className={classes["inform-message"]}>
+        <h2>Please connect your wallet</h2>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Tickets;

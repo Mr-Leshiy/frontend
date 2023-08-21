@@ -1,17 +1,16 @@
 .header {
-  width: 100%;
+  max-width: 100%;
   display: flex;
-  align-items: center;
-}
 
-.wallet-info {
-  margin-left: auto;
+  padding: 10px 15px;
 }
 
 .connect-wallet-button {
   font-size: 18px;
+  font-weight: 600;
+
   padding: 17px 37.5px;
   border-radius: 60px;
-  font-weight: 600;
+
   margin-left: auto;
 }

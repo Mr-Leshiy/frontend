@@ -4,3 +4,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+.inform-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.inform-message h2 {
+  color: rgba(0, 0, 0, 0.4); /* Adjust the alpha value for transparency */
+}
