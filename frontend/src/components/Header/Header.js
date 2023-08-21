@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./Header.module.css";
-import ConnectWallet from "./ChooseWallet/ChooseWallet.js";
+import ConnectWallet from "./ConnectWallet/ConnectWallet.js";
 import Button from "../UI/Button/Button.js";
-import WalletInfo from "./WalletInfo/WalletInfo";
 
 const Header = (props) => {
   const { isConnected, disconnect } = useCardano();
@@ -27,7 +26,6 @@ const Header = (props) => {
       <header className={classes["header"]}>
         {isConnected ? (
           <>
-            <WalletInfo className={classes["wallet-info"]} />
             <Button
               className={classes["connect-wallet-button"]}
               onClick={disconnectWallet}

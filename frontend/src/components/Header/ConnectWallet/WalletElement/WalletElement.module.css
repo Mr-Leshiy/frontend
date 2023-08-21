@@ -1,14 +1,13 @@
 .wallet-element {
-  width: fit-content;
-  align-items: center;
   cursor: pointer;
   padding: 17px 37.5px;
   border-radius: 20px;
 
-  margin: 10px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 
-  font-size: 18px;
-  font-weight: 600;
+  margin: 10px;
 }
 
 .wallet-element:hover {
