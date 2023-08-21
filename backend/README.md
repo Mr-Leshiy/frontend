@@ -5,5 +5,5 @@ poetry install
 ```
 Run server
 ```
-poetry run start
+poetry run server
 ```
