@@ -1,8 +1,6 @@
-.tickets {
-  display: flex;
-  width: 100%;
+.tickets-page {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: 100%;
 }
 
 .inform-message {

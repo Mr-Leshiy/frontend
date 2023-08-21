@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
-import Tickets from "./components/Tickets/Tickets.js";
+import TicketsPage from "./components/TicketsPage/TicketsPage.js";
 import Row from "./components/UI/Row/Row.js";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Header />
       <Row>
         <Sidebar />
-        <Tickets />
+        <TicketsPage />
       </Row>
     </>
   );
