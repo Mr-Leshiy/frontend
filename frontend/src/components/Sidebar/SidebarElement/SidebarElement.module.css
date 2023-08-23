@@ -2,7 +2,12 @@
   display: flex;
   align-content: center;
   justify-content: center;
+
   cursor: pointer;
+
+  /* remains text in one line */
+  white-space: nowrap;
+
   padding: 17px 37.5px;
   border-radius: 20px;
   width: 100%;
