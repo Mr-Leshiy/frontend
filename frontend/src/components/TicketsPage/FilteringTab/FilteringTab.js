@@ -19,7 +19,7 @@ const FilteringTab = (props) => {
     opacity: props.isEnabled ? "1" : "0.5",
   };
   return (
-    <div style={inlineStyles} className={classes["tickets-tabs"]}>
+    <div style={inlineStyles} className={classes["tickets-tab"]}>
       <input
         className={classes["title-input"]}
         type="text"

@@ -1,6 +1,7 @@
 .sidebar {
   height: 100%;
   padding: 20px;
+  width: fit-content;
 }
 
 .nav-elements {
@@ -10,7 +11,11 @@
 }
 
 .nav-elements li {
+  width: 100%;
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: 600;
+
+  display: flex;
+  align-items: center;
 }

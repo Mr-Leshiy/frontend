@@ -4,6 +4,7 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 import classes from "./TicketsPage.module.css";
 import TicketsList from "./TicketsList/TicketsList.js";
 import FilteringTab from "./FilteringTab/FilteringTab.js";
+import PageTitle from "../UI/PageTitle/PageTitle";
 
 const TicketsPage = (props) => {
   const { isConnected } = useCardano();
@@ -15,6 +16,7 @@ const TicketsPage = (props) => {
 
   return (
     <div className={classes["tickets-page"]}>
+      <PageTitle title="Your Tickets Collection" />
       <FilteringTab isEnabled={isConnected} onFilter={handleFilter} />
       {isConnected ? (
         <TicketsList filterOptions={filterOptions} />
