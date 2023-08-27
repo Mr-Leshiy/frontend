@@ -13,26 +13,20 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-name: blink;
-}
-
-.purple {
-  width: 200px;
-  height: 200px;
-  background-color: #9b59b6;
-  animation-duration: 5s;
+  opacity: 0;
 }
 
 .blue {
   width: 200px;
   height: 200px;
-  background-color: #8edbff;
+  background-color: #00aeff;
   animation-duration: 7s;
 }
 
 .pink {
   width: 200px;
   height: 200px;
-  background-color: #ffd8e6;
+  background-color: #ff639c;
   animation-duration: 9s;
 }
 
