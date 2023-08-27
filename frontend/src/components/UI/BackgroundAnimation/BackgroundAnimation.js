@@ -9,7 +9,7 @@ const BackgroundAnimation = () => {
   const circles = Array.from({ length: CIRCLES_AMOUNT }, (_, i) => {
     const animationDelay = `${Math.random() * 5}s`;
     return (
-      <div
+      <div key={i}
         ref={(el) => (circleRefs.current[i] = el)}
         className={`circle ${i % 2 === 0 ? "blue" : "pink"}`}
         style={{
