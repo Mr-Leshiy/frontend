@@ -23,7 +23,11 @@ const ConnectWallet = (props) => {
 
   const wallets_view = wallets.map((wallet) => {
     return (
-      <WalletElement wallet={wallet} closeChooseWallet={props.closeModal} />
+      <WalletElement
+        wallet={wallet}
+        closeChooseWallet={props.closeModal}
+        key={wallet.name}
+      />
     );
   });
 
