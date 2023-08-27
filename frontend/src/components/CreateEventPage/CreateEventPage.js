@@ -19,7 +19,7 @@ const CreateEventPage = () => {
       <BackgroundAnimation />
       <PageTitle title="Create Your Event" />
       <div style={inlineStyles}>
-      <CreateEventTab />
+        <CreateEventTab />
       </div>
     </div>
   );

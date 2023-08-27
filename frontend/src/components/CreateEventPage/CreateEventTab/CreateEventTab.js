@@ -11,9 +11,9 @@ const CreateEventTab = () => {
   const [venueValue, setVenueValue] = useState("");
 
   const inputTitleComponent = (
-    <div className={classes["input-title"]}>
+    <div className={classes["input"]}>
       <input
-        className={classes["input-title-data"]}
+        className={classes["input-data"]}
         type="text"
         placeholder="Event Title"
         maxLength={50}
@@ -24,9 +24,9 @@ const CreateEventTab = () => {
   );
 
   const inputDescriptionComponent = (
-    <div className={classes["input-title"]}>
-      <input
-        className={classes["input-title-data"]}
+    <div className={classes["input"]}>
+      <textarea
+        className={classes["input-data"]}
         type="text"
         placeholder="Event Description"
         maxLength={200}
@@ -37,9 +37,9 @@ const CreateEventTab = () => {
   );
 
   const inputDateComponent = (
-    <div className={classes["input-title"]}>
+    <div className={classes["input"]}>
       <input
-        className={classes["input-title-data"]}
+        className={classes["input-data"]}
         type="date"
         value={dateValue}
         onChange={(e) => setDateValue(e.target.value)}
@@ -48,9 +48,9 @@ const CreateEventTab = () => {
   );
 
   const inputTimeComponent = (
-    <div className={classes["input-title"]}>
+    <div className={classes["input"]}>
       <input
-        className={classes["input-title-data"]}
+        className={classes["input-data"]}
         type="time"
         value={timeValue}
         onChange={(e) => setTimeValue(e.target.value)}
@@ -59,9 +59,9 @@ const CreateEventTab = () => {
   );
 
   const inputVenueComponent = (
-    <div className={classes["input-title"]}>
+    <div className={classes["input"]}>
       <input
-        className={classes["input-title-data"]}
+        className={classes["input-data"]}
         type="text"
         placeholder="Venue"
         value={venueValue}
@@ -72,11 +72,13 @@ const CreateEventTab = () => {
 
   return (
     <div className={classes["create-event-tab"]}>
-      {inputTitleComponent}
-      {inputDescriptionComponent}
-      {inputDateComponent}
-      {inputTimeComponent}
-      {inputVenueComponent}
+      <div>
+        {inputTitleComponent}
+        {inputDescriptionComponent}
+        {inputDateComponent}
+        {inputTimeComponent}
+        {inputVenueComponent}
+      </div>
       <Button className={classes["create-event-button"]}> Create </Button>
     </div>
   );

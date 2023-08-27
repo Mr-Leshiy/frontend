@@ -12,22 +12,23 @@
   padding: 40px;
 }
 
-.input-title {
+.input {
   display: flex;
   align-items: center;
 }
 
-.input-title-data {
+.input-data {
   border-radius: 10px;
   border: 2px solid #e6e6f0;
 
-  font-size: 18px;
+  font-size: 20px;
   padding: 10px;
 
   margin: 15px;
 
-  width: 30ch;
-  word-wrap: break-word;
+  width: 100%;
+  height: auto;
+  resize: vertical;
 }
 
 .create-event-button {
