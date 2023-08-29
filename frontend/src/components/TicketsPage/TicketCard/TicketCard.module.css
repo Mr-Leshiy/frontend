@@ -12,8 +12,6 @@
 
   width: fit-content;
   height: fit-content;
-
-  background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
 }
 
 .ticket-card:hover {
@@ -34,6 +32,9 @@
 
   width: 100%;
   box-sizing: border-box;
+
+  background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
+  border-radius: 0 0 8px 8px;
 }
 
 .ticket-card-info-title {
