@@ -15,7 +15,14 @@ const TicketCard = (props) => {
     setIsOpen(false);
   }
 
-  const id = props.ticket.id.slice(0, 8) + "...";
+  const date = props.ticket.date.toLocaleDateString("en-us", {
+    day: "numeric",
+    year: "numeric",
+    month: "short",
+  });
+  const time =
+    props.ticket.date.getHours() + ":" + props.ticket.date.getMinutes();
+  const venue = props.ticket.venue;
 
   return (
     <>
@@ -25,17 +32,41 @@ const TicketCard = (props) => {
         ticket={props.ticket}
       />
       <div className={classes["ticket-card"]} onClick={openModal}>
-        <img src={CrossImage} alt="" width={150} height={200} />
+        <img src={CrossImage} alt="" />
+
         <div className={classes["ticket-card-info"]}>
-          <div>{id}</div>
-          <h5>{props.ticket.title}</h5>
-          <h5>
-            {props.ticket.date.toLocaleDateString("en-us", {
-              day: "numeric",
-              year: "numeric",
-              month: "short",
-            })}
-          </h5>
+          <div className={classes["ticket-card-info-title"]}>
+            {props.ticket.title}
+          </div>
+
+          <div className={classes["ticket-card-info-date"]}>
+            <div className={classes["ticket-card-info-date-data"]}>
+              <div className={classes["ticket-card-info-date-data-title"]}>
+                Date
+              </div>
+              <div className={classes["ticket-card-info-date-data-content"]}>
+                {date}
+              </div>
+            </div>
+
+            <div className={classes["ticket-card-info-date-data"]}>
+              <div className={classes["ticket-card-info-date-data-title"]}>
+                Time
+              </div>
+              <div className={classes["ticket-card-info-date-data-content"]}>
+                {time}
+              </div>
+            </div>
+          </div>
+
+          <div className={classes["ticket-card-info-venue"]}>
+            <div className={classes["ticket-card-info-venue-title"]}>
+              Venue
+            </div>
+            <div className={classes["ticket-card-info-venue-content"]}>
+              {venue}
+            </div>
+          </div>
         </div>
       </div>
     </>
