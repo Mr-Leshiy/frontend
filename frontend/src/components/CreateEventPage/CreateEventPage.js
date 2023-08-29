@@ -3,7 +3,6 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./CreateEventPage.module.css";
 import PageTitle from "../UI/PageTitle/PageTitle.js";
-import BackgroundAnimation from "../UI/BackgroundAnimation/BackgroundAnimation";
 import CreateEventTab from "./CreateEventTab/CreateEventTab";
 
 const CreateEventPage = () => {
@@ -16,7 +15,6 @@ const CreateEventPage = () => {
 
   return (
     <div className={classes["create-event-page"]}>
-      <BackgroundAnimation />
       <PageTitle title="Create Your Event" />
       <div style={inlineStyles}>
         <CreateEventTab />

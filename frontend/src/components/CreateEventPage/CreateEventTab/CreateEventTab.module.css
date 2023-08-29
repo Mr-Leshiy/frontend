@@ -9,12 +9,29 @@
   flex-direction: column;
   align-items: center;
 
-  padding: 40px;
+  padding: 10px 50px;
 }
 
 .input {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.input-description {
+  width: fit-content;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  margin-left: 15px;
+  margin-top: 15px;
+  padding: 5px;
+
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(55, 0, 55, 0.4);
+
+  border-radius: 5px;
 }
 
 .input-data {
@@ -24,15 +41,17 @@
   font-size: 20px;
   padding: 10px;
 
-  margin: 15px;
+  margin-left: 15px;
+  margin-top: 0px;
 
-  width: 100%;
   height: auto;
   resize: vertical;
 }
 
 .create-event-button {
   font-size: 18px;
+
+  margin: 15px;
 
   padding: 10px 20px;
   border-radius: 10px;

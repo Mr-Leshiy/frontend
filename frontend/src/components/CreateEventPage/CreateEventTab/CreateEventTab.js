@@ -12,10 +12,11 @@ const CreateEventTab = () => {
 
   const inputTitleComponent = (
     <div className={classes["input"]}>
+      <div className={classes["input-description"]}>Event Title</div>
       <input
         className={classes["input-data"]}
         type="text"
-        placeholder="Event Title"
+        placeholder="Title"
         maxLength={50}
         value={titleValue}
         onChange={(e) => setTitleValue(e.target.value)}
@@ -25,10 +26,11 @@ const CreateEventTab = () => {
 
   const inputDescriptionComponent = (
     <div className={classes["input"]}>
+      <div className={classes["input-description"]}>Event Description</div>
       <textarea
         className={classes["input-data"]}
         type="text"
-        placeholder="Event Description"
+        placeholder="Description"
         maxLength={200}
         value={descriptionValue}
         onChange={(e) => setDescriptionValue(e.target.value)}
@@ -38,6 +40,7 @@ const CreateEventTab = () => {
 
   const inputDateComponent = (
     <div className={classes["input"]}>
+      <div className={classes["input-description"]}>Event Date</div>
       <input
         className={classes["input-data"]}
         type="date"
@@ -49,6 +52,7 @@ const CreateEventTab = () => {
 
   const inputTimeComponent = (
     <div className={classes["input"]}>
+      <div className={classes["input-description"]}>Event Time</div>
       <input
         className={classes["input-data"]}
         type="time"
@@ -60,6 +64,7 @@ const CreateEventTab = () => {
 
   const inputVenueComponent = (
     <div className={classes["input"]}>
+      <div className={classes["input-description"]}>Event Venue</div>
       <input
         className={classes["input-data"]}
         type="text"
