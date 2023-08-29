@@ -10,13 +10,14 @@ export function walletsInfo() {
         icon: nami.icon,
       });
     }
-    if (yoroi) {
-      wallets.push({
-        name: "Yoroi",
-        version: yoroi.apiVersion,
-        icon: yoroi.icon,
-      });
-    }
+    // Bugs appeared with the usage of yoroi wallet https://github.com/cardano-foundation/cardano-connect-with-wallet/issues/87
+    // if (yoroi) {
+    //   wallets.push({
+    //     name: "Yoroi",
+    //     version: yoroi.apiVersion,
+    //     icon: yoroi.icon,
+    //   });
+    // }
     if (typhon) {
       wallets.push({
         name: "Typhon",
