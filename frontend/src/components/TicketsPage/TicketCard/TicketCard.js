@@ -60,9 +60,7 @@ const TicketCard = (props) => {
           </div>
 
           <div className={classes["ticket-card-info-venue"]}>
-            <div className={classes["ticket-card-info-venue-title"]}>
-              Venue
-            </div>
+            <div className={classes["ticket-card-info-venue-title"]}>Venue</div>
             <div className={classes["ticket-card-info-venue-content"]}>
               {venue}
             </div>
