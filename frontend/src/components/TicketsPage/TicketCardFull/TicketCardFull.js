@@ -24,9 +24,9 @@ const TicketCardModal = (props) => {
       style={customStyles}
     >
       <div className={classes["ticket-card"]}>
-        <h5>{props.title}</h5>
+        <h5>{props.ticket.title}</h5>
         <h5>
-          {props.date.toLocaleDateString("en-us", {
+          {props.ticket.date.toLocaleDateString("en-us", {
             day: "numeric",
             year: "numeric",
             month: "short",
