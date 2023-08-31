@@ -101,8 +101,7 @@ const CreateEventTab = () => {
           console.log(eventValue);
         }}
       >
-        {" "}
-        Create{" "}
+        Create
       </Button>
     </div>
   );
