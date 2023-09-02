@@ -4,13 +4,14 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 import classes from "./EventsPage.module.css";
 import PageTitle from "../UI/PageTitle/PageTitle.js";
 import ControlPannelTab from "./ControlPannelTab/ControlPannelTab";
+import EventsList from "./EventsList/EventsList";
 
 const EventsPage = () => {
   const { isConnected } = useCardano();
-  // const [filterOptions, setFilterOptions] = useState({ title: "" });
+  const [filterOptions, setFilterOptions] = useState({ title: "" });
 
   const handleFilter = (newFilterOptions) => {
-    // setFilterOptions(newFilterOptions);
+    setFilterOptions(newFilterOptions);
   };
 
   const inlineStyles = {
@@ -23,7 +24,7 @@ const EventsPage = () => {
       <PageTitle title="Your Events" />
       <ControlPannelTab isEnabled={isConnected} onFilter={handleFilter} />
       {isConnected ? (
-        <></>
+        <EventsList filterOptions={filterOptions} />
       ) : (
         <div className={classes["inform-message"]}>
           <h2>Please connect your wallet</h2>

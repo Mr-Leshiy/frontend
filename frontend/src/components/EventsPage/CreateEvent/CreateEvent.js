@@ -107,7 +107,6 @@ const CreateEvent = (props) => {
       style={customStyles}
     >
       <div className={classes["create-event-tab"]}>
-        
         <div>
           {inputTitleComponent}
           {inputDateComponent}
@@ -117,17 +116,17 @@ const CreateEvent = (props) => {
         </div>
 
         <div className={classes["buttons"]}>
-        <Button
-          className={classes["button"]}
-          onClick={() => {
-            console.log(eventValue);
-          }}
-        >
-          Create
-        </Button>
-        <Button className={classes["button"]} onClick={props.closeModal}>
-          Close
-        </Button>
+          <Button
+            className={classes["button"]}
+            onClick={() => {
+              console.log(eventValue);
+            }}
+          >
+            Create
+          </Button>
+          <Button className={classes["button"]} onClick={props.closeModal}>
+            Close
+          </Button>
         </div>
       </div>
     </Modal>
