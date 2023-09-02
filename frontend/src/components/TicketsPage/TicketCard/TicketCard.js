@@ -15,15 +15,15 @@ const TicketCard = (props) => {
     setIsOpen(false);
   }
 
-  const title = props.ticket.title;
-  const date = props.ticket.date.toLocaleDateString("en-us", {
+  const event = props.ticket.event;
+  const title = event.title;
+  const date = event.date.toLocaleDateString("en-us", {
     day: "numeric",
     year: "numeric",
     month: "short",
   });
-  const time =
-    props.ticket.date.getHours() + ":" + props.ticket.date.getMinutes();
-  const location = props.ticket.location;
+  const time = event.date.getHours() + ":" + event.date.getMinutes();
+  const location = event.location;
 
   return (
     <>

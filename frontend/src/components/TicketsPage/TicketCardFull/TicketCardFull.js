@@ -19,17 +19,21 @@ const customStyles = {
 };
 
 const TicketCardModal = (props) => {
-  const title = props.ticket.title;
-  const date = props.ticket.date.toLocaleDateString("en-us", {
+  const ticket = props.ticket;
+  const event = ticket.event;
+
+  const id = ticket.id;
+
+  const title = event.title;
+  const date = event.date.toLocaleDateString("en-us", {
     day: "numeric",
     year: "numeric",
     month: "short",
   });
-  const time =
-    props.ticket.date.getHours() + ":" + props.ticket.date.getMinutes();
-  const location = props.ticket.location;
-  const description = props.ticket.description;
-  const url = props.ticket.url;
+  const time = event.date.getHours() + ":" + event.date.getMinutes();
+  const location = event.location;
+  const description = event.description;
+  const url = event.url;
 
   return (
     <Modal
@@ -67,6 +71,11 @@ const TicketCardModal = (props) => {
             <a href={url}>
               <h3>{url}</h3>
             </a>
+          </div>
+
+          <div className={classes["ticket-card-info-id"]}>
+            <h4>Id</h4>
+              <h3>{id}</h3>
           </div>
 
           <div className={classes["ticket-card-info-description"]}>

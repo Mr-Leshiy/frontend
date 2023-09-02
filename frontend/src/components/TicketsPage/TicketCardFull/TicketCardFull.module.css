@@ -77,6 +77,12 @@
   color: inherit;
 }
 
+.ticket-card-info-id {
+  margin-top: 20px;
+
+  width: 50%;
+}
+
 .ticket-card-info-description {
   margin-top: 20px;
 }
