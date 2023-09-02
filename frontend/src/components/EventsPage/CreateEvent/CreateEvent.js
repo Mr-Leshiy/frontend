@@ -1,9 +1,23 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
 
-import classes from "./CreateEventTab.module.css";
+import classes from "./CreateEvent.module.css";
 import Button from "../../UI/Button/Button.js";
 
-const CreateEventTab = () => {
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    background: "none",
+    border: "none",
+  },
+};
+
+const CreateEvent = (props) => {
   const [eventValue, setEventValue] = useState({
     title: "",
     description: "",
@@ -87,24 +101,30 @@ const CreateEventTab = () => {
   );
 
   return (
-    <div className={classes["create-event-tab"]}>
-      <div>
-        {inputTitleComponent}
-        {inputDateComponent}
-        {inputTimeComponent}
-        {inputLocationComponent}
-        {inputDescriptionComponent}
+    <Modal
+      isOpen={props.modalIsOpen}
+      onRequestClose={props.closeModal}
+      style={customStyles}
+    >
+      <div className={classes["create-event-tab"]}>
+        <div>
+          {inputTitleComponent}
+          {inputDateComponent}
+          {inputTimeComponent}
+          {inputLocationComponent}
+          {inputDescriptionComponent}
+        </div>
+        <Button
+          className={classes["create-event-button"]}
+          onClick={() => {
+            console.log(eventValue);
+          }}
+        >
+          Create
+        </Button>
       </div>
-      <Button
-        className={classes["create-event-button"]}
-        onClick={() => {
-          console.log(eventValue);
-        }}
-      >
-        Create
-      </Button>
-    </div>
+    </Modal>
   );
 };
 
-export default CreateEventTab;
+export default CreateEvent;

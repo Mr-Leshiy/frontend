@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventsPage.module.css";
 import PageTitle from "../UI/PageTitle/PageTitle.js";
-import CreateEventTab from "./CreateEventTab/CreateEventTab";
+import ControlPannelTab from "./ControlPannelTab/ControlPannelTab";
 
 const EventsPage = () => {
   const { isConnected } = useCardano();
+  // const [filterOptions, setFilterOptions] = useState({ title: "" });
+
+  const handleFilter = (newFilterOptions) => {
+    // setFilterOptions(newFilterOptions);
+  };
 
   const inlineStyles = {
     pointerEvents: isConnected ? "auto" : "none",
@@ -14,11 +19,16 @@ const EventsPage = () => {
   };
 
   return (
-    <div className={classes["create-event-page"]}>
-      <PageTitle title="Create Your Event" />
-      <div style={inlineStyles}>
-        <CreateEventTab />
-      </div>
+    <div className={classes["events-page"]}>
+      <PageTitle title="Your Events" />
+      <ControlPannelTab isEnabled={isConnected} onFilter={handleFilter} />
+      {isConnected ? (
+        <></>
+      ) : (
+        <div className={classes["inform-message"]}>
+          <h2>Please connect your wallet</h2>
+        </div>
+      )}
     </div>
   );
 };
