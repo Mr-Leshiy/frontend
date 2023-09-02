@@ -1,11 +1,11 @@
 import React from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
-import classes from "./CreateEventPage.module.css";
+import classes from "./EventsPage.module.css";
 import PageTitle from "../UI/PageTitle/PageTitle.js";
 import CreateEventTab from "./CreateEventTab/CreateEventTab";
 
-const CreateEventPage = () => {
+const EventsPage = () => {
   const { isConnected } = useCardano();
 
   const inlineStyles = {
@@ -23,4 +23,4 @@ const CreateEventPage = () => {
   );
 };
 
-export default CreateEventPage;
+export default EventsPage;
