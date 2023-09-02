@@ -4,11 +4,3 @@
   align-items: center;
   width: 100%;
 }
-
-.inform-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.4);
-}

@@ -37,13 +37,18 @@
   border-radius: 0 0 8px 8px;
 }
 
-.ticket-card-info-title {
-  font-size: 18px;
-  font-weight: 700;
+.ticket-card-info h3 {
+  margin: 0;
 
   white-space: nowrap; /* Prevent line breaks */
   overflow: hidden; /* Hide overflowing content */
   text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+}
+
+.ticket-card-info h4 {
+  margin: 0;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .ticket-card-info-date {
@@ -53,38 +58,9 @@
 }
 
 .ticket-card-info-date-data {
-  display: flex;
-  flex-direction: column;
-
   padding-right: 50px;
 }
 
-.ticket-card-info-date-data-title {
-  font-size: 15px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.ticket-card-info-date-data-content {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.ticket-card-info-venue {
+.ticket-card-info-location {
   margin-top: 20px;
-}
-
-.ticket-card-info-venue-title {
-  font-size: 15px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.ticket-card-info-venue-content {
-  font-size: 18px;
-  font-weight: 700;
-
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
 }

@@ -22,7 +22,7 @@ const TicketCard = (props) => {
   });
   const time =
     props.ticket.date.getHours() + ":" + props.ticket.date.getMinutes();
-  const venue = props.ticket.venue;
+  const location = props.ticket.location;
 
   return (
     <>
@@ -35,35 +35,23 @@ const TicketCard = (props) => {
         <img src={CrossImage} alt="" />
 
         <div className={classes["ticket-card-info"]}>
-          <div className={classes["ticket-card-info-title"]}>
-            {props.ticket.title}
-          </div>
+          <h3>{props.ticket.title} </h3>
 
           <div className={classes["ticket-card-info-date"]}>
             <div className={classes["ticket-card-info-date-data"]}>
-              <div className={classes["ticket-card-info-date-data-title"]}>
-                Date
-              </div>
-              <div className={classes["ticket-card-info-date-data-content"]}>
-                {date}
-              </div>
+              <h4>Date</h4>
+              <h3>{date}</h3>
             </div>
 
             <div className={classes["ticket-card-info-date-data"]}>
-              <div className={classes["ticket-card-info-date-data-title"]}>
-                Time
-              </div>
-              <div className={classes["ticket-card-info-date-data-content"]}>
-                {time}
-              </div>
+              <h4>Time</h4>
+              <h3>{time}</h3>
             </div>
           </div>
 
-          <div className={classes["ticket-card-info-venue"]}>
-            <div className={classes["ticket-card-info-venue-title"]}>Venue</div>
-            <div className={classes["ticket-card-info-venue-content"]}>
-              {venue}
-            </div>
+          <div className={classes["ticket-card-info-location"]}>
+            <h4>Location</h4>
+            <h3>{location}</h3>
           </div>
         </div>
       </div>
