@@ -9,7 +9,7 @@ const CreateEventTab = () => {
     description: "",
     date: "",
     time: "",
-    venue: "",
+    location: "",
   });
 
   function handleOnChange(e) {
@@ -72,15 +72,15 @@ const CreateEventTab = () => {
     </div>
   );
 
-  const inputVenueComponent = (
+  const inputLocationComponent = (
     <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event Venue</div>
+      <div className={classes["input-description"]}>Event Location</div>
       <input
-        name="venue"
+        name="location"
         className={classes["input-data"]}
         type="text"
-        placeholder="Venue"
-        value={eventValue.venue}
+        placeholder="Location"
+        value={eventValue.location}
         onChange={handleOnChange}
       />
     </div>
@@ -93,7 +93,7 @@ const CreateEventTab = () => {
         {inputDescriptionComponent}
         {inputDateComponent}
         {inputTimeComponent}
-        {inputVenueComponent}
+        {inputLocationComponent}
       </div>
       <Button
         className={classes["create-event-button"]}

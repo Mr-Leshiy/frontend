@@ -9,7 +9,7 @@ export function getTickets(accountId) {
         " dsasfasjdfkdsahjgklhdfsajkflasdjklfhdjsaklhfdsjkalfhdsajkfnadsjkl",
       description: "Event " + i + " description",
       date: new Date(2023, 8, 31),
-      venue: "Event " + i + " venue vfasdfsagjfsdkagnfkdjsngkjfds",
+      location: "Event " + i + " location vfasdfsagjfsdkagnfkdjsngkjfds",
     });
   }
   return tickets;

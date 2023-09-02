@@ -22,7 +22,7 @@ const TicketCard = (props) => {
   });
   const time =
     props.ticket.date.getHours() + ":" + props.ticket.date.getMinutes();
-  const venue = props.ticket.venue;
+  const location = props.ticket.location;
 
   return (
     <>
@@ -49,9 +49,9 @@ const TicketCard = (props) => {
             </div>
           </div>
 
-          <div className={classes["ticket-card-info-venue"]}>
-          <h4>Venue</h4>
-              <h3>{venue}</h3>
+          <div className={classes["ticket-card-info-location"]}>
+            <h4>Location</h4>
+            <h3>{location}</h3>
           </div>
         </div>
       </div>
