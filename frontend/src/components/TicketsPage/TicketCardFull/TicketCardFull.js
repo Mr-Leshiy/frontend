@@ -75,7 +75,7 @@ const TicketCardModal = (props) => {
 
           <div className={classes["ticket-card-info-id"]}>
             <h4>Id</h4>
-              <h3>{id}</h3>
+            <h3>{id}</h3>
           </div>
 
           <div className={classes["ticket-card-info-description"]}>
