@@ -15,14 +15,15 @@ const TicketCard = (props) => {
     setIsOpen(false);
   }
 
-  const date = props.ticket.date.toLocaleDateString("en-us", {
+  const event = props.ticket.event;
+  const title = event.title;
+  const date = event.date.toLocaleDateString("en-us", {
     day: "numeric",
     year: "numeric",
     month: "short",
   });
-  const time =
-    props.ticket.date.getHours() + ":" + props.ticket.date.getMinutes();
-  const location = props.ticket.location;
+  const time = event.date.getHours() + ":" + event.date.getMinutes();
+  const location = event.location;
 
   return (
     <>
@@ -35,7 +36,7 @@ const TicketCard = (props) => {
         <img src={CrossImage} alt="" />
 
         <div className={classes["ticket-card-info"]}>
-          <h3>{props.ticket.title} </h3>
+          <h3>{title} </h3>
 
           <div className={classes["ticket-card-info-date"]}>
             <div className={classes["ticket-card-info-date-data"]}>

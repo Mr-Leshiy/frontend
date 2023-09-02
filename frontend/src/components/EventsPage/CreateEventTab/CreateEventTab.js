@@ -90,10 +90,10 @@ const CreateEventTab = () => {
     <div className={classes["create-event-tab"]}>
       <div>
         {inputTitleComponent}
-        {inputDescriptionComponent}
         {inputDateComponent}
         {inputTimeComponent}
         {inputLocationComponent}
+        {inputDescriptionComponent}
       </div>
       <Button
         className={classes["create-event-button"]}

@@ -17,9 +17,9 @@ const Sidebar = (props) => {
         </li>
         <li>
           <SidebarElement
-            text="Create Event"
-            isActive={props.currentPage === Pages.create_event}
-            onClick={() => props.setPage(Pages.create_event)}
+            text="Events"
+            isActive={props.currentPage === Pages.events}
+            onClick={() => props.setPage(Pages.events)}
           />
         </li>
       </ul>

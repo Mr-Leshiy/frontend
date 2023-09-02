@@ -1,8 +1,9 @@
 .tickets-tab {
   max-width: 100%;
 
-  border-radius: 20px;
   background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
+
+  border-radius: 20px;
   border: 2px solid #e6ecf0;
 
   display: flex;
