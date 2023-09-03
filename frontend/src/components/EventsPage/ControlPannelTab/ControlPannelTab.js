@@ -16,11 +16,11 @@ const ControlPannelTab = (props) => {
     setIsOpen(false);
   }
 
-  const handleFilterClick = () => {
+  const onChange = (e) => {
     const filterOptions = {
-      title: textValue,
+      title: e.target.value,
     };
-
+    setTextValue(filterOptions.title);
     props.onFilter(filterOptions);
   };
 
@@ -36,14 +36,9 @@ const ControlPannelTab = (props) => {
           className={classes["title-input"]}
           type="text"
           value={textValue}
-          onChange={(e) => setTextValue(e.target.value)}
+          placeholder="Search title"
+          onChange={onChange}
         />
-        <Button
-          className={classes["filter-button"]}
-          onClick={handleFilterClick}
-        >
-          Filter
-        </Button>
         <Button className={classes["create-event-button"]} onClick={openModal}>
           + Create Event
         </Button>
