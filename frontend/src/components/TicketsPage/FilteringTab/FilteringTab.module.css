@@ -1,17 +1,14 @@
 .tickets-tab {
   max-width: 100%;
 
-  background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
-
-  border-radius: 20px;
-  border: 2px solid #e6ecf0;
-
   display: flex;
   align-items: center;
   padding: 10px;
 }
 
 .title-input {
+  width: 100%;
+
   border-radius: 10px;
   border: 2px solid #e6e6f0;
 
@@ -19,11 +16,6 @@
   padding: 10px;
 
   margin: 20px;
-}
 
-.filter-button {
-  font-size: 18px;
-
-  padding: 10px 20px;
-  border-radius: 10px;
+  box-shadow: 0px 10px 10px rgba(124, 137, 247, 0.4);
 }

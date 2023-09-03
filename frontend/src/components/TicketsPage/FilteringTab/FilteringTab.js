@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 
 import classes from "./FilteringTab.module.css";
-import Button from "../../UI/Button/Button";
 
 const FilteringTab = (props) => {
   const [textValue, setTextValue] = useState("");
 
-  const handleFilterClick = () => {
+  const onChange = (e) => {
     const filterOptions = {
-      title: textValue,
+      title: e.target.value,
     };
-
+    setTextValue(filterOptions.title);
     props.onFilter(filterOptions);
   };
 
@@ -24,11 +23,9 @@ const FilteringTab = (props) => {
         className={classes["title-input"]}
         type="text"
         value={textValue}
-        onChange={(e) => setTextValue(e.target.value)}
+        placeholder="Search title"
+        onChange={onChange}
       />
-      <Button className={classes["filter-button"]} onClick={handleFilterClick}>
-        Filter
-      </Button>
     </div>
   );
 };

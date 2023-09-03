@@ -15,7 +15,7 @@
 }
 
 .ticket-card:hover {
-  box-shadow: 0px 14px 34px rgba(124, 137, 247, 0.4);
+  box-shadow: 0px 10px 20px rgba(124, 137, 247, 0.6);
 }
 
 .ticket-card img {
