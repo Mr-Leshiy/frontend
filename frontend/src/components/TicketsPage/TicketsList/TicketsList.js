@@ -17,7 +17,7 @@ const TicketsList = (props) => {
   });
 
   const tickets_view = filteredTickets.map((ticket) => {
-    return <TicketCard ticket={ticket} />;
+    return <TicketCard ticket={ticket} key={ticket.id} />;
   });
 
   return <div className={classes["tickets-list"]}>{tickets_view}</div>;
