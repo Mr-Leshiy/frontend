@@ -16,3 +16,21 @@
 .inform-message h2 {
   color: rgba(0, 0, 0, 0.4); /* Adjust the alpha value for transparency */
 }
+
+.events-filter {
+  width: 100%;
+
+  margin-right: 40px;
+}
+
+.create-event-button {
+  font-size: 18px;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  margin-left: auto;
+}

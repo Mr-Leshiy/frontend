@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import classes from "./FilteringTab.module.css";
+import classes from "./EventFilter.module.css";
 
-const FilteringTab = (props) => {
+const EventFilter = (props) => {
   const [textValue, setTextValue] = useState("");
 
   const onChange = (e) => {
@@ -13,14 +13,9 @@ const FilteringTab = (props) => {
     props.onFilter(filterOptions);
   };
 
-  const inlineStyles = {
-    pointerEvents: props.isEnabled ? "auto" : "none",
-    opacity: props.isEnabled ? "1" : "0.5",
-  };
   return (
-    <div style={inlineStyles} className={classes["tickets-tab"]}>
+    <div className={classes["event-filter"]}>
       <input
-        className={classes["title-input"]}
         type="text"
         value={textValue}
         placeholder="Search title"
@@ -30,4 +25,4 @@ const FilteringTab = (props) => {
   );
 };
 
-export default FilteringTab;
+export default EventFilter;
