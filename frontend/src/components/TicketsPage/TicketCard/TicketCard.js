@@ -9,7 +9,7 @@ const TicketCard = (props) => {
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
-  
+
   const { event } = props.ticket;
   const { title, date, location } = event;
   const formattedDate = date.toLocaleDateString("en-us", {
