@@ -7,6 +7,11 @@
   padding: 10px 15px;
 }
 
+.header img {
+  height: 55px;
+  padding-left: 40px;
+}
+
 .connect-wallet-button {
   font-size: 18px;
   font-weight: 600;

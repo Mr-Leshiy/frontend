@@ -4,6 +4,7 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 import classes from "./Header.module.css";
 import ConnectWallet from "./ConnectWallet/ConnectWallet.js";
 import Button from "../UI/Button/Button.js";
+import Logo from "../../assets/logo.svg";
 
 const Header = (props) => {
   const { isConnected, disconnect } = useCardano();
@@ -24,6 +25,8 @@ const Header = (props) => {
   return (
     <>
       <header className={classes["header"]}>
+      <img src={Logo} alt=""/>
+
         {isConnected ? (
           <>
             <Button
