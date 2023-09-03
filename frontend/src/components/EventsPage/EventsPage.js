@@ -14,11 +14,6 @@ const EventsPage = () => {
     setFilterOptions(newFilterOptions);
   };
 
-  const inlineStyles = {
-    pointerEvents: isConnected ? "auto" : "none",
-    opacity: isConnected ? "1" : "0.5",
-  };
-
   return (
     <div className={classes["events-page"]}>
       <PageTitle title="Your Events" />
