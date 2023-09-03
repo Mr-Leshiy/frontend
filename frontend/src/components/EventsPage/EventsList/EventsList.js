@@ -5,6 +5,9 @@ import classes from "./EventsList.module.css";
 const EventsList = (props) => {
   const events = Array.from({ length: 4 }, (_, i) => ({
     title: `Event ${i + 1}`,
+    date: new Date(),
+    location: `Location ${i + 1}`,
+    description: `Description ${i + 1}`,
   }));
   const eventRows = events.map((event) => (
     <tr>
