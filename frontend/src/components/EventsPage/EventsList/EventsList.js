@@ -3,20 +3,17 @@ import React from "react";
 import classes from "./EventsList.module.css";
 
 const EventsList = (props) => {
-  let events = [];
-  for (let i = 1; i < 5; i++) {
-    events.push({
-      title: "Event " + i,
-    });
-  }
-
-  const events_elements = events.map((event) => {
-    return (
-      <tr>
-        <td>{event.title}</td>
-      </tr>
-    );
-  });
+  const events = Array.from({ length: 4 }, (_, i) => ({
+    title: `Event ${i + 1}`,
+    date: new Date(),
+    location: `Location ${i + 1}`,
+    description: `Description ${i + 1}`,
+  }));
+  const eventRows = events.map((event) => (
+    <tr>
+      <td>{event.title}</td>
+    </tr>
+  ));
 
   return (
     <div className={classes["events-list"]}>
@@ -26,7 +23,7 @@ const EventsList = (props) => {
             <th>Title</th>
           </tr>
         </thead>
-        <tbody>{events_elements}</tbody>
+        <tbody>{eventRows}</tbody>
       </table>
     </div>
   );

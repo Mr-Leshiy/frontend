@@ -1,24 +1,10 @@
 .sidebar {
   width: fit-content;
-
-  padding: 20px;
 }
 
 .nav-elements {
   list-style: none;
 
-  padding: 0px;
+  padding: 50px 30px;
   margin: 0px;
-}
-
-.nav-elements li {
-  width: 100%;
-
-  margin-bottom: 10px;
-
-  font-size: 18px;
-  font-weight: 600;
-
-  display: flex;
-  align-items: center;
 }

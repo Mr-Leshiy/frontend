@@ -1,22 +1,15 @@
 .sidebar-element {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-
   cursor: pointer;
 
-  /* remains text in one line */
   white-space: nowrap;
 
-  padding: 17px 37.5px;
+  padding: 20px 60px;
   border-radius: 20px;
-  width: 100%;
+
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .sidebar-element-active {
-  background-color: #e9edf9;
-}
-
-.sidebar-element:hover {
-  background-color: #e9edf9;
+  background-color: #e4e9f6;
 }

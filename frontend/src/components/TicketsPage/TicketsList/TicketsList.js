@@ -9,7 +9,7 @@ const TicketsList = (props) => {
 
   const filteredTickets = tickets.filter((ticket) => {
     if (props.filterOptions.title) {
-      return ticket.title
+      return ticket.event.title
         .toLowerCase()
         .includes(props.filterOptions.title.toLowerCase());
     }
@@ -17,7 +17,7 @@ const TicketsList = (props) => {
   });
 
   const tickets_view = filteredTickets.map((ticket) => {
-    return <TicketCard ticket={ticket} />;
+    return <TicketCard ticket={ticket} key={ticket.id} />;
   });
 
   return <div className={classes["tickets-list"]}>{tickets_view}</div>;
