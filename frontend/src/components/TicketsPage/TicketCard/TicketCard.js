@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import classes from "./TicketCard.module.css";
 import TicketCardModal from "../TicketCardFull/TicketCardFull.js";
 import CrossImage from "../../../assets/cross.png";
+import { formatTime, formatDate } from "../../../lib/Utils";
 
 const TicketCard = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -12,12 +13,8 @@ const TicketCard = (props) => {
 
   const { event } = props.ticket;
   const { title, date, location } = event;
-  const formattedDate = date.toLocaleDateString("en-us", {
-    day: "numeric",
-    year: "numeric",
-    month: "short",
-  });
-  const formattedTime = `${date.getHours()}:${date.getMinutes()}`;
+  const formattedDate = formatDate(date);
+  const formattedTime = formatTime(date);
 
   return (
     <>
