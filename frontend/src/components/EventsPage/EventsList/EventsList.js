@@ -11,7 +11,15 @@ const EventsList = (props) => {
     location: `Location ${i + 1}`,
     description: `Description ${i + 1}`,
   }));
-  const eventRows = events.map((event) => (
+  const filteredEvents = events.filter((event) => {
+    if (props.filterOptions.title) {
+      return event.title
+        .toLowerCase()
+        .includes(props.filterOptions.title.toLowerCase());
+    }
+    return true;
+  });
+  const eventRows = filteredEvents.map((event) => (
     <tr>
       <td>{event.id}</td>
       <td>{event.title}</td>

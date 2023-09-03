@@ -53,18 +53,18 @@ const CreateEvent = (props) => {
     >
       <div className={classes["create-event-tab"]}>
         <div>
-          {inputComponent("Title", "text", "Title", 50, eventValue.title)}
-          {inputComponent("Date", "date", "", "", eventValue.date)}
-          {inputComponent("Time", "time", "", "", eventValue.time)}
+          {inputComponent("title", "text", "Title", 50, eventValue.title)}
+          {inputComponent("date", "date", "", "", eventValue.date)}
+          {inputComponent("time", "time", "", "", eventValue.time)}
           {inputComponent(
-            "Location",
+            "location",
             "text",
             "Location",
-            "",
+            50,
             eventValue.location,
           )}
           {inputComponent(
-            "Description",
+            "description",
             "text",
             "Description",
             200,
