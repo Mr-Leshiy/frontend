@@ -19,26 +19,22 @@ const customStyles = {
 };
 
 const TicketCardModal = (props) => {
-  const ticket = props.ticket;
-  const event = ticket.event;
+  const { ticket, closeModal, modalIsOpen } = props;
+  const { id, event } = ticket;
+  const { title, date, location, description, url } = event;
 
-  const id = ticket.id;
-
-  const title = event.title;
-  const date = event.date.toLocaleDateString("en-us", {
+  const formattedDate = date.toLocaleDateString("en-us", {
     day: "numeric",
     year: "numeric",
     month: "short",
   });
-  const time = event.date.getHours() + ":" + event.date.getMinutes();
-  const location = event.location;
-  const description = event.description;
-  const url = event.url;
+
+  const formattedTime = `${date.getHours()}:${date.getMinutes()}`;
 
   return (
     <Modal
-      isOpen={props.modalIsOpen}
-      onRequestClose={props.closeModal}
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
       style={customStyles}
     >
       <div className={classes["ticket-card"]}>
@@ -52,12 +48,12 @@ const TicketCardModal = (props) => {
           <div className={classes["ticket-card-info-date-location"]}>
             <div className={classes["ticket-card-info-date-location-data"]}>
               <h4>Date</h4>
-              <h3>{date}</h3>
+              <h3>{formattedDate}</h3>
             </div>
 
             <div className={classes["ticket-card-info-date-location-data"]}>
               <h4>Time</h4>
-              <h3>{time}</h3>
+              <h3>{formattedTime}</h3>
             </div>
 
             <div className={classes["ticket-card-info-date-location-data"]}>
@@ -84,7 +80,7 @@ const TicketCardModal = (props) => {
 
           <Button
             className={classes["ticket-card-close-button"]}
-            onClick={props.closeModal}
+            onClick={closeModal}
           >
             Close
           </Button>

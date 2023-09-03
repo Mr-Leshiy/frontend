@@ -26,75 +26,20 @@ const CreateEvent = (props) => {
     location: "",
   });
 
-  function handleOnChange(e) {
+  const handleOnChange = (e) => {
     setEventValue({ ...eventValue, [e.target.name]: e.target.value });
-  }
+  };
 
-  const inputTitleComponent = (
+  const inputComponent = (name, type, placeholder, maxLength, value) => (
     <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event Title</div>
+      <div className={classes["input-description"]}>Event {name}</div>
       <input
-        name="title"
+        name={name}
         className={classes["input-data"]}
-        type="text"
-        placeholder="Title"
-        maxLength={50}
-        value={eventValue.title}
-        onChange={handleOnChange}
-      />
-    </div>
-  );
-
-  const inputDescriptionComponent = (
-    <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event Description</div>
-      <textarea
-        name="description"
-        className={classes["input-data"]}
-        type="text"
-        placeholder="Description"
-        maxLength={200}
-        value={eventValue.description}
-        onChange={handleOnChange}
-      />
-    </div>
-  );
-
-  const inputDateComponent = (
-    <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event Date</div>
-      <input
-        name="date"
-        className={classes["input-data"]}
-        type="date"
-        value={eventValue.date}
-        onChange={handleOnChange}
-      />
-    </div>
-  );
-
-  const inputTimeComponent = (
-    <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event Time</div>
-      <input
-        name="time"
-        className={classes["input-data"]}
-        type="time"
-        value={eventValue.time}
-        onChange={handleOnChange}
-      />
-    </div>
-  );
-
-  const inputLocationComponent = (
-    <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event Location</div>
-      <input
-        name="location"
-        className={classes["input-data"]}
-        type="text"
-        placeholder="Location"
-        value={eventValue.location}
+        type={type}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        value={value}
         onChange={handleOnChange}
       />
     </div>
@@ -108,11 +53,23 @@ const CreateEvent = (props) => {
     >
       <div className={classes["create-event-tab"]}>
         <div>
-          {inputTitleComponent}
-          {inputDateComponent}
-          {inputTimeComponent}
-          {inputLocationComponent}
-          {inputDescriptionComponent}
+          {inputComponent("Title", "text", "Title", 50, eventValue.title)}
+          {inputComponent(
+            "Description",
+            "text",
+            "Description",
+            200,
+            eventValue.description,
+          )}
+          {inputComponent("Date", "date", "", "", eventValue.date)}
+          {inputComponent("Time", "time", "", "", eventValue.time)}
+          {inputComponent(
+            "Location",
+            "text",
+            "Location",
+            "",
+            eventValue.location,
+          )}
         </div>
 
         <div className={classes["buttons"]}>

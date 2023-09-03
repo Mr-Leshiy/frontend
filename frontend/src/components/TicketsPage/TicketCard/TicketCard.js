@@ -5,25 +5,19 @@ import TicketCardModal from "../TicketCardFull/TicketCardFull.js";
 import CrossImage from "../../../assets/cross.png";
 
 const TicketCard = (props) => {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const event = props.ticket.event;
-  const title = event.title;
-  const date = event.date.toLocaleDateString("en-us", {
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
+  
+  const { event } = props.ticket;
+  const { title, date, location } = event;
+  const formattedDate = date.toLocaleDateString("en-us", {
     day: "numeric",
     year: "numeric",
     month: "short",
   });
-  const time = event.date.getHours() + ":" + event.date.getMinutes();
-  const location = event.location;
+  const formattedTime = `${date.getHours()}:${date.getMinutes()}`;
 
   return (
     <>
@@ -41,12 +35,12 @@ const TicketCard = (props) => {
           <div className={classes["ticket-card-info-date"]}>
             <div className={classes["ticket-card-info-date-data"]}>
               <h4>Date</h4>
-              <h3>{date}</h3>
+              <h3>{formattedDate}</h3>
             </div>
 
             <div className={classes["ticket-card-info-date-data"]}>
               <h4>Time</h4>
-              <h3>{time}</h3>
+              <h3>{formattedTime}</h3>
             </div>
           </div>
 
