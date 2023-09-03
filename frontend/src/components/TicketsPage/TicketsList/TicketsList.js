@@ -9,7 +9,9 @@ const TicketsList = (props) => {
 
   const filteredTickets = tickets.filter((ticket) => {
     if (props.filterOptions.title) {
-      return ticket.event.title.toLowerCase().includes(props.filterOptions.title.toLowerCase());
+      return ticket.event.title
+        .toLowerCase()
+        .includes(props.filterOptions.title.toLowerCase());
     }
     return true;
   });
