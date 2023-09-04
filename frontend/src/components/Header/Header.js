@@ -24,7 +24,7 @@ const Header = (props) => {
 
   return (
     <>
-      <header className={classes["header"]}>
+      <header ref={props.header_ref} className={classes["header"]}>
         <img src={Logo} alt="" />
 
         {isConnected ? (

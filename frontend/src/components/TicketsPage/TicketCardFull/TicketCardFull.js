@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import classes from "./TicketCardFull.module.css";
 import CrossImage from "../../../assets/cross.png";
 import Button from "../../UI/Button/Button.js";
+import { formatDate, formatTime } from "../../../lib/Utils";
 
 const customStyles = {
   content: {
@@ -23,13 +24,8 @@ const TicketCardModal = (props) => {
   const { id, event } = ticket;
   const { title, date, location, description, url } = event;
 
-  const formattedDate = date.toLocaleDateString("en-us", {
-    day: "numeric",
-    year: "numeric",
-    month: "short",
-  });
-
-  const formattedTime = `${date.getHours()}:${date.getMinutes()}`;
+  const formattedDate = formatDate(date);
+  const formattedTime = formatTime(date);
 
   return (
     <Modal

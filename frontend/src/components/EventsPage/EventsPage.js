@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventsPage.module.css";
-import PageTitle from "../UI/PageTitle/PageTitle.js";
 import EventsList from "./EventsList/EventsList";
 import EventFilter from "../UI/EventFilter/EventFilter";
 import CreateEvent from "./CreateEvent/CreateEvent";
 import Button from "../UI/Button/Button";
+import Page from "../UI/Page/Page";
 
 const EventsPage = () => {
   const { isConnected } = useCardano();
@@ -35,9 +35,7 @@ const EventsPage = () => {
     <>
       <CreateEvent modalIsOpen={modalIsOpen} closeModal={closeModal} />
 
-      <div className={classes["events-page"]}>
-        <PageTitle title="Your Events" />
-
+      <Page title="Your Events">
         <div style={inlineStyles}>
           <div className={classes["events-filter"]}>
             <EventFilter isEnabled={isConnected} onFilter={handleFilter} />
@@ -57,7 +55,7 @@ const EventsPage = () => {
             <h2>Please connect your wallet</h2>
           </div>
         )}
-      </div>
+      </Page>
     </>
   );
 };

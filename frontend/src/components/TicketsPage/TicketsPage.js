@@ -3,8 +3,8 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./TicketsPage.module.css";
 import TicketsList from "./TicketsList/TicketsList.js";
-import PageTitle from "../UI/PageTitle/PageTitle";
 import EventFilter from "../UI/EventFilter/EventFilter";
+import Page from "../UI/Page/Page";
 
 const TicketsPage = (props) => {
   const { isConnected } = useCardano();
@@ -20,8 +20,7 @@ const TicketsPage = (props) => {
     padding: "10px 0px",
   };
   return (
-    <div className={classes["tickets-page"]}>
-      <PageTitle title="Your Tickets Collection" />
+    <Page title="Your Tickets Collection">
       <div style={inlineStyles}>
         <EventFilter isEnabled={isConnected} onFilter={handleFilter} />
       </div>
@@ -32,7 +31,7 @@ const TicketsPage = (props) => {
           <h2>Please connect your wallet</h2>
         </div>
       )}
-    </div>
+    </Page>
   );
 };
 
