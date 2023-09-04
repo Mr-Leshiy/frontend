@@ -1,28 +1,12 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 
 import "./App.css";
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
-import TicketsPage from "./components/TicketsPage/TicketsPage.js";
-import EventsPage from "./components/EventsPage/EventsPage.js";
-import PageContextProvider, {
-  Pages,
-  usePageContext,
-} from "./hooks/PageContext";
-
-const PageHandler = () => {
-  const { activePage } = usePageContext();
-
-  return (
-    <>
-      {activePage === Pages.tickets ? <TicketsPage /> : null}
-      {activePage === Pages.events ? <EventsPage /> : null}
-    </>
-  );
-};
+import PageContextProvider from "./hooks/PageContext";
+import PageHandler from "./components/PageHandler/PageHandler";
 
 function App() {
-  const [activePage, setActivePage] = useState(Pages.tickets);
   const headerRef = useRef(null);
   const containerRef = useRef(null);
 
