@@ -34,22 +34,17 @@
 }
 
 .ticket-card-info h2 {
-  margin: 0;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .ticket-card-info h3 {
-  margin: 0;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .ticket-card-info h4 {
-  margin: 0;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.4);
 }
