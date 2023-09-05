@@ -3,6 +3,7 @@ import Modal from "react-modal";
 
 import classes from "./CreateEvent.module.css";
 import Button from "../../UI/Button/Button.js";
+import { useEventsContext } from "../../../hooks/EventsContext";
 
 const customStyles = {
   content: {
@@ -18,6 +19,7 @@ const customStyles = {
 };
 
 const CreateEvent = (props) => {
+  const { setEvents } = useEventsContext();
   const [eventValue, setEventValue] = useState({
     title: "",
     description: "",
@@ -30,7 +32,7 @@ const CreateEvent = (props) => {
     setEventValue({ ...eventValue, [e.target.name]: e.target.value });
   };
 
-  const inputComponent = (name, type, placeholder, maxLength, value) => (
+  const inputComponent = (name, type, placeholder, maxLength, isRequired) => (
     <div className={classes["input"]}>
       <div className={classes["input-description"]}>Event {name}</div>
       <input
@@ -39,11 +41,19 @@ const CreateEvent = (props) => {
         type={type}
         placeholder={placeholder}
         maxLength={maxLength}
-        value={value}
+        required={isRequired}
         onChange={handleOnChange}
       />
     </div>
   );
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    setEvents((events) => {
+      let date = new Date(`${eventValue.date}T${eventValue.time}`);
+      return [...events, { ...eventValue, date: date }];
+    });
+  };
 
   return (
     <Modal
@@ -52,39 +62,25 @@ const CreateEvent = (props) => {
       style={customStyles}
     >
       <div className={classes["create-event-tab"]}>
-        <div>
-          {inputComponent("title", "text", "Title", 50, eventValue.title)}
-          {inputComponent("date", "date", "", "", eventValue.date)}
-          {inputComponent("time", "time", "", "", eventValue.time)}
-          {inputComponent(
-            "location",
-            "text",
-            "Location",
-            50,
-            eventValue.location,
-          )}
-          {inputComponent(
-            "description",
-            "text",
-            "Description",
-            200,
-            eventValue.description,
-          )}
-        </div>
+        <form onSubmit={onSubmitHandler}>
+          <div>
+            {inputComponent("title", "text", "Title", 50, true)}
+            {inputComponent("date", "date", "", "", true)}
+            {inputComponent("time", "time", "", "", true)}
+            {inputComponent("location", "text", "Location", 50, true)}
+            {inputComponent("description", "text", "Description", 200, false)}
+          </div>
 
-        <div className={classes["buttons"]}>
-          <Button
-            className={classes["button"]}
-            onClick={() => {
-              console.log(eventValue);
-            }}
-          >
-            Create
-          </Button>
-          <Button className={classes["button"]} onClick={props.closeModal}>
-            Close
-          </Button>
-        </div>
+          <div className={classes["buttons"]}>
+            <Button type="submit" className={classes["button"]}>
+              Create
+            </Button>
+
+            <Button className={classes["button"]} onClick={props.closeModal}>
+              Close
+            </Button>
+          </div>
+        </form>
       </div>
     </Modal>
   );

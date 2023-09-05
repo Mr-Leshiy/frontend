@@ -2,15 +2,11 @@ import React from "react";
 
 import classes from "./EventsList.module.css";
 import { formatDate, formatTime } from "../../../lib/Utils";
+import { useEventsContext } from "../../../hooks/EventsContext";
 
 const EventsList = (props) => {
-  const events = Array.from({ length: 4 }, (_, i) => ({
-    id: i + 1,
-    title: `Event ${i + 1}`,
-    date: new Date(),
-    location: `Location ${i + 1}`,
-    description: `Description ${i + 1}`,
-  }));
+  const { events } = useEventsContext();
+
   const filteredEvents = events.filter((event) => {
     if (props.filterOptions.title) {
       return event.title
@@ -19,9 +15,9 @@ const EventsList = (props) => {
     }
     return true;
   });
-  const eventRows = filteredEvents.map((event) => (
-    <tr>
-      <td>{event.id}</td>
+  const eventRows = filteredEvents.map((event, i) => (
+    <tr key={i}>
+      <td>{i + 1}</td>
       <td>{event.title}</td>
       <td>{formatDate(event.date)}</td>
       <td>{formatTime(event.date)}</td>
