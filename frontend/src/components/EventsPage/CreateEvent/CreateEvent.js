@@ -53,6 +53,7 @@ const CreateEvent = (props) => {
       let date = new Date(`${eventValue.date}T${eventValue.time}`);
       return [...events, { ...eventValue, date: date }];
     });
+    props.closeModal();
   };
 
   return (
