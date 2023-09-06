@@ -9,6 +9,8 @@ import Logo from "../../assets/logo.svg";
 const Header = (props) => {
   const { isConnected, disconnect } = useCardano();
   const [modalIsOpen, setIsOpen] = useState(false);
+  console.log(window.screen.width);
+  console.log(window.screen.height);
 
   function disconnectWallet() {
     disconnect();
@@ -24,6 +26,7 @@ const Header = (props) => {
 
   return (
     <>
+     <ConnectWallet modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <header ref={props.header_ref} className={classes["header"]}>
         <img src={Logo} alt="" />
 
@@ -45,7 +48,7 @@ const Header = (props) => {
           </Button>
         )}
       </header>
-      <ConnectWallet modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      
     </>
   );
 };
