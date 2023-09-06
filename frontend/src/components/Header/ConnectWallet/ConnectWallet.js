@@ -38,8 +38,10 @@ const ConnectWallet = (props) => {
       style={customStyles}
     >
       <div className={classes["connect-wallet"]}>
-        <h2>Connect a wallet</h2>
-        <h5>Select the wallet you want to connect below.</h5>
+        <div className={classes["connect-wallet-title"]}>Connect a wallet</div>
+        <div className={classes["connect-wallet-description"]}>
+          Select the wallet you want to connect below.
+        </div>
         <div className={classes["wallets-list"]}>{wallets_view}</div>
         <Button onClick={props.closeModal} className={classes["close-button"]}>
           Close

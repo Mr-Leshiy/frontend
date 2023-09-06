@@ -26,7 +26,7 @@ const Header = (props) => {
 
   return (
     <>
-     <ConnectWallet modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <ConnectWallet modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <header ref={props.header_ref} className={classes["header"]}>
         <img src={Logo} alt="" />
 
@@ -48,7 +48,6 @@ const Header = (props) => {
           </Button>
         )}
       </header>
-      
     </>
   );
 };
