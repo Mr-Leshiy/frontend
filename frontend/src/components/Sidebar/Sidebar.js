@@ -2,24 +2,26 @@ import React from "react";
 
 import classes from "./Sidebar.module.css";
 import SidebarElement from "./SidebarElement/SidebarElement.js";
-import { Pages } from "../../App";
+import { usePageContext, Pages } from "../../hooks/PageContext";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
+  const { activePage, setActivePage } = usePageContext();
+
   return (
     <div className={classes["sidebar"]}>
       <ul className={classes["nav-elements"]}>
         <li>
           <SidebarElement
             text="Tickets"
-            isActive={props.currentPage === Pages.tickets}
-            onClick={() => props.setPage(Pages.tickets)}
+            isActive={activePage === Pages.tickets}
+            onClick={() => setActivePage(Pages.tickets)}
           />
         </li>
         <li>
           <SidebarElement
             text="Events"
-            isActive={props.currentPage === Pages.events}
-            onClick={() => props.setPage(Pages.events)}
+            isActive={activePage === Pages.events}
+            onClick={() => setActivePage(Pages.events)}
           />
         </li>
       </ul>

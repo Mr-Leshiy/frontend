@@ -1,7 +1,6 @@
 .button {
   width: fit-content;
   text-align: center;
-  font-family: $--worksans-semibold;
   cursor: pointer;
   color: #ffffff;
   background-image: linear-gradient(to bottom, #a55df6, #9b26b0);
