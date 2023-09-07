@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const EventsContext = createContext(null);
 
 const EventsContextProvider = ({ children }) => {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useLocalStorage("events", []);
 
   return (
     <EventsContext.Provider value={{ events, setEvents }}>

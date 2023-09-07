@@ -22,7 +22,6 @@ const CreateEvent = (props) => {
   const { setEvents } = useEventsContext();
   const [eventValue, setEventValue] = useState({
     title: "",
-    description: "",
     startDate: "",
     endDate: "",
     startTime: "",
@@ -65,7 +64,12 @@ const CreateEvent = (props) => {
       const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
       return [
         ...events,
-        { ...eventValue, startDate: startDate, endDate: endDate },
+        {
+          title: eventValue.title,
+          location: eventValue.location,
+          startDate: startDate,
+          endDate: endDate,
+        },
       ];
     });
     props.closeModal();
