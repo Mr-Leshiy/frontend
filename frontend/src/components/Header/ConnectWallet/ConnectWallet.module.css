@@ -44,10 +44,10 @@
 }
 
 .close-button {
-  font-size: 1.8vh;
+  font-size: 1.7vh;
   font-weight: 600;
 
-  border-radius: 1.5vh;
+  border-radius: 1vw;
 
-  padding: 1.1vh 1.4vw;
+  padding: 1.2vh 1.5vw;
 }
