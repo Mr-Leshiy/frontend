@@ -27,7 +27,7 @@ const Header = (props) => {
   return (
     <>
       <ConnectWallet modalIsOpen={modalIsOpen} closeModal={closeModal} />
-      <header ref={props.header_ref} className={classes["header"]}>
+      <header className={classes["header"]}>
         <img src={Logo} alt="" />
 
         {isConnected ? (

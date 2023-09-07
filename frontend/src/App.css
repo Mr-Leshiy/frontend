@@ -4,4 +4,8 @@
 
 .container {
   display: flex;
+
+  height: 92.5%; /* because header takes 7.5% */
+
+  box-sizing: border-box;
 }
