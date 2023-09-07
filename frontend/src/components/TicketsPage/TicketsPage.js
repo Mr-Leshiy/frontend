@@ -17,7 +17,7 @@ const TicketsPage = (props) => {
   const inlineStyles = {
     pointerEvents: isConnected ? "auto" : "none",
     opacity: isConnected ? "1" : "0.5",
-    padding: "10px 0px",
+    padding: "1.1vh 0",
   };
   return (
     <Page title="Your Tickets Collection">

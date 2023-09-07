@@ -3,7 +3,6 @@ import React from "react";
 import classes from "./EventsList.module.css";
 import { formatDate } from "../../../lib/Utils";
 import { useEventsContext } from "../../../hooks/EventsContext";
-import DeleteIcon from "../../../assets/delete.svg";
 import { Pages, usePageContext } from "../../../hooks/PageContext";
 
 const EventsList = (props) => {
@@ -35,9 +34,6 @@ const EventsList = (props) => {
       <td>{event.title}</td>
       <td>{formatDate(event.startDate) + " - " + formatDate(event.endDate)}</td>
       <td>{event.location}</td>
-      <td>
-        <img src={DeleteIcon} alt="" onClick={() => onRemoveHandler(i)} />
-      </td>
     </tr>
   ));
 
@@ -50,7 +46,6 @@ const EventsList = (props) => {
             <th>Title</th>
             <th>Date</th>
             <th>Location</th>
-            <th />
           </tr>
         </thead>
         <tbody>{eventRows}</tbody>

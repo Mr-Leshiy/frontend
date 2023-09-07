@@ -36,14 +36,8 @@
   border-radius: 0 0 0.8vh 0.8vh;
 }
 
-.ticket-card-info-title {
-  font-size: 2.5vh;
-  font-weight: 600;
-}
-
 .ticket-card-info h3 {
   font-size: 2.5vh;
-  font-weight: 600;
 
   white-space: nowrap; /* Prevent line breaks */
   overflow: hidden; /* Hide overflowing content */
