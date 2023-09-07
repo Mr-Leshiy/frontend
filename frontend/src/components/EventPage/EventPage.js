@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./EventPage.module.css";
+// import classes from "./EventPage.module.css";
 import Page from "../UI/Page/Page";
 
 const EventPage = (props) => {

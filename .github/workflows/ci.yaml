@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Linter
+        run: |
+          cd frontend
+          yarn prettier --check .
       - name: Build
         run: |
           cd frontend
           yarn install
           yarn build
-      - name: Linter
-        run: |
-          cd frontend
-          yarn prettier --check .

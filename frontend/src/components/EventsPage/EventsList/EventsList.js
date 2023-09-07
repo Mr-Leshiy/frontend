@@ -7,13 +7,13 @@ import { Pages, usePageContext } from "../../../hooks/PageContext";
 
 const EventsList = (props) => {
   const { setActivePage } = usePageContext();
-  const { events, setEvents } = useEventsContext();
+  const { events } = useEventsContext();
 
-  const onRemoveHandler = (index) => {
-    setEvents((events) => {
-      return events.filter((_, i) => i !== index);
-    });
-  };
+  // const onRemoveHandler = (index) => {
+  //   setEvents((events) => {
+  //     return events.filter((_, i) => i !== index);
+  //   });
+  // };
 
   const { title } = props.filterOptions;
   const filteredEvents = events.filter((event) => {
