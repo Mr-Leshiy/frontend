@@ -7,9 +7,9 @@ const EventFilter = (props) => {
 
   const onChange = (e) => {
     const filterOptions = {
-      title: e.target.value,
+      value: e.target.value,
     };
-    setTextValue(filterOptions.title);
+    setTextValue(filterOptions.value);
     props.onFilter(filterOptions);
   };
 
@@ -18,7 +18,7 @@ const EventFilter = (props) => {
       <input
         type="text"
         value={textValue}
-        placeholder="Search title"
+        placeholder="Search title, location"
         onChange={onChange}
       />
     </div>

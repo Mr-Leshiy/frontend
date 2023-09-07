@@ -15,10 +15,14 @@ const EventsList = (props) => {
   //   });
   // };
 
-  const { title } = props.filterOptions;
+  const { value } = props.filterOptions;
   const filteredEvents = events.filter((event) => {
-    if (title) {
-      return event.title.toLowerCase().includes(title.toLowerCase());
+    if (value) {
+      const lower_case_value = value.toLowerCase();
+      return (
+        event.title.toLowerCase().includes(lower_case_value) ||
+        event.location.toLowerCase().includes(lower_case_value)
+      );
     }
     return true;
   });
@@ -31,7 +35,11 @@ const EventsList = (props) => {
     <tr key={i} onClick={() => onChooseEvent(event, i)}>
       <td>{i + 1}</td>
       <td>{event.title}</td>
-      <td>{formatDate(new Date(event.startDate)) + " - " + formatDate(new Date(event.endDate))}</td>
+      <td>
+        {formatDate(new Date(event.startDate)) +
+          " - " +
+          formatDate(new Date(event.endDate))}
+      </td>
       <td>{event.location}</td>
     </tr>
   ));

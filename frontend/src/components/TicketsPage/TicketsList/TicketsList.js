@@ -7,11 +7,14 @@ import { getTickets } from "../../../lib/Tickets";
 const TicketsList = (props) => {
   const [tickets] = useState(getTickets());
 
+  const { value } = props.filterOptions;
   const filteredTickets = tickets.filter((ticket) => {
-    if (props.filterOptions.title) {
-      return ticket.event.title
-        .toLowerCase()
-        .includes(props.filterOptions.title.toLowerCase());
+    if (value) {
+      const lower_case_value = value.toLowerCase();
+      return (
+        ticket.event.title.toLowerCase().includes(lower_case_value) ||
+        ticket.event.location.toLowerCase().includes(lower_case_value)
+      );
     }
     return true;
   });
