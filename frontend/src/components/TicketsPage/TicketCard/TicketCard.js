@@ -27,7 +27,7 @@ const TicketCard = (props) => {
         <img src={CrossImage} alt="" />
 
         <div className={classes["ticket-card-info"]}>
-          <h3>{title} </h3>
+          <h3>{title}</h3>
 
           <div className={classes["ticket-card-info-date"]}>
             <div className={classes["ticket-card-info-date-data"]}>
