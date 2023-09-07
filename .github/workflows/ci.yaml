@@ -12,6 +12,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install deps
+        run: |
+          cd frontend
+          yarn install
       - name: Linter
         run: |
           cd frontend
@@ -19,5 +23,4 @@ jobs:
       - name: Build
         run: |
           cd frontend
-          yarn install
           yarn build
