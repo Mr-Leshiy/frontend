@@ -23,8 +23,10 @@ const WalletElement = (props) => {
   return (
     <>
       <div className={classes["wallet-element"]} onClick={connectWallet}>
-        <img src={props.wallet.icon} alt="" width={50} height={50} />
-        <h5>{props.wallet.name}</h5>
+        <img src={props.wallet.icon} alt="" />
+        <div className={classes["wallet-element-name"]}>
+          {props.wallet.name}
+        </div>
       </div>
       <WalletErrorModal
         modalIsOpen={errorIsOpen}

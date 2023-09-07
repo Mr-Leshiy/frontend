@@ -13,15 +13,15 @@ const Sidebar = () => {
         <li>
           <SidebarElement
             text="Tickets"
-            isActive={activePage === Pages.tickets}
-            onClick={() => setActivePage(Pages.tickets)}
+            isActive={activePage.type === Pages.tickets}
+            onClick={() => setActivePage({ type: Pages.tickets, props: {} })}
           />
         </li>
         <li>
           <SidebarElement
             text="Events"
-            isActive={activePage === Pages.events}
-            onClick={() => setActivePage(Pages.events)}
+            isActive={activePage.type === Pages.events}
+            onClick={() => setActivePage({ type: Pages.events, props: {} })}
           />
         </li>
       </ul>

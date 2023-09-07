@@ -1,15 +1,27 @@
 .wallet-element {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
   cursor: pointer;
-  padding: 17px 37.5px;
+  padding: 1.8vh 2.5vw;
   border-radius: 20px;
 
   display: grid;
   justify-items: center;
   align-items: center;
+}
 
-  margin: 10px;
+.wallet-element img {
+  width: 100%;
 }
 
 .wallet-element:hover {
   background-color: #e9edf9;
+}
+
+.wallet-element-name {
+  font-size: 2vh;
+  font-weight: 500;
 }

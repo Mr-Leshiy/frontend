@@ -1,7 +1,7 @@
 .ticket-card {
-  border-radius: 10px;
+  border-radius: 1.1vh;
 
-  margin: 20px;
+  margin: 2.2vh 1.3vw;
 
   cursor: pointer;
 
@@ -9,8 +9,7 @@
   flex-direction: column;
   align-items: center;
 
-  width: 250px;
-  height: fit-content;
+  box-sizing: border-box;
 }
 
 .ticket-card:hover {
@@ -18,45 +17,53 @@
 }
 
 .ticket-card img {
-  border-radius: 8px 8px 0 0;
+  border-radius: 0.8vh 0.8vh 0 0;
+
   width: 100%;
-  height: 250px;
+  height: 30vh;
 }
 
 .ticket-card-info {
   display: flex;
   flex-direction: column;
 
-  padding: 10px 10px;
+  padding: 2vh 1vw;
 
   width: 100%;
   box-sizing: border-box;
 
   background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 0.8vh 0.8vh;
 }
 
 .ticket-card-info h3 {
+  font-size: 2.5vh;
+
   white-space: nowrap; /* Prevent line breaks */
   overflow: hidden; /* Hide overflowing content */
   text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
 }
 
 .ticket-card-info h4 {
+  font-size: 2vh;
   font-weight: 500;
+
   color: rgba(0, 0, 0, 0.4);
+  white-space: nowrap; /* Prevent line breaks */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
 }
 
 .ticket-card-info-date {
   display: flex;
 
-  margin-top: 20px;
+  margin-top: 2.2vh;
 }
 
 .ticket-card-info-date-data {
-  padding-right: 50px;
+  padding-right: 3.4vw;
 }
 
 .ticket-card-info-location {
-  margin-top: 20px;
+  margin-top: 2.2vh;
 }

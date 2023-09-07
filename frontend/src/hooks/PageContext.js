@@ -3,12 +3,16 @@ import React, { useState, createContext, useContext } from "react";
 export const Pages = {
   tickets: "tickets",
   events: "events",
+  event: "event",
 };
 
 const PageContext = createContext(null);
 
 const PageContextProvider = ({ children }) => {
-  const [activePage, setActivePage] = useState(Pages.tickets);
+  const [activePage, setActivePage] = useState({
+    type: Pages.tickets,
+    props: {},
+  });
 
   return (
     <PageContext.Provider value={{ activePage, setActivePage }}>

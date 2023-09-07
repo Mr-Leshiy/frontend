@@ -23,8 +23,10 @@ const CreateEvent = (props) => {
   const [eventValue, setEventValue] = useState({
     title: "",
     description: "",
-    date: "",
-    time: "",
+    startDate: "",
+    endDate: "",
+    startTime: "",
+    endTime: "",
     location: "",
   });
 
@@ -32,9 +34,16 @@ const CreateEvent = (props) => {
     setEventValue({ ...eventValue, [e.target.name]: e.target.value });
   };
 
-  const inputComponent = (name, type, placeholder, maxLength, isRequired) => (
+  const inputComponent = (
+    description,
+    name,
+    type,
+    placeholder,
+    maxLength,
+    isRequired,
+  ) => (
     <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event {name}</div>
+      <div className={classes["input-description"]}>Event {description}</div>
       <input
         name={name}
         className={classes["input-data"]}
@@ -50,8 +59,14 @@ const CreateEvent = (props) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     setEvents((events) => {
-      let date = new Date(`${eventValue.date}T${eventValue.time}`);
-      return [...events, { ...eventValue, date: date }];
+      const startDate = new Date(
+        `${eventValue.startDate}T${eventValue.startTime}`,
+      );
+      const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
+      return [
+        ...events,
+        { ...eventValue, startDate: startDate, endDate: endDate },
+      ];
     });
     props.closeModal();
   };
@@ -65,11 +80,23 @@ const CreateEvent = (props) => {
       <div className={classes["create-event-tab"]}>
         <form onSubmit={onSubmitHandler}>
           <div>
-            {inputComponent("title", "text", "Title", 50, true)}
-            {inputComponent("date", "date", "", "", true)}
-            {inputComponent("time", "time", "", "", true)}
-            {inputComponent("location", "text", "Location", 50, true)}
-            {inputComponent("description", "text", "Description", 200, false)}
+            {inputComponent("title", "title", "text", "Title", 50, true)}
+            <div className={classes["input-date-and-time"]}>
+              {inputComponent("start date", "startDate", "date", "", "", true)}
+              {inputComponent("start time", "startTime", "time", "", "", true)}
+            </div>
+            <div className={classes["input-date-and-time"]}>
+              {inputComponent("end date", "endDate", "date", "", "", true)}
+              {inputComponent("end time", "endTime", "time", "", "", true)}
+            </div>
+            {inputComponent(
+              "location",
+              "location",
+              "text",
+              "Location",
+              50,
+              true,
+            )}
           </div>
 
           <div className={classes["buttons"]}>
