@@ -14,6 +14,10 @@
   height: 3vh;
 }
 
+.edit-button:hover {
+  cursor: pointer;
+}
+
 .edit-button img {
   height: 100%;
 }

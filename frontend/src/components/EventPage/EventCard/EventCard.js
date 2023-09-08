@@ -12,7 +12,7 @@ const EventCard = (props) => {
   return (
     <div className={classes["event-card"]}>
       <div className={classes["edit-button"]}>
-      <img src={EditLogo} alt="" />
+        <img src={EditLogo} alt="" />
       </div>
 
       <div className={classes["event-card-info"]}>
