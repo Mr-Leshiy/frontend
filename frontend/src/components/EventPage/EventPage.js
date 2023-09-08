@@ -1,12 +1,16 @@
 import React from "react";
 
 import classes from "./EventPage.module.css";
-import Page from "../UI/Page/Page";
+
 import { usePageContext, Pages } from "../../hooks/PageContext";
+
 import ArrowLeftLogo from "../../assets/arrow-left.svg";
 import EditLogo from "../../assets/edit.svg";
 import ImageLogo from "../../assets/image.svg";
+
+import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
+import Button from "../UI/Button/Button";
 
 const EventPage = ({ event }) => {
   const { setActivePage } = usePageContext();
@@ -17,9 +21,13 @@ const EventPage = ({ event }) => {
 
   return (
     <div className={classes["container"]}>
-      <div className={classes["back-button"]} onClick={handleBackClick}>
-        <img src={ArrowLeftLogo} alt="" />
-        <p>Back</p>
+      <div className={classes["tab"]}>
+        <div className={classes["back-button"]} onClick={handleBackClick}>
+          <img src={ArrowLeftLogo} alt="" />
+          <p>Back</p>
+        </div>
+
+        <Button className={classes["delete-button"]}>Delete</Button>
       </div>
 
       <div className={classes["event-page"]}>
