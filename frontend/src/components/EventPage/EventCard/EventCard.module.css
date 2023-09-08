@@ -12,9 +12,7 @@
   width: fit-content;
   margin-left: auto;
   height: 3vh;
-}
 
-.edit-button:hover {
   cursor: pointer;
 }
 

@@ -26,12 +26,10 @@ const EventPage = ({ event }) => {
           <img src={ArrowLeftLogo} alt="" />
           <p>Back</p>
         </div>
-
-        <Button className={classes["delete-button"]}>Delete</Button>
       </div>
 
       <div className={classes["event-page"]}>
-        <Page title={event.title}>
+        <Page title={<p className={classes["event-page-title"]}>{event.title}</p>}>
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
               <div className={classes["event-info-image"]}>
