@@ -2,14 +2,29 @@ import React, { useState } from "react";
 
 import classes from "./EventFilter.module.css";
 
+export const filterEvents = (list, getEvent, filterOptions) => {
+  const filteredEvents = list.filter((element) => {
+    const event = getEvent(element);
+    if (filterOptions.title_or_location) {
+      const title_or_location = filterOptions.title_or_location.toLowerCase();
+      return (
+        event.title.toLowerCase().includes(title_or_location) ||
+        event.location.toLowerCase().includes(title_or_location)
+      );
+    }
+    return true;
+  });
+  return filteredEvents;
+};
+
 const EventFilter = (props) => {
   const [textValue, setTextValue] = useState("");
 
   const onChange = (e) => {
     const filterOptions = {
-      value: e.target.value,
+      title_or_location: e.target.value,
     };
-    setTextValue(filterOptions.value);
+    setTextValue(filterOptions.title_or_location);
     props.onFilter(filterOptions);
   };
 

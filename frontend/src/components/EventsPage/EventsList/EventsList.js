@@ -1,6 +1,7 @@
 import React from "react";
 
 import classes from "./EventsList.module.css";
+import { filterEvents } from "../../UI/EventFilter/EventFilter";
 import { formatDate } from "../../../lib/Utils";
 import { useEventsContext } from "../../../hooks/EventsContext";
 import { Pages, usePageContext } from "../../../hooks/PageContext";
@@ -15,17 +16,11 @@ const EventsList = (props) => {
   //   });
   // };
 
-  const { value } = props.filterOptions;
-  const filteredEvents = events.filter((event) => {
-    if (value) {
-      const lower_case_value = value.toLowerCase();
-      return (
-        event.title.toLowerCase().includes(lower_case_value) ||
-        event.location.toLowerCase().includes(lower_case_value)
-      );
-    }
-    return true;
-  });
+  const filteredEvents = filterEvents(
+    events,
+    (event) => event,
+    props.filterOptions,
+  );
 
   const onChooseEvent = (event, index) => {
     setActivePage({ type: Pages.event, props: { event: event, index: index } });
