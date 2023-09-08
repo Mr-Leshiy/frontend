@@ -1,0 +1,36 @@
+.event-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 2px solid #dbdbe7;
+  border-radius: 10px;
+
+  padding: 2vh 1.5vw;
+}
+
+.event-card-info {
+  padding: 1vh 0vw;
+}
+
+.event-card-info h4 {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.event-card-info h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  margin-left: 1vh;
+}
+
+.event-card-info img {
+  height: 3vh;
+
+  padding: 1vh 0vw;
+}
+
+.event-card-info-element {
+  display: flex;
+  align-items: center;
+}
