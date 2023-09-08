@@ -19,8 +19,11 @@ const EventPage = (props) => {
         <img src={ArrowLeft} alt="" />
         <p>Back</p>
       </div>
+
       <Page title={props.event.title}>
-        <EventCard event={props.event} />
+        <div className={classes["event-page"]}>
+          <EventCard event={props.event} />
+        </div>
       </Page>
     </div>
   );

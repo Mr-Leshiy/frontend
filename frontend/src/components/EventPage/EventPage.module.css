@@ -1,3 +1,7 @@
+.event-page {
+  width: 100%;
+}
+
 .back-button {
   display: flex;
   align-items: center;
