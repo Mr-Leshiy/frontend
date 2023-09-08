@@ -5,6 +5,7 @@ import Page from "../UI/Page/Page";
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import ArrowLeftLogo from "../../assets/arrow-left.svg";
 import EditLogo from "../../assets/edit.svg";
+import ImageLogo from "../../assets/image.svg";
 import EventCard from "./EventCard/EventCard";
 
 const EventPage = ({ event }) => {
@@ -25,6 +26,10 @@ const EventPage = ({ event }) => {
         <Page title={event.title}>
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
+              <div className={classes["event-info-image"]}>
+                <img src={event.image ? event.image : ImageLogo} alt="" />
+              </div>
+
               <div className={classes["event-info-title"]}>
                 <h4>Description</h4>
                 <img src={EditLogo} alt="" />

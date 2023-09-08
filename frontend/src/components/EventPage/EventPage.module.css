@@ -21,6 +21,27 @@
   box-sizing: border-box;
 }
 
+.event-info-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  height: 30vh;
+
+  border: 2px solid #dbdbe7;
+  border-radius: 10px;
+}
+
+.event-info-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.event-info-image:hover {
+  cursor: pointer;
+}
+
 .event-info-title {
   display: flex;
   align-items: center;
