@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 import classes from "./TicketsList.module.css";
+
+import { getTickets } from "../../../lib/Tickets";
+
 import { filterEvents } from "../../UI/EventFilter/EventFilter";
 import TicketCard from "../TicketCard/TicketCard.js";
-import { getTickets } from "../../../lib/Tickets";
 
 const TicketsList = (props) => {
   const [tickets] = useState(getTickets());

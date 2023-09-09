@@ -2,9 +2,12 @@ import React from "react";
 import Modal from "react-modal";
 
 import classes from "./TicketCardFull.module.css";
-import CrossImage from "../../../assets/cross.png";
-import Button from "../../UI/Button/Button.js";
+
 import { formatDate, formatTime } from "../../../lib/Utils";
+
+import CrossImage from "../../../assets/cross.png";
+
+import Button from "../../UI/Button/Button.js";
 
 const customStyles = {
   content: {

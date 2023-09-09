@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
 import classes from "./TicketCard.module.css";
-import TicketCardModal from "../TicketCardFull/TicketCardFull.js";
-import CrossImage from "../../../assets/cross.png";
+
 import { formatTime, formatDate } from "../../../lib/Utils";
+
+import CrossImage from "../../../assets/cross.png";
+
+import TicketCardModal from "../TicketCardFull/TicketCardFull.js";
 
 const TicketCard = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);

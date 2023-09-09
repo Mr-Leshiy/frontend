@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 import classes from "./ConnectWallet.module.css";
+
+import { walletsInfo } from "../../../lib/Wallets.js";
+
 import Button from "../../UI/Button/Button.js";
 import WalletElement from "./WalletElement/WalletElement.js";
-import { walletsInfo } from "../../../lib/Wallets.js";
 
 const customStyles = {
   content: {

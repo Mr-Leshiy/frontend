@@ -1,10 +1,12 @@
 import React from "react";
 
 import classes from "./EventsList.module.css";
-import { filterEvents } from "../../UI/EventFilter/EventFilter";
-import { formatDate } from "../../../lib/Utils";
+
 import { useEventsContext } from "../../../hooks/EventsContext";
 import { Pages, usePageContext } from "../../../hooks/PageContext";
+import { formatDate } from "../../../lib/Utils";
+
+import { filterEvents } from "../../UI/EventFilter/EventFilter";
 
 const EventsList = (props) => {
   const { setActivePage } = usePageContext();

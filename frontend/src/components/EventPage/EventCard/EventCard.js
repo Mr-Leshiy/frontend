@@ -1,12 +1,14 @@
 import React from "react";
 
 import classes from "./EventCard.module.css";
-import ClockLogo from "../../../assets/clock.svg";
-import CalendarLogo from "../../../assets/calendar.svg";
-import LocationPinLogo from "../../../assets/location-pin.svg";
-import UrlLogo from "../../../assets/url.svg";
-import EditLogo from "../../../assets/edit.svg";
+
 import { formatDate, formatTime } from "../../../lib/Utils";
+
+import ClockLogo from "../../../assets/svg/clock.svg";
+import CalendarLogo from "../../../assets/svg/calendar.svg";
+import LocationPinLogo from "../../../assets/svg/location-pin.svg";
+import UrlLogo from "../../../assets/svg/url.svg";
+import EditLogo from "../../../assets/svg/edit.svg";
 
 const EventCard = ({ event }) => {
   return (

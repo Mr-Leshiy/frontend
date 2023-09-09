@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 import classes from "./CreateEvent.module.css";
-import Button from "../../UI/Button/Button.js";
+
 import { useEventsContext } from "../../../hooks/EventsContext";
+
+import Button from "../../UI/Button/Button.js";
 
 const customStyles = {
   content: {

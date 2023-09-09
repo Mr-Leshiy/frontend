@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./Header.module.css";
+
+import Logo from "../../assets/svg/logo.svg";
+
 import ConnectWallet from "./ConnectWallet/ConnectWallet.js";
 import Button from "../UI/Button/Button.js";
-import Logo from "../../assets/logo.svg";
 
 const Header = (props) => {
   const { isConnected, disconnect } = useCardano();
