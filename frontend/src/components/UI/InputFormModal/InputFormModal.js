@@ -83,7 +83,13 @@ export class Input {
   }
 }
 
-const InputFormModal = ({ modalIsOpen, closeModal, inputs, submitHandler, submitButtonText }) => {
+const InputFormModal = ({
+  modalIsOpen,
+  closeModal,
+  inputs,
+  submitHandler,
+  submitButtonText,
+}) => {
   const [inputValue, setInputValue] = useState({});
 
   const handleOnChange = (e) => {
@@ -92,7 +98,9 @@ const InputFormModal = ({ modalIsOpen, closeModal, inputs, submitHandler, submit
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    submitHandler(inputValue);
+    if (submitHandler) {
+      submitHandler(inputValue);
+    }
     closeModal();
   };
 

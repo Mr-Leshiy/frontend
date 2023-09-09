@@ -10,7 +10,10 @@ import LocationPinLogo from "../../../assets/svg/location-pin.svg";
 import UrlLogo from "../../../assets/svg/url.svg";
 import EditLogo from "../../../assets/svg/edit.svg";
 
-import EditModal from "../EditModal/EditModal";
+import InputFormModal, {
+  InpputTypes,
+  Input,
+} from "../../UI/InputFormModal/InputFormModal";
 
 const EventCard = ({ event }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
@@ -18,9 +21,36 @@ const EventCard = ({ event }) => {
   const openEditModal = () => setEditModalIsOpen(true);
   const closeEditModal = () => setEditModalIsOpen(false);
 
+  const editInputs = [
+    new Input("Event title", "title", InpputTypes.TEXT, "Title", 50, true),
+    new Input("Event start", "start", InpputTypes.DATE, "", "", true),
+    new Input("Event end", "end", InpputTypes.DATE, "", "", true),
+    new Input(
+      "Event location",
+      "location",
+      InpputTypes.TEXT,
+      "Location",
+      50,
+      true,
+    ),
+    new Input(
+      "Event website",
+      "website",
+      InpputTypes.TEXT,
+      "Website link",
+      50,
+      false,
+    ),
+  ];
+
   return (
     <>
-      <EditModal isOpen={editModalIsOpen} onRequestClose={closeEditModal} />
+      <InputFormModal
+        modalIsOpen={editModalIsOpen}
+        closeModal={closeEditModal}
+        inputs={editInputs}
+        submitButtonText="Edit"
+      />
 
       <div className={classes["event-card"]}>
         <div className={classes["edit-button"]} onClick={openEditModal}>
