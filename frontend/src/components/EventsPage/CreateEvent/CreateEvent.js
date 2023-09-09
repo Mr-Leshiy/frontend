@@ -12,16 +12,12 @@ const CreateEvent = ({ modalIsOpen, closeModal }) => {
 
   const onSubmitHandler = (eventValue) => {
     setEvents((events) => {
-      const startDate = new Date(
-        `${eventValue.startDate}T${eventValue.startTime}`,
-      );
-      const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
       return [
         ...events,
         new Event(
           eventValue.title,
-          startDate,
-          endDate,
+          eventValue.startDate,
+          eventValue.endDate,
           eventValue.location,
           eventValue.website,
         ),
@@ -31,8 +27,8 @@ const CreateEvent = ({ modalIsOpen, closeModal }) => {
 
   const inputs = [
     new Input("Event title", "title", InpputTypes.TEXT, "Title", 50, true),
-    new Input("Event start", "start", InpputTypes.DATE, "", "", true),
-    new Input("Event end", "end", InpputTypes.DATE, "", "", true),
+    new Input("Event start date", "startDate", InpputTypes.DATE, "", "", true),
+    new Input("Event end date", "endDate", InpputTypes.DATE, "", "", true),
     new Input(
       "Event location",
       "location",

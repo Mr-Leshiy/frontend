@@ -49,3 +49,14 @@ export function inputFormatTime(date) {
   let minutes = date.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;
 }
+
+/**
+ * Converts a date and time input into a JavaScript Date object.
+ *
+ * @param {string} date - The date in the format "YYYY-MM-DD".
+ * @param {string} time - The time in the format "HH:MM".
+ * @return {Date} The converted Date object.
+ */
+export function dateFromInput(date, time) {
+  return new Date(`${date}T${time}`);
+}

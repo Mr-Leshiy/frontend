@@ -4,7 +4,11 @@ import classes from "./InputFormModal.module.css";
 
 import Button from "../../UI/Button/Button.js";
 import ModalWindow from "../../UI/ModalWindow/ModalWindow";
-import { inputFormatTime, inputFormatDate } from "../../../lib/Utils";
+import {
+  inputFormatTime,
+  inputFormatDate,
+  dateFromInput,
+} from "../../../lib/Utils";
 
 export const InpputTypes = {
   TEXT: "text",
@@ -19,7 +23,6 @@ const inputComponent = (
   maxLength,
   isRequired,
   initialValue,
-  handleOnChange,
 ) => (
   <div className={classes["input"]}>
     <div className={classes["input-description"]}>{description}</div>
@@ -31,7 +34,6 @@ const inputComponent = (
       maxLength={maxLength}
       required={isRequired}
       defaultValue={initialValue}
-      onChange={handleOnChange}
     />
   </div>
 );
@@ -55,7 +57,21 @@ export class Input {
     this.initialValue = initialValue;
   }
 
-  buildComponent(handleOnChange) {
+  static retrieveValueFromForm(target) {
+    let res = {};
+    for (let i = 0; i < target.length; i++) {
+      if (target[i].type === "text") {
+        res[target[i].name] = target[i].value;
+      }
+      if (target[i].type === "date") {
+        // Date and Time inputs should go one by one
+        res[target[i].name] = dateFromInput(target[i].value, target[++i].value);
+      }
+    }
+    return res;
+  }
+
+  buildComponent(i) {
     if (this.type === InpputTypes.TEXT) {
       return inputComponent(
         this.description,
@@ -65,31 +81,28 @@ export class Input {
         this.maxLength,
         this.isRequired,
         this.initialValue,
-        handleOnChange,
       );
     }
     if (this.type === InpputTypes.DATE) {
       return (
-        <div className={classes["input-date-and-time"]}>
+        <div className={classes["input-date-and-time"]} key={i}>
           {inputComponent(
-            this.description + " date",
-            this.name + "Date",
+            this.description,
+            this.name,
             "date",
             this.placeholder,
             this.maxLength,
             this.isRequired,
             this.initialValue ? inputFormatDate(this.initialValue) : "",
-            handleOnChange,
           )}
           {inputComponent(
-            this.description + " time",
+            "time",
             this.name + "Time",
             "time",
             this.placeholder,
             this.maxLength,
             this.isRequired,
             this.initialValue ? inputFormatTime(this.initialValue) : "",
-            handleOnChange,
           )}
         </div>
       );
@@ -105,31 +118,18 @@ const InputFormModal = ({
   submitHandler,
   submitButtonText,
 }) => {
-  const initValue = inputs
-    ? inputs.reduce((obj, input) => {
-        return {
-          ...obj,
-          [input.name]: input.initialValue,
-        };
-      }, {})
-    : {};
-  const [inputValue, setInputValue] = useState(initValue);
-
-  const handleOnChange = (e) => {
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-  };
+  const inputComponents = inputs
+    ? inputs.map((input, i) => input.buildComponent(i))
+    : null;
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (submitHandler) {
+      let inputValue = Input.retrieveValueFromForm(event.target);
       submitHandler(inputValue);
     }
     closeModal();
   };
-
-  const inputComponents = inputs
-    ? inputs.map((input) => input.buildComponent(handleOnChange))
-    : null;
 
   return (
     <ModalWindow isOpen={modalIsOpen} onRequestClose={closeModal}>

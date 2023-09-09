@@ -27,12 +27,8 @@ const EventCard = ({ eventIndex }) => {
 
   const onSubmitHandler = (eventValue) => {
     setEvents((events) => {
-      const startDate = new Date(
-        `${eventValue.startDate}T${eventValue.startTime}`,
-      );
-      const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
-      events[eventIndex].startDate = startDate;
-      events[eventIndex].endDate = endDate;
+      events[eventIndex].startDate = eventValue.startDate;
+      events[eventIndex].endDate = eventValue.endDate;
       events[eventIndex].location = eventValue.location;
       events[eventIndex].website = eventValue.website;
       return events;
@@ -41,8 +37,8 @@ const EventCard = ({ eventIndex }) => {
 
   const editInputs = [
     new Input(
-      "Event start",
-      "start",
+      "Event start date",
+      "startDate",
       InpputTypes.DATE,
       "",
       "",
@@ -50,8 +46,8 @@ const EventCard = ({ eventIndex }) => {
       event.startDate,
     ),
     new Input(
-      "Event end",
-      "end",
+      "Event end date",
+      "endDate",
       InpputTypes.DATE,
       "",
       "",

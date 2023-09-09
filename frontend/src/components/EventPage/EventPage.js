@@ -11,7 +11,10 @@ import ImageLogo from "../../assets/svg/image.svg";
 
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
-import InputFormModal, {InpputTypes, Input} from "../UI/InputFormModal/InputFormModal";
+import InputFormModal, {
+  InpputTypes,
+  Input,
+} from "../UI/InputFormModal/InputFormModal";
 
 const EventPage = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
@@ -34,7 +37,15 @@ const EventPage = ({ eventIndex }) => {
 
   const editDescriptionComponent = () => {
     const inputs = [
-      new Input("Event description", "description", InpputTypes.TEXT, "Description", 1000, true, event.description),
+      new Input(
+        "Event description",
+        "description",
+        InpputTypes.TEXT,
+        "Description",
+        1000,
+        true,
+        event.description,
+      ),
     ];
 
     const onSubmitHandler = (eventValue) => {
@@ -57,7 +68,15 @@ const EventPage = ({ eventIndex }) => {
 
   const editTitleComponent = () => {
     const inputs = [
-      new Input("Event title", "title", InpputTypes.TEXT, "Title", 50, true, event.title),
+      new Input(
+        "Event title",
+        "title",
+        InpputTypes.TEXT,
+        "Title",
+        50,
+        true,
+        event.title,
+      ),
     ];
 
     const onSubmitHandler = (eventValue) => {
