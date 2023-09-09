@@ -35,37 +35,6 @@ const EventPage = ({ eventIndex }) => {
     setActivePage({ type: Pages.events, props: {} });
   };
 
-  const editDescriptionComponent = () => {
-    const inputs = [
-      new Input(
-        "Event description",
-        "description",
-        InputTypes.TEXT,
-        "Description",
-        1000,
-        true,
-        event.description,
-      ),
-    ];
-
-    const onSubmitHandler = (eventValue) => {
-      setEvents((events) => {
-        events[eventIndex].description = eventValue.description;
-        return events;
-      });
-    };
-
-    return (
-      <InputFormModal
-        modalIsOpen={editDescriptionModalIsOpen}
-        closeModal={closeEditDescriptionModal}
-        submitButtonText="Edit"
-        inputs={inputs}
-        submitHandler={onSubmitHandler}
-      />
-    );
-  };
-
   const editTitleComponent = () => {
     const inputs = [
       new Input(
@@ -90,6 +59,68 @@ const EventPage = ({ eventIndex }) => {
       <InputFormModal
         modalIsOpen={editTitleModalIsOpen}
         closeModal={closeEditTitleModal}
+        submitButtonText="Edit"
+        inputs={inputs}
+        submitHandler={onSubmitHandler}
+      />
+    );
+  };
+
+  const editImageComponent = () => {
+    const inputs = [
+      new Input(
+        "Event title",
+        "image",
+        InputTypes.TEXT,
+        "Image",
+        0,
+        true,
+        event.title,
+      ),
+    ];
+
+    const onSubmitHandler = (eventValue) => {
+      setEvents((events) => {
+        events[eventIndex].title = eventValue.title;
+        return events;
+      });
+    };
+
+    return (
+      <InputFormModal
+        modalIsOpen={editTitleModalIsOpen}
+        closeModal={closeEditTitleModal}
+        submitButtonText="Edit"
+        inputs={inputs}
+        submitHandler={onSubmitHandler}
+      />
+    );
+  };
+
+  const editDescriptionComponent = () => {
+    const inputs = [
+      new Input(
+        "Event description",
+        "description",
+        InputTypes.TEXT,
+        "Description",
+        1000,
+        true,
+        event.description,
+      ),
+    ];
+
+    const onSubmitHandler = (eventValue) => {
+      setEvents((events) => {
+        events[eventIndex].description = eventValue.description;
+        return events;
+      });
+    };
+
+    return (
+      <InputFormModal
+        modalIsOpen={editDescriptionModalIsOpen}
+        closeModal={closeEditDescriptionModal}
         submitButtonText="Edit"
         inputs={inputs}
         submitHandler={onSubmitHandler}

@@ -3,7 +3,7 @@ import React from "react";
 import { useEventsContext, Event } from "../../../hooks/EventsContext";
 
 import InputFormModal, {
-  InpputTypes,
+  InputTypes,
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
@@ -26,13 +26,13 @@ const CreateEvent = ({ modalIsOpen, closeModal }) => {
   };
 
   const inputs = [
-    new Input("Event title", "title", InpputTypes.TEXT, "Title", 50, true),
-    new Input("Event start date", "startDate", InpputTypes.DATE, "", "", true),
-    new Input("Event end date", "endDate", InpputTypes.DATE, "", "", true),
+    new Input("Event title", "title", InputTypes.TEXT, "Title", 50, true),
+    new Input("Event start date", "startDate", InputTypes.DATE, "", "", true),
+    new Input("Event end date", "endDate", InputTypes.DATE, "", "", true),
     new Input(
       "Event location",
       "location",
-      InpputTypes.TEXT,
+      InputTypes.TEXT,
       "Location",
       50,
       true,
@@ -40,7 +40,7 @@ const CreateEvent = ({ modalIsOpen, closeModal }) => {
     new Input(
       "Event website",
       "website",
-      InpputTypes.TEXT,
+      InputTypes.TEXT,
       "Website link",
       50,
       false,

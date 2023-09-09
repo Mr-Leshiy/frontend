@@ -13,6 +13,7 @@ import {
 export const InputTypes = {
   TEXT: "text",
   DATE: "date",
+  IMAGE: "image",
 };
 
 const inputComponent = (
