@@ -10,7 +10,6 @@ import ImageLogo from "../../assets/image.svg";
 
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
-import Button from "../UI/Button/Button";
 
 const EventPage = ({ event }) => {
   const { setActivePage } = usePageContext();
@@ -29,7 +28,9 @@ const EventPage = ({ event }) => {
       </div>
 
       <div className={classes["event-page"]}>
-        <Page title={<p className={classes["event-page-title"]}>{event.title}</p>}>
+        <Page
+          title={<p className={classes["event-page-title"]}>{event.title}</p>}
+        >
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
               <div className={classes["event-info-image"]}>
