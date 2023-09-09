@@ -19,17 +19,22 @@ import InputFormModal, {
 const EventPage = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
   const { setActivePage } = usePageContext();
+  const [editTitleModalIsOpen, setEditTitleModalIsOpen] = useState(false);
+  const [editImageModalIsOpen, setEditImageModalIsOpen] = useState(false);
   const [editDescriptionModalIsOpen, setEditDescriptionModalIsOpen] =
     useState(false);
-  const [editTitleModalIsOpen, setEditTitleModalIsOpen] = useState(false);
-
-  const openEditDescriptionModal = () => setEditDescriptionModalIsOpen(true);
-  const closeEditDescriptionModal = () => setEditDescriptionModalIsOpen(false);
 
   const openEditTitleModal = () => setEditTitleModalIsOpen(true);
   const closeEditTitleModal = () => setEditTitleModalIsOpen(false);
 
+  const openEditImageModal = () => setEditImageModalIsOpen(true);
+  const closeEditImageModal = () => setEditImageModalIsOpen(false);
+
+  const openEditDescriptionModal = () => setEditDescriptionModalIsOpen(true);
+  const closeEditDescriptionModal = () => setEditDescriptionModalIsOpen(false);
+
   const event = events[eventIndex];
+  console.log(event);
 
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
@@ -59,6 +64,30 @@ const EventPage = ({ eventIndex }) => {
       <InputFormModal
         modalIsOpen={editTitleModalIsOpen}
         closeModal={closeEditTitleModal}
+        submitButtonText="Edit"
+        inputs={inputs}
+        submitHandler={onSubmitHandler}
+      />
+    );
+  };
+
+  const editImageComponent = () => {
+    const inputs = [
+      new Input("Event image", "image", InputTypes.IMAGE, "Image", 0, true),
+    ];
+
+    const onSubmitHandler = (eventValue) => {
+      setEvents((events) => {
+        events[eventIndex].image = eventValue.image;
+        console.log(events[eventIndex]);
+        return events;
+      });
+    };
+
+    return (
+      <InputFormModal
+        modalIsOpen={editImageModalIsOpen}
+        closeModal={closeEditImageModal}
         submitButtonText="Edit"
         inputs={inputs}
         submitHandler={onSubmitHandler}
@@ -99,8 +128,9 @@ const EventPage = ({ eventIndex }) => {
 
   return (
     <>
-      {editDescriptionComponent()}
       {editTitleComponent()}
+      {editImageComponent()}
+      {editDescriptionComponent()}
 
       <div className={classes["container"]}>
         <div className={classes["tab"]}>
@@ -124,7 +154,11 @@ const EventPage = ({ eventIndex }) => {
             <div className={classes["event-page-content"]}>
               <div className={classes["event-info"]}>
                 <div className={classes["event-info-image"]}>
-                  <img src={event.image ? event.image : ImageLogo} alt="" />
+                  <img
+                    onClick={openEditImageModal}
+                    src={event.image ? event.image : ImageLogo}
+                    alt=""
+                  />
                 </div>
 
                 <div className={classes["event-info-title"]}>

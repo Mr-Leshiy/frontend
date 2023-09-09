@@ -68,6 +68,9 @@ export class Input {
         // Date and Time inputs should go one by one
         res[target[i].name] = dateFromInput(target[i].value, target[++i].value);
       }
+      if (target[i].type === "file") {
+        res[target[i].name] = target[i].files[0];
+      }
     }
     return res;
   }
@@ -85,6 +88,21 @@ export class Input {
             this.isRequired,
             this.initialValue,
           )}
+        </div>
+      );
+    }
+    if (this.type === InputTypes.IMAGE) {
+      return (
+        <div className={classes["input"]} key={i}>
+          <div className={classes["input-description"]}>{this.description}</div>
+          <input
+            name={this.name}
+            className={classes["input-data"]}
+            type="file"
+            accept=".png, .jpg, .jpeg, .svg"
+            multiple={false}
+            required={this.isRequired}
+          />
         </div>
       );
     }
