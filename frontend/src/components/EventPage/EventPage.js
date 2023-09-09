@@ -29,11 +29,7 @@ const EventPage = ({ event, index }) => {
 
       <div className={classes["event-page"]}>
         <Page
-          title={
-            <p className={classes["event-page-title"]}>
-              {event.title + " - " + index}
-            </p>
-          }
+          title={<p className={classes["event-page-title"]}>{event.title}</p>}
         >
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>

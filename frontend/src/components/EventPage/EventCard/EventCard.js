@@ -16,9 +16,11 @@ import InputFormModal, {
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
-const EventCard = ({ event, index }) => {
-  const { setEvents } = useEventsContext();
+const EventCard = ({ index }) => {
+  const { events, setEvents } = useEventsContext();
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+
+  const event = events[index];
 
   const openEditModal = () => setEditModalIsOpen(true);
   const closeEditModal = () => setEditModalIsOpen(false);
@@ -29,14 +31,10 @@ const EventCard = ({ event, index }) => {
         `${eventValue.startDate}T${eventValue.startTime}`,
       );
       const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
-      const newEvent = new Event(
-        eventValue.title,
-        startDate,
-        endDate,
-        eventValue.location,
-        eventValue.website,
-      );
-      events[index] = newEvent;
+      events[index].startDate = startDate;
+      events[index].endDate = endDate;
+      events[index].location = eventValue.location;
+      events[index].website = eventValue.website;
       return events;
     });
   };
@@ -86,7 +84,7 @@ const EventCard = ({ event, index }) => {
         modalIsOpen={editModalIsOpen}
         closeModal={closeEditModal}
         inputs={editInputs}
-        // submitHandler={onSubmitHandler}
+        submitHandler={onSubmitHandler}
         submitButtonText="Edit"
       />
 
