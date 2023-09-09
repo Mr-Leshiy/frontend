@@ -32,11 +32,7 @@ const EventsList = (props) => {
     <tr key={i} onClick={() => onChooseEvent(event, i)}>
       <td>{i + 1}</td>
       <td>{event.title}</td>
-      <td>
-        {formatDate(new Date(event.startDate)) +
-          " - " +
-          formatDate(new Date(event.endDate))}
-      </td>
+      <td>{formatDate(event.startDate) + " - " + formatDate(event.endDate)}</td>
       <td>{event.location}</td>
     </tr>
   ));

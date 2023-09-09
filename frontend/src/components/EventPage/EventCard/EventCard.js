@@ -31,12 +31,12 @@ const EventCard = ({ event }) => {
           <h4>Start time</h4>
           <div className={classes["event-card-info-element"]}>
             <img src={CalendarLogo} alt="" />
-            <h3>{formatDate(new Date(event.startDate))}</h3>
+            <h3>{formatDate(event.startDate)}</h3>
           </div>
 
           <div className={classes["event-card-info-element"]}>
             <img src={ClockLogo} alt="" />
-            <h3>{formatTime(new Date(event.startDate))}</h3>
+            <h3>{formatTime(event.startDate)}</h3>
           </div>
         </div>
 
@@ -44,12 +44,12 @@ const EventCard = ({ event }) => {
           <h4>End time</h4>
           <div className={classes["event-card-info-element"]}>
             <img src={CalendarLogo} alt="" />
-            <h3>{formatDate(new Date(event.endDate))}</h3>
+            <h3>{formatDate(event.endDate)}</h3>
           </div>
 
           <div className={classes["event-card-info-element"]}>
             <img src={ClockLogo} alt="" />
-            <h3>{formatTime(new Date(event.endDate))}</h3>
+            <h3>{formatTime(event.endDate)}</h3>
           </div>
         </div>
 

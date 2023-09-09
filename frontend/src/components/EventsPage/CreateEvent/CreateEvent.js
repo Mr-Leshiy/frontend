@@ -2,22 +2,14 @@ import React, { useState } from "react";
 
 import classes from "./CreateEvent.module.css";
 
-import { useEventsContext } from "../../../hooks/EventsContext";
+import { useEventsContext, Event } from "../../../hooks/EventsContext";
 
 import Button from "../../UI/Button/Button.js";
 import ModalWindow from "../../UI/ModalWindow/ModalWindow";
 
 const CreateEvent = (props) => {
   const { setEvents } = useEventsContext();
-  const [eventValue, setEventValue] = useState({
-    title: "",
-    startDate: "",
-    endDate: "",
-    startTime: "",
-    endTime: "",
-    location: "",
-    website: "",
-  });
+  const [eventValue, setEventValue] = useState({});
 
   const handleOnChange = (e) => {
     setEventValue({ ...eventValue, [e.target.name]: e.target.value });
@@ -54,13 +46,13 @@ const CreateEvent = (props) => {
       const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
       return [
         ...events,
-        {
-          title: eventValue.title,
-          location: eventValue.location,
-          startDate: startDate,
-          endDate: endDate,
-          website: eventValue.website,
-        },
+        new Event(
+          eventValue.title,
+          startDate,
+          endDate,
+          eventValue.location,
+          eventValue.website,
+        ),
       ];
     });
     props.closeModal();
