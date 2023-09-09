@@ -12,7 +12,7 @@ import UrlLogo from "../../../assets/svg/url.svg";
 import EditLogo from "../../../assets/svg/edit.svg";
 
 import InputFormModal, {
-  InpputTypes,
+  InputTypes,
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
@@ -39,7 +39,7 @@ const EventCard = ({ eventIndex }) => {
     new Input(
       "Event start date",
       "startDate",
-      InpputTypes.DATE,
+      InputTypes.DATE,
       "",
       "",
       true,
@@ -48,7 +48,7 @@ const EventCard = ({ eventIndex }) => {
     new Input(
       "Event end date",
       "endDate",
-      InpputTypes.DATE,
+      InputTypes.DATE,
       "",
       "",
       true,
@@ -57,7 +57,7 @@ const EventCard = ({ eventIndex }) => {
     new Input(
       "Event location",
       "location",
-      InpputTypes.TEXT,
+      InputTypes.TEXT,
       "Location",
       50,
       true,
@@ -66,7 +66,7 @@ const EventCard = ({ eventIndex }) => {
     new Input(
       "Event website",
       "website",
-      InpputTypes.TEXT,
+      InputTypes.TEXT,
       "Website link",
       50,
       false,

@@ -10,7 +10,7 @@ import {
   dateFromInput,
 } from "../../../lib/Utils";
 
-export const InpputTypes = {
+export const InputTypes = {
   TEXT: "text",
   DATE: "date",
 };
@@ -72,7 +72,7 @@ export class Input {
   }
 
   buildComponent(i) {
-    if (this.type === InpputTypes.TEXT) {
+    if (this.type === InputTypes.TEXT) {
       return inputComponent(
         this.description,
         this.name,
@@ -83,7 +83,7 @@ export class Input {
         this.initialValue,
       );
     }
-    if (this.type === InpputTypes.DATE) {
+    if (this.type === InputTypes.DATE) {
       return (
         <div className={classes["input-date-and-time"]} key={i}>
           {inputComponent(

@@ -12,7 +12,7 @@ import ImageLogo from "../../assets/svg/image.svg";
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
 import InputFormModal, {
-  InpputTypes,
+  InputTypes,
   Input,
 } from "../UI/InputFormModal/InputFormModal";
 
@@ -40,7 +40,7 @@ const EventPage = ({ eventIndex }) => {
       new Input(
         "Event description",
         "description",
-        InpputTypes.TEXT,
+        InputTypes.TEXT,
         "Description",
         1000,
         true,
@@ -71,7 +71,7 @@ const EventPage = ({ eventIndex }) => {
       new Input(
         "Event title",
         "title",
-        InpputTypes.TEXT,
+        InputTypes.TEXT,
         "Title",
         50,
         true,
