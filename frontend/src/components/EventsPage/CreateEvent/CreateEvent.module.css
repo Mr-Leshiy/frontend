@@ -1,9 +1,6 @@
 .create-event-tab {
   width: fit-content;
 
-  border-radius: 20px;
-  background: linear-gradient(135deg, #ffd8e6, #ffffff 35% 65%, #8edbff);
-  border: 2px solid #dbdbe7;
 
   display: flex;
   flex-direction: column;

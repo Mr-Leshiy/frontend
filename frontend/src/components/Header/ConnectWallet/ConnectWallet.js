@@ -1,24 +1,12 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 
 import classes from "./ConnectWallet.module.css";
 
 import { walletsInfo } from "../../../lib/Wallets.js";
 
 import Button from "../../UI/Button/Button.js";
+import ModalWindow from "../../UI/ModalWindow/ModalWindow";
 import WalletElement from "./WalletElement/WalletElement.js";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    transform: "translate(-50%, -50%)",
-    background: "none",
-    border: "none",
-  },
-};
 
 const ConnectWallet = (props) => {
   const [wallets] = useState(walletsInfo());
@@ -34,10 +22,9 @@ const ConnectWallet = (props) => {
   });
 
   return (
-    <Modal
+    <ModalWindow
       isOpen={props.modalIsOpen}
       onRequestClose={props.closeModal}
-      style={customStyles}
     >
       <div className={classes["connect-wallet"]}>
         <div className={classes["connect-wallet-title"]}>Connect a wallet</div>
@@ -49,7 +36,7 @@ const ConnectWallet = (props) => {
           Close
         </Button>
       </div>
-    </Modal>
+    </ModalWindow>
   );
 };
 

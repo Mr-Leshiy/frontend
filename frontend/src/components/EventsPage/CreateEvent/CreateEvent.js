@@ -1,24 +1,11 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 
 import classes from "./CreateEvent.module.css";
 
 import { useEventsContext } from "../../../hooks/EventsContext";
 
 import Button from "../../UI/Button/Button.js";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    background: "none",
-    border: "none",
-  },
-};
+import ModalWindow from "../../UI/ModalWindow/ModalWindow";
 
 const CreateEvent = (props) => {
   const { setEvents } = useEventsContext();
@@ -78,10 +65,9 @@ const CreateEvent = (props) => {
   };
 
   return (
-    <Modal
+    <ModalWindow
       isOpen={props.modalIsOpen}
       onRequestClose={props.closeModal}
-      style={customStyles}
     >
       <div className={classes["create-event-tab"]}>
         <form onSubmit={onSubmitHandler}>
@@ -116,7 +102,7 @@ const CreateEvent = (props) => {
           </div>
         </form>
       </div>
-    </Modal>
+    </ModalWindow>
   );
 };
 
