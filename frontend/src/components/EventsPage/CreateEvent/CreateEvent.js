@@ -1,44 +1,16 @@
-import React, { useState } from "react";
-
-import classes from "./CreateEvent.module.css";
+import React from "react";
 
 import { useEventsContext, Event } from "../../../hooks/EventsContext";
 
-import Button from "../../UI/Button/Button.js";
-import ModalWindow from "../../UI/ModalWindow/ModalWindow";
+import InputFormModal, {
+  InpputTypes,
+  Input,
+} from "../../UI/InputFormModal/InputFormModal";
 
-const CreateEvent = (props) => {
+const CreateEvent = ({ modalIsOpen, closeModal }) => {
   const { setEvents } = useEventsContext();
-  const [eventValue, setEventValue] = useState({});
 
-  const handleOnChange = (e) => {
-    setEventValue({ ...eventValue, [e.target.name]: e.target.value });
-  };
-
-  const inputComponent = (
-    description,
-    name,
-    type,
-    placeholder,
-    maxLength,
-    isRequired,
-  ) => (
-    <div className={classes["input"]}>
-      <div className={classes["input-description"]}>Event {description}</div>
-      <input
-        name={name}
-        className={classes["input-data"]}
-        type={type}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        required={isRequired}
-        onChange={handleOnChange}
-      />
-    </div>
-  );
-
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
+  const onSubmitHandler = (eventValue) => {
     setEvents((events) => {
       const startDate = new Date(
         `${eventValue.startDate}T${eventValue.startTime}`,
@@ -55,53 +27,38 @@ const CreateEvent = (props) => {
         ),
       ];
     });
-    props.closeModal();
   };
 
+  const inputs = [
+    new Input("Event title", "title", InpputTypes.TEXT, "Title", 50, true),
+    new Input("Event start", "start", InpputTypes.DATE, "", "", true),
+    new Input("Event end", "end", InpputTypes.DATE, "", "", true),
+    new Input(
+      "Event location",
+      "location",
+      InpputTypes.TEXT,
+      "Location",
+      50,
+      true,
+    ),
+    new Input(
+      "Event website",
+      "website",
+      InpputTypes.TEXT,
+      "Website link",
+      50,
+      false,
+    ),
+  ];
+
   return (
-    <ModalWindow isOpen={props.modalIsOpen} onRequestClose={props.closeModal}>
-      <div className={classes["create-event-tab"]}>
-        <form onSubmit={onSubmitHandler}>
-          <div>
-            {inputComponent("title", "title", "text", "Title", 50, true)}
-            <div className={classes["input-date-and-time"]}>
-              {inputComponent("start date", "startDate", "date", "", "", true)}
-              {inputComponent("start time", "startTime", "time", "", "", true)}
-            </div>
-            <div className={classes["input-date-and-time"]}>
-              {inputComponent("end date", "endDate", "date", "", "", true)}
-              {inputComponent("end time", "endTime", "time", "", "", true)}
-            </div>
-            {inputComponent(
-              "location",
-              "location",
-              "text",
-              "Location",
-              50,
-              true,
-            )}
-            {inputComponent(
-              "website",
-              "website",
-              "text",
-              "Website link",
-              50,
-              false,
-            )}
-          </div>
-
-          <div className={classes["buttons"]}>
-            <Button type="submit" className={classes["button"]}>
-              Create
-            </Button>
-
-            <Button className={classes["button"]} onClick={props.closeModal}>
-              Close
-            </Button>
-          </div>
-        </form>
-      </div>
-    </ModalWindow>
+    <InputFormModal
+      modalIsOpen={modalIsOpen}
+      closeModal={closeModal}
+      inputs={inputs}
+      submitHandler={onSubmitHandler}
+      submitButtonText="Create"
+    />
   );
 };
 
