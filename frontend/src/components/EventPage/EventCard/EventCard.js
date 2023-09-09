@@ -65,7 +65,9 @@ const EventCard = ({ event }) => {
           <h4>Website</h4>
           <div className={classes["event-card-info-element"]}>
             <img src={UrlLogo} alt="" />
-            <h3>{event.website}</h3>
+            <a href={event.website}>
+              <h3>{event.website}</h3>
+            </a>
           </div>
         </div>
       </div>
