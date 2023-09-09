@@ -25,7 +25,7 @@ const EventsList = (props) => {
   );
 
   const onChooseEvent = (event, index) => {
-    setActivePage({ type: Pages.event, props: { event: event, index: index } });
+    setActivePage({ type: Pages.event, props: { eventIndex: index } });
   };
 
   const eventRows = filteredEvents.map((event, i) => (

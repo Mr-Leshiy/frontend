@@ -2,13 +2,13 @@ import React, { createContext, useContext } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 export class Event {
-  constructor(title, startDate, endDate, location, website) {
+  constructor(title, startDate, endDate, location, website, description) {
     this.title = title;
     this.startDate = startDate;
     this.endDate = endDate;
     this.location = location;
     this.website = website;
-    this.description = null;
+    this.description = description;
   }
 
   setDescription(description) {
@@ -29,6 +29,7 @@ const EventsContextProvider = ({ children }) => {
         new Date(event.endDate),
         event.location,
         event.website,
+        event.description,
       ),
   );
 

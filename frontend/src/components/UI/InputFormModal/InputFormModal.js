@@ -105,12 +105,14 @@ const InputFormModal = ({
   submitHandler,
   submitButtonText,
 }) => {
-  const initValue = inputs.reduce((obj, input) => {
-    return {
-      ...obj,
-      [input.name]: input.initialValue,
-    };
-  }, {});
+  const initValue = inputs
+    ? inputs.reduce((obj, input) => {
+        return {
+          ...obj,
+          [input.name]: input.initialValue,
+        };
+      }, {})
+    : {};
   const [inputValue, setInputValue] = useState(initValue);
 
   const handleOnChange = (e) => {

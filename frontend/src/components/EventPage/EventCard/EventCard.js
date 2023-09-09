@@ -16,11 +16,11 @@ import InputFormModal, {
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
-const EventCard = ({ index }) => {
+const EventCard = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
-  const event = events[index];
+  const event = events[eventIndex];
 
   const openEditModal = () => setEditModalIsOpen(true);
   const closeEditModal = () => setEditModalIsOpen(false);
@@ -31,10 +31,10 @@ const EventCard = ({ index }) => {
         `${eventValue.startDate}T${eventValue.startTime}`,
       );
       const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
-      events[index].startDate = startDate;
-      events[index].endDate = endDate;
-      events[index].location = eventValue.location;
-      events[index].website = eventValue.website;
+      events[eventIndex].startDate = startDate;
+      events[eventIndex].endDate = endDate;
+      events[eventIndex].location = eventValue.location;
+      events[eventIndex].website = eventValue.website;
       return events;
     });
   };
