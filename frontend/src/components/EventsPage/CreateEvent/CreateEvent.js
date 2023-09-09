@@ -16,6 +16,7 @@ const CreateEvent = (props) => {
     startTime: "",
     endTime: "",
     location: "",
+    website: "",
   });
 
   const handleOnChange = (e) => {
@@ -58,6 +59,7 @@ const CreateEvent = (props) => {
           location: eventValue.location,
           startDate: startDate,
           endDate: endDate,
+          website: eventValue.website,
         },
       ];
     });
@@ -86,6 +88,14 @@ const CreateEvent = (props) => {
               "location",
               "text",
               "Location",
+              50,
+              true,
+            )}
+            {inputComponent(
+              "website",
+              "website",
+              "text",
+              "Website link",
               50,
               true,
             )}
