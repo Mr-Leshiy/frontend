@@ -66,37 +66,6 @@ const EventPage = ({ eventIndex }) => {
     );
   };
 
-  const editImageComponent = () => {
-    const inputs = [
-      new Input(
-        "Event title",
-        "image",
-        InputTypes.TEXT,
-        "Image",
-        0,
-        true,
-        event.title,
-      ),
-    ];
-
-    const onSubmitHandler = (eventValue) => {
-      setEvents((events) => {
-        events[eventIndex].title = eventValue.title;
-        return events;
-      });
-    };
-
-    return (
-      <InputFormModal
-        modalIsOpen={editTitleModalIsOpen}
-        closeModal={closeEditTitleModal}
-        submitButtonText="Edit"
-        inputs={inputs}
-        submitHandler={onSubmitHandler}
-      />
-    );
-  };
-
   const editDescriptionComponent = () => {
     const inputs = [
       new Input(

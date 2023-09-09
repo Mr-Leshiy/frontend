@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./EventCard.module.css";
 
-import { useEventsContext, Event } from "../../../hooks/EventsContext";
+import { useEventsContext } from "../../../hooks/EventsContext";
 import { formatDate, formatTime } from "../../../lib/Utils";
 
 import ClockLogo from "../../../assets/svg/clock.svg";
