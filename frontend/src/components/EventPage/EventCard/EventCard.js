@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./EventCard.module.css";
 
+import { useEventsContext, Event } from "../../../hooks/EventsContext";
 import { formatDate, formatTime } from "../../../lib/Utils";
 
 import ClockLogo from "../../../assets/svg/clock.svg";
@@ -15,16 +16,50 @@ import InputFormModal, {
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, index }) => {
+  const { setEvents } = useEventsContext();
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
   const openEditModal = () => setEditModalIsOpen(true);
   const closeEditModal = () => setEditModalIsOpen(false);
 
+  const onSubmitHandler = (eventValue) => {
+    setEvents((events) => {
+      const startDate = new Date(
+        `${eventValue.startDate}T${eventValue.startTime}`,
+      );
+      const endDate = new Date(`${eventValue.endDate}T${eventValue.endTime}`);
+      const newEvent = new Event(
+        eventValue.title,
+        startDate,
+        endDate,
+        eventValue.location,
+        eventValue.website,
+      );
+      events[index] = newEvent;
+      return events;
+    });
+  };
+
   const editInputs = [
-    new Input("Event title", "title", InpputTypes.TEXT, "Title", 50, true),
-    new Input("Event start", "start", InpputTypes.DATE, "", "", true),
-    new Input("Event end", "end", InpputTypes.DATE, "", "", true),
+    new Input(
+      "Event start",
+      "start",
+      InpputTypes.DATE,
+      "",
+      "",
+      true,
+      event.startDate,
+    ),
+    new Input(
+      "Event end",
+      "end",
+      InpputTypes.DATE,
+      "",
+      "",
+      true,
+      event.endDate,
+    ),
     new Input(
       "Event location",
       "location",
@@ -32,6 +67,7 @@ const EventCard = ({ event }) => {
       "Location",
       50,
       true,
+      event.location,
     ),
     new Input(
       "Event website",
@@ -40,6 +76,7 @@ const EventCard = ({ event }) => {
       "Website link",
       50,
       false,
+      event.website,
     ),
   ];
 
@@ -49,6 +86,7 @@ const EventCard = ({ event }) => {
         modalIsOpen={editModalIsOpen}
         closeModal={closeEditModal}
         inputs={editInputs}
+        // submitHandler={onSubmitHandler}
         submitButtonText="Edit"
       />
 

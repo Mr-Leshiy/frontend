@@ -11,7 +11,7 @@ import ImageLogo from "../../assets/svg/image.svg";
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
 
-const EventPage = ({ event }) => {
+const EventPage = ({ event, index }) => {
   const { setActivePage } = usePageContext();
 
   const handleBackClick = () => {
@@ -29,7 +29,11 @@ const EventPage = ({ event }) => {
 
       <div className={classes["event-page"]}>
         <Page
-          title={<p className={classes["event-page-title"]}>{event.title}</p>}
+          title={
+            <p className={classes["event-page-title"]}>
+              {event.title + " - " + index}
+            </p>
+          }
         >
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
@@ -47,7 +51,7 @@ const EventPage = ({ event }) => {
             </div>
 
             <div className={classes["event-card"]}>
-              <EventCard event={event} />
+              <EventCard event={event} index={index} />
             </div>
           </div>
         </Page>

@@ -4,6 +4,7 @@ import classes from "./InputFormModal.module.css";
 
 import Button from "../../UI/Button/Button.js";
 import ModalWindow from "../../UI/ModalWindow/ModalWindow";
+import { inputFormatTime, inputFormatDate } from "../../../lib/Utils";
 
 export const InpputTypes = {
   TEXT: "text",
@@ -17,6 +18,7 @@ const inputComponent = (
   placeholder,
   maxLength,
   isRequired,
+  initialValue,
   handleOnChange,
 ) => (
   <div className={classes["input"]}>
@@ -28,19 +30,29 @@ const inputComponent = (
       placeholder={placeholder}
       maxLength={maxLength}
       required={isRequired}
+      defaultValue={initialValue}
       onChange={handleOnChange}
     />
   </div>
 );
 
 export class Input {
-  constructor(description, name, type, placeholder, maxLength, isRequired) {
+  constructor(
+    description,
+    name,
+    type,
+    placeholder,
+    maxLength,
+    isRequired,
+    initialValue,
+  ) {
     this.description = description;
     this.name = name;
     this.type = type;
     this.placeholder = placeholder;
     this.maxLength = maxLength;
     this.isRequired = isRequired;
+    this.initialValue = initialValue;
   }
 
   buildComponent(handleOnChange) {
@@ -52,6 +64,7 @@ export class Input {
         this.placeholder,
         this.maxLength,
         this.isRequired,
+        this.initialValue,
         handleOnChange,
       );
     }
@@ -65,6 +78,7 @@ export class Input {
             this.placeholder,
             this.maxLength,
             this.isRequired,
+            this.initialValue ? inputFormatDate(this.initialValue) : "",
             handleOnChange,
           )}
           {inputComponent(
@@ -74,6 +88,7 @@ export class Input {
             this.placeholder,
             this.maxLength,
             this.isRequired,
+            this.initialValue ? inputFormatTime(this.initialValue) : "",
             handleOnChange,
           )}
         </div>
