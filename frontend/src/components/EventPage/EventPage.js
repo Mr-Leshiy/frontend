@@ -4,9 +4,9 @@ import classes from "./EventPage.module.css";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
 
-import ArrowLeftLogo from "../../assets/arrow-left.svg";
-import EditLogo from "../../assets/edit.svg";
-import ImageLogo from "../../assets/image.svg";
+import ArrowLeftLogo from "../../assets/svg/arrow-left.svg";
+import EditLogo from "../../assets/svg/edit.svg";
+import ImageLogo from "../../assets/svg/image.svg";
 
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";

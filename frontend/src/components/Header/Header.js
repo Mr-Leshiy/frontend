@@ -3,7 +3,7 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./Header.module.css";
 
-import Logo from "../../assets/logo.svg";
+import Logo from "../../assets/svg/logo.svg";
 
 import ConnectWallet from "./ConnectWallet/ConnectWallet.js";
 import Button from "../UI/Button/Button.js";
