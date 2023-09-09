@@ -5,10 +5,6 @@ import classes from "./EditModal.module.css";
 import ModalWindow from "../../UI/ModalWindow/ModalWindow";
 import Button from "../../UI/Button/Button";
 
-export const InputType = {
-  date_and_time: "date_and_time",
-};
-
 const EditModal = (props) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
