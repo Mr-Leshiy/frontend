@@ -22,10 +22,7 @@ const ConnectWallet = (props) => {
   });
 
   return (
-    <ModalWindow
-      isOpen={props.modalIsOpen}
-      onRequestClose={props.closeModal}
-    >
+    <ModalWindow isOpen={props.modalIsOpen} onRequestClose={props.closeModal}>
       <div className={classes["connect-wallet"]}>
         <div className={classes["connect-wallet-title"]}>Connect a wallet</div>
         <div className={classes["connect-wallet-description"]}>

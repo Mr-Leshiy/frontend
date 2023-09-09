@@ -1,4 +1,4 @@
-.create-event-tab {
+.edit-modal {
   width: fit-content;
 
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
   justify-items: center;
 
-  padding: 1.1vh 3.4vw;
+  padding: 1.1vh 1.5vw;
 }
 
 .input-date-and-time {
@@ -33,16 +33,6 @@
   border-radius: 5px;
 }
 
-.input-data {
-  border-radius: 10px;
-  border: 2px solid #e6e6f0;
-
-  font-size: 2.2vh;
-  opacity: 0.7;
-
-  padding: 1.1vh 0.6vw;
-}
-
 .buttons {
   display: flex;
   align-items: center;
@@ -53,8 +43,7 @@
   font-size: 1.7vh;
   font-weight: 600;
 
-  margin: 1.6vh 1vw;
+  border-radius: 1vw;
 
   padding: 1.2vh 1.5vw;
-  border-radius: 10px;
 }

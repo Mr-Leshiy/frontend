@@ -67,10 +67,7 @@ const CreateEvent = (props) => {
   };
 
   return (
-    <ModalWindow
-      isOpen={props.modalIsOpen}
-      onRequestClose={props.closeModal}
-    >
+    <ModalWindow isOpen={props.modalIsOpen} onRequestClose={props.closeModal}>
       <div className={classes["create-event-tab"]}>
         <form onSubmit={onSubmitHandler}>
           <div>
@@ -97,7 +94,7 @@ const CreateEvent = (props) => {
               "text",
               "Website link",
               50,
-              true,
+              false,
             )}
           </div>
 
