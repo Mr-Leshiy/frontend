@@ -25,18 +25,14 @@ const EventsList = (props) => {
   );
 
   const onChooseEvent = (event, index) => {
-    setActivePage({ type: Pages.event, props: { event: event, index: index } });
+    setActivePage({ type: Pages.event, props: { eventIndex: index } });
   };
 
   const eventRows = filteredEvents.map((event, i) => (
     <tr key={i} onClick={() => onChooseEvent(event, i)}>
       <td>{i + 1}</td>
       <td>{event.title}</td>
-      <td>
-        {formatDate(new Date(event.startDate)) +
-          " - " +
-          formatDate(new Date(event.endDate))}
-      </td>
+      <td>{formatDate(event.startDate) + " - " + formatDate(event.endDate)}</td>
       <td>{event.location}</td>
     </tr>
   ));

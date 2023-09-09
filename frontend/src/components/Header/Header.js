@@ -8,7 +8,7 @@ import Logo from "../../assets/svg/logo.svg";
 import ConnectWallet from "./ConnectWallet/ConnectWallet.js";
 import Button from "../UI/Button/Button.js";
 
-const Header = (props) => {
+const Header = () => {
   const { isConnected, disconnect } = useCardano();
   const [modalIsOpen, setIsOpen] = useState(false);
 
