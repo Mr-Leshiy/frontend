@@ -74,14 +74,18 @@ export class Input {
 
   buildComponent(i) {
     if (this.type === InputTypes.TEXT) {
-      return inputComponent(
-        this.description,
-        this.name,
-        "text",
-        this.placeholder,
-        this.maxLength,
-        this.isRequired,
-        this.initialValue,
+      return (
+        <div key={i}>
+          {inputComponent(
+            this.description,
+            this.name,
+            "text",
+            this.placeholder,
+            this.maxLength,
+            this.isRequired,
+            this.initialValue,
+          )}
+        </div>
       );
     }
     if (this.type === InputTypes.DATE) {
