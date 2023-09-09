@@ -1,8 +1,10 @@
 import React from "react";
 
 import classes from "./Sidebar.module.css";
-import SidebarElement from "./SidebarElement/SidebarElement.js";
+
 import { usePageContext, Pages } from "../../hooks/PageContext";
+
+import SidebarElement from "./SidebarElement/SidebarElement.js";
 
 const Sidebar = () => {
   const { activePage, setActivePage } = usePageContext();

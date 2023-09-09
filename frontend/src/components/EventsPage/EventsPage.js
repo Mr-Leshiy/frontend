@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventsPage.module.css";
+
 import EventsList from "./EventsList/EventsList";
 import EventFilter from "../UI/EventFilter/EventFilter";
 import CreateEvent from "./CreateEvent/CreateEvent";

@@ -1,9 +1,11 @@
 import React from "react";
 
 import "./App.css";
+
+import PageContextProvider from "./hooks/PageContext";
+
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
-import PageContextProvider from "./hooks/PageContext";
 import PageHandler from "./components/PageHandler/PageHandler";
 
 function App() {
