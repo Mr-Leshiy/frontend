@@ -45,10 +45,10 @@ const EventPage = ({ eventIndex }) => {
         "Event title",
         "title",
         InputTypes.TEXT,
-        "Title",
-        50,
         true,
+        "Title",
         event.title,
+        50,
       ),
     ];
 
@@ -71,9 +71,7 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const editImageComponent = () => {
-    const inputs = [
-      new Input("Event image", "image", InputTypes.IMAGE, "Image", 0, true),
-    ];
+    const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
 
     const onSubmitHandler = (value) => {
       const reader = new FileReader();
@@ -81,7 +79,7 @@ const EventPage = ({ eventIndex }) => {
         setEvents((events) => {
           events[eventIndex].image = reader.result;
           return events;
-        });        
+        });
       });
       reader.readAsDataURL(value.image);
     };
@@ -103,10 +101,10 @@ const EventPage = ({ eventIndex }) => {
         "Event description",
         "description",
         InputTypes.TEXT,
-        "Description",
-        1000,
         true,
+        "Description",
         event.description,
+        1000,
       ),
     ];
 
@@ -114,7 +112,7 @@ const EventPage = ({ eventIndex }) => {
       setEvents((events) => {
         events[eventIndex].description = value.description;
         return events;
-      }); 
+      });
     };
 
     return (

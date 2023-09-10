@@ -26,24 +26,26 @@ const CreateEvent = ({ modalIsOpen, closeModal }) => {
   };
 
   const inputs = [
-    new Input("Event title", "title", InputTypes.TEXT, "Title", 50, true),
-    new Input("Event start date", "startDate", InputTypes.DATE, "", "", true),
-    new Input("Event end date", "endDate", InputTypes.DATE, "", "", true),
+    new Input("Event title", "title", InputTypes.TEXT, true, "Title", null, 50),
+    new Input("Event start date", "startDate", InputTypes.DATE, true),
+    new Input("Event end date", "endDate", InputTypes.DATE, true),
     new Input(
       "Event location",
       "location",
       InputTypes.TEXT,
-      "Location",
-      50,
       true,
+      "Location",
+      null,
+      50,
     ),
     new Input(
       "Event website",
       "website",
       InputTypes.TEXT,
-      "Website link",
-      50,
       false,
+      "Website link",
+      null,
+      50,
     ),
   ];
 

@@ -44,10 +44,10 @@ export class Input {
     description,
     name,
     type,
-    placeholder,
-    maxLength,
     isRequired,
+    placeholder,
     initialValue,
+    maxLength,
   ) {
     this.description = description;
     this.name = name;
