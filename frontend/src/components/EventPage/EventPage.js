@@ -34,7 +34,6 @@ const EventPage = ({ eventIndex }) => {
   const closeEditDescriptionModal = () => setEditDescriptionModalIsOpen(false);
 
   const event = events[eventIndex];
-  console.log(event);
 
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
@@ -53,9 +52,9 @@ const EventPage = ({ eventIndex }) => {
       ),
     ];
 
-    const onSubmitHandler = (eventValue) => {
+    const onSubmitHandler = (value) => {
       setEvents((events) => {
-        events[eventIndex].title = eventValue.title;
+        events[eventIndex].title = value.title;
         return events;
       });
     };
@@ -76,12 +75,15 @@ const EventPage = ({ eventIndex }) => {
       new Input("Event image", "image", InputTypes.IMAGE, "Image", 0, true),
     ];
 
-    const onSubmitHandler = (eventValue) => {
-      setEvents((events) => {
-        events[eventIndex].image = eventValue.image;
-        console.log(events[eventIndex]);
-        return events;
+    const onSubmitHandler = (value) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setEvents((events) => {
+          events[eventIndex].image = reader.result;
+          return events;
+        });        
       });
+      reader.readAsDataURL(value.image);
     };
 
     return (
@@ -108,11 +110,11 @@ const EventPage = ({ eventIndex }) => {
       ),
     ];
 
-    const onSubmitHandler = (eventValue) => {
+    const onSubmitHandler = (value) => {
       setEvents((events) => {
-        events[eventIndex].description = eventValue.description;
+        events[eventIndex].description = value.description;
         return events;
-      });
+      }); 
     };
 
     return (
