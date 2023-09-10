@@ -12,12 +12,6 @@ const EventsList = (props) => {
   const { setActivePage } = usePageContext();
   const { events } = useEventsContext();
 
-  // const onRemoveHandler = (index) => {
-  //   setEvents((events) => {
-  //     return events.filter((_, i) => i !== index);
-  //   });
-  // };
-
   const filteredEvents = filterEvents(
     events,
     (event) => event,
