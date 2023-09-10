@@ -46,7 +46,7 @@ const EventPage = ({ eventIndex }) => {
       return events;
     });
     handleBackClick();
-  }
+  };
 
   const editTitleComponent = () => {
     const inputs = [
@@ -188,7 +188,10 @@ const EventPage = ({ eventIndex }) => {
               </div>
             </div>
 
-            <div onClick={handleDeleteClick} className={classes["delete-submit-buttons"]}>
+            <div
+              onClick={handleDeleteClick}
+              className={classes["delete-submit-buttons"]}
+            >
               <Button>Delete</Button>
             </div>
           </Page>
