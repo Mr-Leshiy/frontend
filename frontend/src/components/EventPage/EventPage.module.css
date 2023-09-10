@@ -66,7 +66,7 @@
 }
 
 .event-info-description {
-  height: 30vh;
+  height: 25vh;
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
@@ -127,4 +127,24 @@
   font-weight: 700;
 
   padding-left: 0.3vw;
+}
+
+.delete-submit-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2vh 3vw;
+}
+
+.delete-submit-buttons button {
+  font-size: 2vh;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  padding: 1.4vh 1.2vw;
+  margin: 0 1vw;
+
+  border-radius: 1.1vh;
 }

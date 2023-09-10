@@ -15,6 +15,7 @@ import InputFormModal, {
   InputTypes,
   Input,
 } from "../UI/InputFormModal/InputFormModal";
+import Button from "../UI/Button/Button";
 
 const EventPage = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
@@ -38,6 +39,14 @@ const EventPage = ({ eventIndex }) => {
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
   };
+
+  const handleDeleteClick = () => {
+    setEvents((events) => {
+      events.splice(eventIndex, 1);
+      return events;
+    });
+    handleBackClick();
+  }
 
   const editTitleComponent = () => {
     const inputs = [
@@ -177,6 +186,10 @@ const EventPage = ({ eventIndex }) => {
               <div className={classes["event-card"]}>
                 <EventCard eventIndex={eventIndex} />
               </div>
+            </div>
+
+            <div onClick={handleDeleteClick} className={classes["delete-submit-buttons"]}>
+              <Button>Delete</Button>
             </div>
           </Page>
         </div>
