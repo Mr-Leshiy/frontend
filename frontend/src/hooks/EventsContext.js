@@ -10,6 +10,7 @@ export class Event {
     website,
     description,
     image,
+    published
   ) {
     this.title = title;
     this.startDate = startDate;
@@ -18,6 +19,7 @@ export class Event {
     this.website = website;
     this.description = description;
     this.image = image;
+    this.published = published;
   }
 }
 
@@ -36,6 +38,7 @@ const EventsContextProvider = ({ children }) => {
         event.website,
         event.description,
         event.image,
+        event.published,
       ),
   );
 

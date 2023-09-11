@@ -48,6 +48,13 @@ const EventPage = ({ eventIndex }) => {
     handleBackClick();
   };
 
+  const handlePublishClick = () => {
+    setEvents((events) => {
+      events[eventIndex].published = true;
+      return events;
+    });
+  };
+
   const editTitleComponent = () => {
     const inputs = [
       new Input(
@@ -135,6 +142,11 @@ const EventPage = ({ eventIndex }) => {
     );
   };
 
+  const isActiveStyles = {
+    pointerEvents: !event.published ? "auto" : "none",
+    opacity: !event.published ? "1" : "0.5",
+  };
+
   return (
     <>
       {editTitleComponent()}
@@ -153,7 +165,7 @@ const EventPage = ({ eventIndex }) => {
           <Page
             title={
               <p
-                onClick={openEditTitleModal}
+                onClick={!event.published ? openEditTitleModal: null}
                 className={classes["event-page-title"]}
               >
                 {event.title}
@@ -164,7 +176,7 @@ const EventPage = ({ eventIndex }) => {
               <div className={classes["event-info"]}>
                 <div className={classes["event-info-image"]}>
                   <img
-                    onClick={openEditImageModal}
+                    onClick={!event.published ? openEditImageModal: null}
                     src={event.image ? event.image : ImageLogo}
                     alt=""
                   />
@@ -173,6 +185,7 @@ const EventPage = ({ eventIndex }) => {
                 <div className={classes["event-info-title"]}>
                   <h4>Description</h4>
                   <img
+                    style={isActiveStyles}
                     onClick={openEditDescriptionModal}
                     src={EditLogo}
                     alt=""
@@ -189,10 +202,11 @@ const EventPage = ({ eventIndex }) => {
             </div>
 
             <div
-              onClick={handleDeleteClick}
+              style={isActiveStyles}
               className={classes["delete-submit-buttons"]}
             >
-              <Button>Delete</Button>
+              <Button onClick={handlePublishClick}>Publish</Button>
+              <Button onClick={handleDeleteClick}>Delete</Button>
             </div>
           </Page>
         </div>
