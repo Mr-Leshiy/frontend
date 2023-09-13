@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventPage.module.css";
 
@@ -122,6 +123,7 @@ const editDescriptionComponent = (
 };
 
 const EventPage = ({ eventIndex }) => {
+  const { stakeAddress } = useCardano();
   const { events, setEvents } = useEventsContext();
   const { setActivePage } = usePageContext();
   const [eventImage, setEventImage] = useState(null);
@@ -164,7 +166,7 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    await publishEvent(event);
+    await publishEvent(stakeAddress, event);
     setEvents((events) => {
       events[eventIndex].published = true;
       return events;

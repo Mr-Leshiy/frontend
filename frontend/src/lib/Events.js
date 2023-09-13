@@ -34,12 +34,15 @@ export const getEventImage = async (id) => {
   }
 };
 
-export const publishEvent = async (event) => {
+export const publishEvent = async (stakeAddress, event) => {
   try {
     const res = await axiosInstance.post(
-      "/events/publish",
+      "/events/event/publish",
       {
-        ...event,
+        stakeAddress: stakeAddress,
+        event: {
+          ...event,
+        },
       },
       {
         headers: {
@@ -47,8 +50,17 @@ export const publishEvent = async (event) => {
         },
       },
     );
-    console.log(res.status);
     return res.status;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
+export const getEvents = async (stakeAddress) => {
+  try {
+    const res = await axiosInstance.get(`/events/event/${stakeAddress}`);
+    return res.data;
   } catch (err) {
     console.log(err);
     return null;

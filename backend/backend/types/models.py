@@ -15,3 +15,8 @@ class Event:
     website: Optional[str] = None
     description: Optional[str] = None
     image: Optional[str] = None
+
+@dataclass
+class EventRequest:
+    stakeAddress: str
+    event: Event
