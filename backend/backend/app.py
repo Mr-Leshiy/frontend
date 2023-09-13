@@ -1,19 +1,40 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 import secrets
+import hashlib
 
-from .types.models import TicketInfo
+from .types.models import EventImage
+
+state = {}
+event_images = {}
 
 app = FastAPI()
+origins = [
+    "*",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+@app.post("/events")
+async def submit_event():
+    pass
 
-@app.get("/event/tickets/{account_id}")
-async def get_tickets(account_id: str):
-    tickets = []
-    for i in range(0, 30):
-        tickets.append(TicketInfo(secrets.token_hex(32), f"Ticket {i}", datetime(2023, 8, 31)))
-    return tickets
+@app.post("/events/image")
+async def post_event_image(image: EventImage):
+    id = hashlib.sha256(image.image_file.encode('utf-8')).hexdigest()
+    event_images[id] = image
+    return {"id": id}
+
+@app.get("/events/image/{id}")
+async def post_event_image(id):
+    return event_images[id]
 
 
 def main():
