@@ -38,7 +38,6 @@ const EventsContextProvider = ({ children }) => {
         event.website,
         event.description,
         event.image,
-        event.published,
       ),
   );
 

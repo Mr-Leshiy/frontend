@@ -33,3 +33,24 @@ export const getEventImage = async (id) => {
     return null;
   }
 };
+
+export const publishEvent = async (event) => {
+    try {
+        const res = await axiosInstance.post(
+          "/events/publish",
+          {
+            ...event,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+        );
+        console.log(res.status);
+        return res.status;
+      } catch (err) {
+        console.log(err);
+        return null;
+      }
+}

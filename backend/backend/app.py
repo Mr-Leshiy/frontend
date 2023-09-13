@@ -1,11 +1,11 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 import secrets
 import hashlib
 
-from .types.models import EventImage
+from .types.models import EventImage, Event
 
 state = {}
 event_images = {}
@@ -22,9 +22,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/events")
-async def submit_event():
-    pass
+@app.post("/events/publish")
+async def publish_event(event: Event):
+    print(event)
 
 @app.post("/events/image")
 async def post_event_image(image: EventImage):
@@ -34,7 +34,10 @@ async def post_event_image(image: EventImage):
 
 @app.get("/events/image/{id}")
 async def post_event_image(id):
-    return event_images[id]
+    if id in event_images:
+        return event_images[id]
+    else:
+        raise HTTPException(status_code = 404, detail = "Image not found")
 
 
 def main():

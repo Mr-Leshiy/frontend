@@ -4,7 +4,7 @@ import classes from "./EventPage.module.css";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
-import { postEventImage, getEventImage } from "../../lib/Events";
+import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
 
 import ArrowLeftLogo from "../../assets/svg/arrow-left.svg";
 import EditLogo from "../../assets/svg/edit.svg";
@@ -164,7 +164,8 @@ const EventPage = ({ eventIndex }) => {
     handleBackClick();
   };
 
-  const handlePublishClick = () => {
+  const handlePublishClick = async () => {
+    await publishEvent(event);
     setEvents((events) => {
       events[eventIndex].published = true;
       return events;
