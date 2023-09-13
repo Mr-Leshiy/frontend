@@ -3,4 +3,4 @@ from datetime import datetime
 
 @dataclass
 class EventImage:
-    image_file: str
+    image: str

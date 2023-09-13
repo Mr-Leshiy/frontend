@@ -28,7 +28,7 @@ async def submit_event():
 
 @app.post("/events/image")
 async def post_event_image(image: EventImage):
-    id = hashlib.sha256(image.image_file.encode('utf-8')).hexdigest()
+    id = hashlib.sha256(image.image.encode('utf-8')).hexdigest()
     event_images[id] = image
     return {"id": id}
 

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import classes from "./EventPage.module.css";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
+import { postEventImage, getEventImage } from "../../lib/Events";
 
 import ArrowLeftLogo from "../../assets/svg/arrow-left.svg";
 import EditLogo from "../../assets/svg/edit.svg";
@@ -20,6 +21,7 @@ import Button from "../UI/Button/Button";
 const EventPage = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
   const { setActivePage } = usePageContext();
+  const [eventImage, setEventImage] = useState(null);
   const [editTitleModalIsOpen, setEditTitleModalIsOpen] = useState(false);
   const [editImageModalIsOpen, setEditImageModalIsOpen] = useState(false);
   const [editDescriptionModalIsOpen, setEditDescriptionModalIsOpen] =
@@ -35,6 +37,18 @@ const EventPage = ({ eventIndex }) => {
   const closeEditDescriptionModal = () => setEditDescriptionModalIsOpen(false);
 
   const event = events[eventIndex];
+
+  // load image
+  useEffect(() => {
+    const fetchEventImage = async () => {
+      const { image } = await getEventImage(event.image);
+      setEventImage(image);
+    };
+
+    if (event.image) {
+      fetchEventImage();
+    }
+  }, [event.image]);
 
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
@@ -89,15 +103,12 @@ const EventPage = ({ eventIndex }) => {
   const editImageComponent = () => {
     const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
 
-    const onSubmitHandler = (value) => {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        setEvents((events) => {
-          events[eventIndex].image = reader.result;
-          return events;
-        });
+    const onSubmitHandler = async (value) => {
+      let { id } = await postEventImage(value.image);
+      setEvents((events) => {
+        events[eventIndex].image = id;
+        return events;
       });
-      reader.readAsDataURL(value.image);
     };
 
     return (
@@ -185,7 +196,7 @@ const EventPage = ({ eventIndex }) => {
                 >
                   <img
                     onClick={!event.published ? openEditImageModal : null}
-                    src={event.image ? event.image : ImageLogo}
+                    src={eventImage ? eventImage : ImageLogo}
                     alt=""
                   />
                 </div>

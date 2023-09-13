@@ -60,3 +60,17 @@ export function inputFormatTime(date) {
 export function dateFromInput(date, time) {
   return new Date(`${date}T${time}`);
 }
+
+/**
+ * Converts a blob to data URL.
+ *
+ * @param {Blob} data - The blob to convert.
+ * @return {Promise} A promise that resolves to the data URL.
+ */
+export const blobToData = (data) => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(data);
+  });
+};
