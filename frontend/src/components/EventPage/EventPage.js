@@ -64,10 +64,10 @@ const editImageComponent = (
   const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
 
   const onSubmitHandler = async (value) => {
-    let res = await postEventImage(value.image);
-    if (res) {
+    let id = await postEventImage(value.image);
+    if (id) {
       setEvents((events) => {
-        events[eventIndex].image = res.id;
+        events[eventIndex].image = id;
         return events;
       });
     }
@@ -141,9 +141,9 @@ const EventPage = ({ eventIndex }) => {
   // load image
   useEffect(() => {
     const fetchEventImage = async () => {
-      const res = await getEventImage(event.image);
-      if (res) {
-        setEventImage(res.image);
+      const image = await getEventImage(event.image);
+      if (image) {
+        setEventImage(image);
       }
     };
 

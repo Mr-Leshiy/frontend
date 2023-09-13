@@ -15,7 +15,8 @@ export const postEventImage = async (image) => {
         },
       },
     );
-    return res.data;
+    let { id } = res.data;
+    return id;
   } catch (err) {
     console.log(err);
     return null;
@@ -25,7 +26,8 @@ export const postEventImage = async (image) => {
 export const getEventImage = async (id) => {
   try {
     const res = await axiosInstance.get(`/events/image/${id}`);
-    return res.data;
+    let { image } = res.data;
+    return image;
   } catch (err) {
     console.log(err);
     return null;
