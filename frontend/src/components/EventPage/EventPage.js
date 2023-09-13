@@ -18,31 +18,133 @@ import InputFormModal, {
 } from "../UI/InputFormModal/InputFormModal";
 import Button from "../UI/Button/Button";
 
+const editTitleComponent = (
+  title,
+  eventIndex,
+  setEvents,
+  modalsIsOpen,
+  closeModal,
+) => {
+  const inputs = [
+    new Input(
+      "Event title",
+      "title",
+      InputTypes.TEXT,
+      true,
+      "Title",
+      title,
+      50,
+    ),
+  ];
+
+  const onSubmitHandler = (value) => {
+    setEvents((events) => {
+      events[eventIndex].title = value.title;
+      return events;
+    });
+  };
+
+  return (
+    <InputFormModal
+      modalIsOpen={modalsIsOpen}
+      closeModal={closeModal}
+      submitButtonText="Edit"
+      inputs={inputs}
+      submitHandler={onSubmitHandler}
+    />
+  );
+};
+
+const editImageComponent = (
+  eventIndex,
+  setEvents,
+  modalsIsOpen,
+  closeModal,
+) => {
+  const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
+
+  const onSubmitHandler = async (value) => {
+    let res = await postEventImage(value.image);
+    if (res) {
+      setEvents((events) => {
+        events[eventIndex].image = res.id;
+        return events;
+      });
+    }
+  };
+
+  return (
+    <InputFormModal
+      modalIsOpen={modalsIsOpen}
+      closeModal={closeModal}
+      submitButtonText="Edit"
+      inputs={inputs}
+      submitHandler={onSubmitHandler}
+    />
+  );
+};
+
+const editDescriptionComponent = (
+  description,
+  eventIndex,
+  setEvents,
+  modalsIsOpen,
+  closeModal,
+) => {
+  const inputs = [
+    new Input(
+      "Event description",
+      "description",
+      InputTypes.TEXT,
+      true,
+      "Description",
+      description,
+      1000,
+    ),
+  ];
+
+  const onSubmitHandler = (value) => {
+    setEvents((events) => {
+      events[eventIndex].description = value.description;
+      return events;
+    });
+  };
+
+  return (
+    <InputFormModal
+      modalIsOpen={modalsIsOpen}
+      closeModal={closeModal}
+      submitButtonText="Edit"
+      inputs={inputs}
+      submitHandler={onSubmitHandler}
+    />
+  );
+};
+
 const EventPage = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
   const { setActivePage } = usePageContext();
   const [eventImage, setEventImage] = useState(null);
-  const [editTitleModalIsOpen, setEditTitleModalIsOpen] = useState(false);
-  const [editImageModalIsOpen, setEditImageModalIsOpen] = useState(false);
-  const [editDescriptionModalIsOpen, setEditDescriptionModalIsOpen] =
-    useState(false);
+  const [modalsIsOpen, setModalsIsOpen] = useState({
+    editTitle: false,
+    editImage: false,
+    editDescription: false,
+  });
 
-  const openEditTitleModal = () => setEditTitleModalIsOpen(true);
-  const closeEditTitleModal = () => setEditTitleModalIsOpen(false);
-
-  const openEditImageModal = () => setEditImageModalIsOpen(true);
-  const closeEditImageModal = () => setEditImageModalIsOpen(false);
-
-  const openEditDescriptionModal = () => setEditDescriptionModalIsOpen(true);
-  const closeEditDescriptionModal = () => setEditDescriptionModalIsOpen(false);
+  const openModal = (modalType) => () =>
+    setModalsIsOpen((prev) => ({ ...prev, [modalType]: true }));
+  const closeModal = (modalType) => () =>
+    setModalsIsOpen((prev) => ({ ...prev, [modalType]: false }));
 
   const event = events[eventIndex];
 
   // load image
   useEffect(() => {
     const fetchEventImage = async () => {
-      const { image } = await getEventImage(event.image);
-      setEventImage(image);
+      const res = await getEventImage(event.image);
+      if (res) {
+        setEventImage(res.image);
+      }
     };
 
     if (event.image) {
@@ -69,90 +171,6 @@ const EventPage = ({ eventIndex }) => {
     });
   };
 
-  const editTitleComponent = () => {
-    const inputs = [
-      new Input(
-        "Event title",
-        "title",
-        InputTypes.TEXT,
-        true,
-        "Title",
-        event.title,
-        50,
-      ),
-    ];
-
-    const onSubmitHandler = (value) => {
-      setEvents((events) => {
-        events[eventIndex].title = value.title;
-        return events;
-      });
-    };
-
-    return (
-      <InputFormModal
-        modalIsOpen={editTitleModalIsOpen}
-        closeModal={closeEditTitleModal}
-        submitButtonText="Edit"
-        inputs={inputs}
-        submitHandler={onSubmitHandler}
-      />
-    );
-  };
-
-  const editImageComponent = () => {
-    const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
-
-    const onSubmitHandler = async (value) => {
-      let { id } = await postEventImage(value.image);
-      setEvents((events) => {
-        events[eventIndex].image = id;
-        return events;
-      });
-    };
-
-    return (
-      <InputFormModal
-        modalIsOpen={editImageModalIsOpen}
-        closeModal={closeEditImageModal}
-        submitButtonText="Edit"
-        inputs={inputs}
-        submitHandler={onSubmitHandler}
-      />
-    );
-  };
-
-  const editDescriptionComponent = () => {
-    const inputs = [
-      new Input(
-        "Event description",
-        "description",
-        InputTypes.TEXT,
-        true,
-        "Description",
-        event.description,
-        1000,
-      ),
-    ];
-
-    const onSubmitHandler = (value) => {
-      setEvents((events) => {
-        events[eventIndex].description = value.description;
-        return events;
-      });
-    };
-
-    return (
-      <InputFormModal
-        modalIsOpen={editDescriptionModalIsOpen}
-        closeModal={closeEditDescriptionModal}
-        submitButtonText="Edit"
-        inputs={inputs}
-        submitHandler={onSubmitHandler}
-      />
-    );
-  };
-
   const isActiveStyles = {
     pointerEvents: !event.published ? "auto" : "none",
     opacity: !event.published ? "1" : "0.5",
@@ -164,9 +182,26 @@ const EventPage = ({ eventIndex }) => {
 
   return (
     <>
-      {editTitleComponent()}
-      {editImageComponent()}
-      {editDescriptionComponent()}
+      {editTitleComponent(
+        event.title,
+        eventIndex,
+        setEvents,
+        modalsIsOpen.editTitle,
+        closeModal("editTitle"),
+      )}
+      {editImageComponent(
+        eventIndex,
+        setEvents,
+        modalsIsOpen.editImage,
+        closeModal("editImage"),
+      )}
+      {editDescriptionComponent(
+        event.description,
+        eventIndex,
+        setEvents,
+        modalsIsOpen.editDescription,
+        closeModal("editDescription"),
+      )}
 
       <div className={classes["container"]}>
         <div className={classes["tab"]}>
@@ -180,7 +215,7 @@ const EventPage = ({ eventIndex }) => {
           <Page
             title={
               <p
-                onClick={!event.published ? openEditTitleModal : null}
+                onClick={!event.published ? openModal("editTitle") : null}
                 className={classes["event-page-title"]}
                 style={isActiveCursorStyles}
               >
@@ -195,7 +230,7 @@ const EventPage = ({ eventIndex }) => {
                   style={isActiveCursorStyles}
                 >
                   <img
-                    onClick={!event.published ? openEditImageModal : null}
+                    onClick={!event.published ? openModal("editImage") : null}
                     src={eventImage ? eventImage : ImageLogo}
                     alt=""
                   />
@@ -205,7 +240,7 @@ const EventPage = ({ eventIndex }) => {
                   <h4>Description</h4>
                   <img
                     style={isActiveStyles}
-                    onClick={openEditDescriptionModal}
+                    onClick={openModal("editDescription")}
                     src={EditLogo}
                     alt=""
                   />

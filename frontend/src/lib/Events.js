@@ -18,6 +18,7 @@ export const postEventImage = async (image) => {
     return res.data;
   } catch (err) {
     console.log(err);
+    return null;
   }
 };
 
@@ -27,5 +28,6 @@ export const getEventImage = async (id) => {
     return res.data;
   } catch (err) {
     console.log(err);
+    return null;
   }
 };
