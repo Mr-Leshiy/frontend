@@ -147,6 +147,10 @@ const EventPage = ({ eventIndex }) => {
     opacity: !event.published ? "1" : "0.5",
   };
 
+  const isActiveCursorStyles = {
+    cursor: !event.published ? "pointer" : "auto",
+  };
+
   return (
     <>
       {editTitleComponent()}
@@ -165,8 +169,9 @@ const EventPage = ({ eventIndex }) => {
           <Page
             title={
               <p
-                onClick={!event.published ? openEditTitleModal: null}
+                onClick={!event.published ? openEditTitleModal : null}
                 className={classes["event-page-title"]}
+                style={isActiveCursorStyles}
               >
                 {event.title}
               </p>
@@ -174,9 +179,12 @@ const EventPage = ({ eventIndex }) => {
           >
             <div className={classes["event-page-content"]}>
               <div className={classes["event-info"]}>
-                <div className={classes["event-info-image"]}>
+                <div
+                  className={classes["event-info-image"]}
+                  style={isActiveCursorStyles}
+                >
                   <img
-                    onClick={!event.published ? openEditImageModal: null}
+                    onClick={!event.published ? openEditImageModal : null}
                     src={event.image ? event.image : ImageLogo}
                     alt=""
                   />

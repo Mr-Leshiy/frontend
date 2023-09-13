@@ -10,7 +10,7 @@ export class Event {
     website,
     description,
     image,
-    published
+    published,
   ) {
     this.title = title;
     this.startDate = startDate;

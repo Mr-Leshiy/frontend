@@ -9,10 +9,6 @@
   box-sizing: border-box;
 }
 
-.event-page-title {
-  cursor: pointer;
-}
-
 .event-page-content {
   width: 100%;
   box-sizing: border-box;
@@ -35,8 +31,6 @@
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
-
-  cursor: pointer;
 }
 
 .event-info-image img {
