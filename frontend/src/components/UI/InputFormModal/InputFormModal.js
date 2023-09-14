@@ -145,11 +145,11 @@ const InputFormModal = ({
     ? inputs.map((input, i) => input.buildComponent(i))
     : null;
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
     if (submitHandler) {
       let inputValue = Input.retrieveValueFromForm(event.target);
-      submitHandler(inputValue);
+      await submitHandler(inputValue);
     }
     closeModal();
   };

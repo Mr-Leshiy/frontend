@@ -22,7 +22,10 @@ const Sidebar = () => {
         <li>
           <SidebarElement
             text="Events"
-            isActive={activePage.type === Pages.events || activePage.type === Pages.event}
+            isActive={
+              activePage.type === Pages.events ||
+              activePage.type === Pages.event
+            }
             onClick={() => setActivePage({ type: Pages.events, props: {} })}
           />
         </li>

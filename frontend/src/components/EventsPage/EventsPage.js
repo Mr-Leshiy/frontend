@@ -39,7 +39,7 @@ const EventsPage = () => {
       <Page title="Your Events">
         <div style={inlineStyles}>
           <div className={classes["events-filter"]}>
-            <EventFilter isEnabled={isConnected} onFilter={handleFilter} />
+            <EventFilter onFilter={handleFilter} />
           </div>
           <Button
             className={classes["create-event-button"]}
