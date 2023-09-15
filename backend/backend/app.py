@@ -8,6 +8,7 @@ import hashlib
 from .types.models import EventImage, EventRequest
 
 user_events = {}
+events = {}
 event_images = {}
 
 app = FastAPI()
@@ -37,13 +38,19 @@ async def get_event_image(id):
 
 @app.post("/events/event/publish")
 async def publish_event(req: EventRequest):
-    user_events.setdefault(req.stakeAddress,[]).append(req.event)
-    print(user_events)
+    event_id = hashlib.sha256(repr(req.event).encode('utf-8')).hexdigest()
+    user_events.setdefault(req.stakeAddress, set()).add(event_id)
+    events[event_id] = req.event
 
-@app.post("/events/event/{stakeAddress}")
+@app.get("/events/event/{stakeAddress}")
 async def get_events(stakeAddress: str):
     if stakeAddress in user_events:
-        return user_events[stakeAddress]
+        events_ids = user_events[stakeAddress]
+        res = []
+        for id in events_ids:
+            event = events[id]
+            res.append(event) 
+        return res
     else:
         raise HTTPException(status_code = 404, detail = "Image not found")
 
