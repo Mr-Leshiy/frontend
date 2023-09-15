@@ -40,7 +40,7 @@ async def publish_event(req: EventRequest):
     user_events.setdefault(req.stakeAddress,[]).append(req.event)
     print(user_events)
 
-@app.post("/events/event/{stakeAddress}")
+@app.get("/events/event/{stakeAddress}")
 async def get_events(stakeAddress: str):
     if stakeAddress in user_events:
         return user_events[stakeAddress]
