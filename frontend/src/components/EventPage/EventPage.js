@@ -174,11 +174,6 @@ const EventPage = ({ eventIndex }) => {
     handleBackClick();
   };
 
-  const isActiveStyles = {
-    pointerEvents: !event.published ? "auto" : "none",
-    opacity: !event.published ? "1" : "0.5",
-  };
-
   const isActiveCursorStyles = {
     cursor: !event.published ? "pointer" : "auto",
   };
@@ -241,12 +236,14 @@ const EventPage = ({ eventIndex }) => {
 
                 <div className={classes["event-info-title"]}>
                   <h4>Description</h4>
-                  <img
-                    style={isActiveStyles}
-                    onClick={openModal("editDescription")}
-                    src={EditLogo}
-                    alt=""
-                  />
+
+                  {!event.published ? (
+                    <img
+                      onClick={openModal("editDescription")}
+                      src={EditLogo}
+                      alt=""
+                    />
+                  ) : null}
                 </div>
                 <div className={classes["event-info-description"]}>
                   {event.description}
@@ -258,13 +255,12 @@ const EventPage = ({ eventIndex }) => {
               </div>
             </div>
 
-            <div
-              style={isActiveStyles}
-              className={classes["delete-submit-buttons"]}
-            >
-              <Button onClick={handlePublishClick}>Publish</Button>
-              <Button onClick={handleDeleteClick}>Delete</Button>
-            </div>
+            {!event.published ? (
+              <div className={classes["delete-submit-buttons"]}>
+                <Button onClick={handlePublishClick}>Publish</Button>
+                <Button onClick={handleDeleteClick}>Delete</Button>
+              </div>
+            ) : null}
           </Page>
         </div>
       </div>

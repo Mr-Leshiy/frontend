@@ -72,11 +72,6 @@ const EventCard = ({ eventIndex }) => {
     ),
   ];
 
-  const isActiveStyles = {
-    pointerEvents: !event.published ? "auto" : "none",
-    opacity: !event.published ? "1" : "0.5",
-  };
-
   return (
     <>
       <InputFormModal
@@ -88,13 +83,11 @@ const EventCard = ({ eventIndex }) => {
       />
 
       <div className={classes["event-card"]}>
-        <div
-          style={isActiveStyles}
-          className={classes["edit-button"]}
-          onClick={openEditModal}
-        >
-          <img src={EditLogo} alt="" />
-        </div>
+        {!event.published ? (
+          <div className={classes["edit-button"]} onClick={openEditModal}>
+            <img src={EditLogo} alt="" />
+          </div>
+        ) : null}
 
         <div className={classes["event-card-info"]}>
           <h4>Start time</h4>
