@@ -54,6 +54,8 @@ const EventsContextProvider = ({ children }) => {
               ),
           );
           setPublishedEvents(events);
+        } else {
+          setPublishedEvents([]);
         }
       });
     }

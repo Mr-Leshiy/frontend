@@ -171,6 +171,7 @@ const EventPage = ({ eventIndex }) => {
       events[eventIndex].published = true;
       return events;
     });
+    handleBackClick();
   };
 
   const isActiveStyles = {
