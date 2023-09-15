@@ -55,6 +55,11 @@ const EventsList = ({ filterOptions }) => {
       const direction = sorting.direction === "asc" ? 1 : -1;
       return direction * a.location.localeCompare(b.location);
     });
+  } else if (sorting.column === "published") {
+    filteredEvents.sort((a, b) => {
+      const direction = sorting.direction === "asc" ? 1 : -1;
+      return direction * (Boolean(a.published) - Boolean(b.published));
+    });
   }
 
   const eventRows = filteredEvents.map((event, _) => (
@@ -63,6 +68,7 @@ const EventsList = ({ filterOptions }) => {
       <td>{event.title}</td>
       <td>{formatDate(event.startDate) + " - " + formatDate(event.endDate)}</td>
       <td>{event.location}</td>
+      <td>{event.published ? "Yes" : "No"}</td>
     </tr>
   ));
 
@@ -89,6 +95,11 @@ const EventsList = ({ filterOptions }) => {
             <th>
               <div>
                 <p onClick={() => sortByColumn("location")}>Location</p>
+              </div>
+            </th>
+            <th>
+              <div>
+                <p onClick={() => sortByColumn("published")}>Published</p>
               </div>
             </th>
           </tr>
