@@ -59,7 +59,7 @@ const EventsContextProvider = ({ children }) => {
         }
       });
     }
-  }, [activePage]);
+  }, [activePage, stakeAddress]);
 
   let events = localStorageEvents.map(
     (event) =>
