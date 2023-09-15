@@ -1,7 +1,6 @@
 import React from "react";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
-import EventsContextProvider from "../../hooks/EventsContext";
 
 import TicketsPage from "../TicketsPage/TicketsPage";
 import EventsPage from "../EventsPage/EventsPage";
@@ -11,7 +10,7 @@ const PageHandler = () => {
   const { activePage } = usePageContext();
 
   return (
-    <EventsContextProvider>
+    <>
       {activePage.type === Pages.tickets ? (
         <TicketsPage {...activePage.props} />
       ) : null}
@@ -21,7 +20,7 @@ const PageHandler = () => {
       {activePage.type === Pages.event ? (
         <EventPage {...activePage.props} />
       ) : null}
-    </EventsContextProvider>
+    </>
   );
 };
 

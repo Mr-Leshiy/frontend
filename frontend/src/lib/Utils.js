@@ -5,6 +5,9 @@
  * @return {string} The formatted date as a string.
  */
 export function formatDate(date) {
+  if (!date) {
+    return "";
+  }
   return date.toLocaleDateString("en-us", {
     day: "numeric",
     year: "numeric",
@@ -19,6 +22,9 @@ export function formatDate(date) {
  * @return {string} The formatted time string.
  */
 export function formatTime(date) {
+  if (!date) {
+    return "";
+  }
   let hours = date.getHours().toString().padStart(2, "0");
   let minutes = date.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;
@@ -31,6 +37,9 @@ export function formatTime(date) {
  * @return {string} The formatted date string in the YYYY-MM-DD format.
  */
 export function inputFormatDate(date) {
+  if (!date) {
+    return "";
+  }
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
@@ -45,6 +54,9 @@ export function inputFormatDate(date) {
  * @return {string} The formatted time in the format "HH:MM".
  */
 export function inputFormatTime(date) {
+  if (!date) {
+    return "";
+  }
   let hours = date.getHours().toString().padStart(2, "0");
   let minutes = date.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;

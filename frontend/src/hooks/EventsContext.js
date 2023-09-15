@@ -1,5 +1,9 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
+
+import { getEvents } from "../lib/Events";
+import { usePageContext, Pages } from "./PageContext";
 
 export class Event {
   constructor(
@@ -26,9 +30,36 @@ export class Event {
 const EventsContext = createContext(null);
 
 const EventsContextProvider = ({ children }) => {
+  const { activePage } = usePageContext();
   const [localStorageEvents, setEvents] = useLocalStorage("events", []);
+  const [publishedEvents, setPublishedEvents] = useState([]);
+  const { stakeAddress } = useCardano();
 
-  const events = localStorageEvents.map(
+  // loading events
+  useEffect(() => {
+    if (stakeAddress && activePage.type === Pages.events) {
+      getEvents(stakeAddress).then((events) => {
+        if (events) {
+          events = events.map(
+            (event) =>
+              new Event(
+                event.title,
+                new Date(event.startDate),
+                new Date(event.endDate),
+                event.location,
+                event.website,
+                event.description,
+                event.image,
+                true,
+              ),
+          );
+          setPublishedEvents(events);
+        }
+      });
+    }
+  }, [activePage]);
+
+  let events = localStorageEvents.map(
     (event) =>
       new Event(
         event.title,
@@ -40,6 +71,7 @@ const EventsContextProvider = ({ children }) => {
         event.image,
       ),
   );
+  events.push(...publishedEvents);
 
   return (
     <EventsContext.Provider value={{ events, setEvents }}>
