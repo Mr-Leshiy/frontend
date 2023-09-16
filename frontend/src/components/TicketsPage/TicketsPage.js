@@ -6,6 +6,7 @@ import classes from "./TicketsPage.module.css";
 import TicketsList from "./TicketsList/TicketsList.js";
 import EventFilter from "../UI/EventFilter/EventFilter";
 import Page from "../UI/Page/Page";
+import PageTitle from "../UI/PageTitle/PageTitle";
 
 const TicketsPage = (props) => {
   const { isConnected } = useCardano();
@@ -21,7 +22,9 @@ const TicketsPage = (props) => {
     padding: "1.1vh 0",
   };
   return (
-    <Page title="Your Tickets Collection">
+    <Page>
+      <PageTitle title="Your Tickets Collection" />
+
       <div style={inlineStyles}>
         <EventFilter isEnabled={isConnected} onFilter={handleFilter} />
       </div>

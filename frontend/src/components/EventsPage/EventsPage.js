@@ -8,6 +8,7 @@ import EventFilter from "../UI/EventFilter/EventFilter";
 import CreateEvent from "./CreateEvent/CreateEvent";
 import Button from "../UI/Button/Button";
 import Page from "../UI/Page/Page";
+import PageTitle from "../UI/PageTitle/PageTitle";
 
 const EventsPage = () => {
   const { isConnected } = useCardano();
@@ -36,7 +37,9 @@ const EventsPage = () => {
     <>
       <CreateEvent modalIsOpen={modalIsOpen} closeModal={closeModal} />
 
-      <Page title="Your Events">
+      <Page>
+        <PageTitle title="Your Events" />
+
         <div style={inlineStyles}>
           <div className={classes["events-filter"]}>
             <EventFilter onFilter={handleFilter} />
