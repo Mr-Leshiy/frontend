@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+.event-page-title {
+  margin-right: 1vw;
+}
+
 .event-page-content {
   width: 100%;
   box-sizing: border-box;
@@ -40,7 +44,9 @@
 
 .event-info-title {
   display: flex;
+
   align-items: center;
+  justify-items: center;
 }
 
 .event-info-title h4 {
@@ -57,6 +63,10 @@
   margin-left: auto;
 
   cursor: pointer;
+}
+
+.description-edit-button {
+  margin-left: auto;
 }
 
 .event-info-description {

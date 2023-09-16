@@ -11,9 +11,6 @@
 .edit-button {
   width: fit-content;
   margin-left: auto;
-  height: 3vh;
-
-  cursor: pointer;
 }
 
 .edit-button img {

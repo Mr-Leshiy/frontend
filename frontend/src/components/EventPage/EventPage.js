@@ -8,7 +8,7 @@ import { useEventsContext } from "../../hooks/EventsContext";
 import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
 
 import ArrowLeftLogo from "../../assets/svg/arrow-left.svg";
-import EditLogo from "../../assets/svg/edit.svg";
+import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageLogo from "../../assets/svg/image.svg";
 
 import Page from "../UI/Page/Page";
@@ -212,13 +212,17 @@ const EventPage = ({ eventIndex }) => {
         <div className={classes["event-page"]}>
           <Page
             title={
-              <p
-                onClick={!event.published ? openModal("editTitle") : null}
-                className={classes["event-page-title"]}
-                style={isActiveCursorStyles}
-              >
-                {event.title}
-              </p>
+              <>
+                <div
+                  onClick={!event.published ? openModal("editTitle") : null}
+                  className={classes["event-page-title"]}
+                >
+                  {event.title}
+                </div>
+                {!event.published ? (
+                  <EditIcon onClick={openModal("editTitle")} />
+                ) : null}
+              </>
             }
           >
             <div className={classes["event-page-content"]}>
@@ -237,13 +241,11 @@ const EventPage = ({ eventIndex }) => {
                 <div className={classes["event-info-title"]}>
                   <h4>Description</h4>
 
-                  {!event.published ? (
-                    <img
-                      onClick={openModal("editDescription")}
-                      src={EditLogo}
-                      alt=""
-                    />
-                  ) : null}
+                  <div className={classes["description-edit-button"]}>
+                    {!event.published ? (
+                      <EditIcon onClick={openModal("editDescription")} />
+                    ) : null}
+                  </div>
                 </div>
                 <div className={classes["event-info-description"]}>
                   {event.description}

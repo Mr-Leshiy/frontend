@@ -1,9 +1,11 @@
-.close {
+.edit {
   opacity: 0.6;
   transition: 0.3s;
   cursor: pointer;
+
+  width: fit-content;
 }
 
-.close:hover {
+.edit:hover {
   opacity: 1;
 }
