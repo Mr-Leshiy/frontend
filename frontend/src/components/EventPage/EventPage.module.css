@@ -110,6 +110,13 @@
   width: fit-content;
 
   cursor: pointer;
+
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  opacity: 1;
 }
 
 .back-button img {
