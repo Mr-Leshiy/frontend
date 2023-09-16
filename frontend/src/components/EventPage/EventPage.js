@@ -7,7 +7,6 @@ import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
 
-import ArrowLeftLogo from "../../assets/svg/arrow-left.svg";
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageLogo from "../../assets/svg/image.svg";
 
@@ -18,6 +17,7 @@ import InputFormModal, {
   Input,
 } from "../UI/InputFormModal/InputFormModal";
 import Button from "../UI/Button/Button";
+import BackButton from "../UI/BackButton/BackButton";
 
 const editTitleComponent = (
   title,
@@ -203,10 +203,7 @@ const EventPage = ({ eventIndex }) => {
 
       <div className={classes["container"]}>
         <div className={classes["tab"]}>
-          <div className={classes["back-button"]} onClick={handleBackClick}>
-            <img src={ArrowLeftLogo} alt="" />
-            <p>Back</p>
-          </div>
+          <BackButton onClick={handleBackClick} />
         </div>
 
         <div className={classes["event-page"]}>
