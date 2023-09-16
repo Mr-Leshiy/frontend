@@ -163,10 +163,6 @@ const InputFormModal = ({
           <Button type="submit" className={classes["button"]}>
             {submitButtonText}
           </Button>
-
-          <Button className={classes["button"]} onClick={closeModal}>
-            Close
-          </Button>
         </div>
       </form>
     </ModalWindow>

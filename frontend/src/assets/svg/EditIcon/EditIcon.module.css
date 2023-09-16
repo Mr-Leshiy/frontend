@@ -1,0 +1,11 @@
+.edit {
+  opacity: 0.6;
+  transition: 0.3s;
+  cursor: pointer;
+
+  width: fit-content;
+}
+
+.edit:hover {
+  opacity: 1;
+}

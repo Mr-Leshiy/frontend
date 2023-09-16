@@ -1,6 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
 
+import classes from "./ModalWindow.module.css";
+
+import CloseIcon from "../../../assets/svg/CloseIcon/CloseIcon";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -16,14 +20,14 @@ const customStyles = {
   },
 };
 
-const ModalWindow = (props) => {
+const ModalWindow = ({ isOpen, onRequestClose, children }) => {
   return (
-    <Modal
-      isOpen={props.isOpen}
-      onRequestClose={props.onRequestClose}
-      style={customStyles}
-    >
-      {props.children}
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
+      <div className={classes["close-button"]}>
+        <CloseIcon onClick={onRequestClose} />
+      </div>
+
+      {children}
     </Modal>
   );
 };

@@ -1,12 +1,26 @@
-.container {
+.tab {
   width: 100%;
-  height: 100%;
+  height: 6%;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
 }
 
 .event-page {
   width: 100%;
-  height: 92%; /* because tab takes 8% */
+  height: 94%; /* because tab takes 8% */
+
   box-sizing: border-box;
+}
+
+.event-page-title {
+  display: flex;
+  align-items: center;
+}
+.event-page-title div {
+  margin-right: 1vw;
 }
 
 .event-page-content {
@@ -40,7 +54,9 @@
 
 .event-info-title {
   display: flex;
+
   align-items: center;
+  justify-items: center;
 }
 
 .event-info-title h4 {
@@ -57,6 +73,10 @@
   margin-left: auto;
 
   cursor: pointer;
+}
+
+.description-edit-button {
+  margin-left: auto;
 }
 
 .event-info-description {
@@ -80,18 +100,6 @@
   margin-left: auto;
 }
 
-.tab {
-  width: 100%;
-  height: 8%;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 3.4vw;
-
-  box-sizing: border-box;
-}
-
 .delete-button {
   margin-left: auto;
 
@@ -100,27 +108,6 @@
 
   padding: 1.4vh 1.2vw;
   border-radius: 1.1vh;
-}
-
-.back-button {
-  display: flex;
-  align-items: center;
-
-  height: 100%;
-  width: fit-content;
-
-  cursor: pointer;
-}
-
-.back-button img {
-  height: 45%;
-}
-
-.back-button p {
-  font-size: 2.8vh;
-  font-weight: 700;
-
-  padding-left: 0.3vw;
 }
 
 .delete-submit-buttons {

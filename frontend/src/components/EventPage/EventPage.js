@@ -7,8 +7,7 @@ import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
 
-import ArrowLeftLogo from "../../assets/svg/arrow-left.svg";
-import EditLogo from "../../assets/svg/edit.svg";
+import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageLogo from "../../assets/svg/image.svg";
 
 import Page from "../UI/Page/Page";
@@ -18,6 +17,8 @@ import InputFormModal, {
   Input,
 } from "../UI/InputFormModal/InputFormModal";
 import Button from "../UI/Button/Button";
+import BackButton from "../UI/BackButton/BackButton";
+import PageTitle from "../UI/PageTitle/PageTitle";
 
 const editTitleComponent = (
   title,
@@ -201,69 +202,59 @@ const EventPage = ({ eventIndex }) => {
         closeModal("editDescription"),
       )}
 
-      <div className={classes["container"]}>
+      <Page>
         <div className={classes["tab"]}>
-          <div className={classes["back-button"]} onClick={handleBackClick}>
-            <img src={ArrowLeftLogo} alt="" />
-            <p>Back</p>
-          </div>
+          <BackButton onClick={handleBackClick} />
         </div>
 
         <div className={classes["event-page"]}>
-          <Page
-            title={
-              <p
-                onClick={!event.published ? openModal("editTitle") : null}
-                className={classes["event-page-title"]}
+          <div className={classes["event-page-title"]}>
+            <PageTitle title={event.title} />
+            {!event.published ? (
+              <EditIcon onClick={openModal("editTitle")} />
+            ) : null}
+          </div>
+
+          <div className={classes["event-page-content"]}>
+            <div className={classes["event-info"]}>
+              <div
+                className={classes["event-info-image"]}
                 style={isActiveCursorStyles}
               >
-                {event.title}
-              </p>
-            }
-          >
-            <div className={classes["event-page-content"]}>
-              <div className={classes["event-info"]}>
-                <div
-                  className={classes["event-info-image"]}
-                  style={isActiveCursorStyles}
-                >
-                  <img
-                    onClick={!event.published ? openModal("editImage") : null}
-                    src={eventImage ? eventImage : ImageLogo}
-                    alt=""
-                  />
-                </div>
-
-                <div className={classes["event-info-title"]}>
-                  <h4>Description</h4>
-
-                  {!event.published ? (
-                    <img
-                      onClick={openModal("editDescription")}
-                      src={EditLogo}
-                      alt=""
-                    />
-                  ) : null}
-                </div>
-                <div className={classes["event-info-description"]}>
-                  {event.description}
-                </div>
+                <img
+                  onClick={!event.published ? openModal("editImage") : null}
+                  src={eventImage ? eventImage : ImageLogo}
+                  alt=""
+                />
               </div>
 
-              <div className={classes["event-card"]}>
-                <EventCard eventIndex={eventIndex} />
+              <div className={classes["event-info-title"]}>
+                <h4>Description</h4>
+
+                <div className={classes["description-edit-button"]}>
+                  {!event.published ? (
+                    <EditIcon onClick={openModal("editDescription")} />
+                  ) : null}
+                </div>
+              </div>
+              <div className={classes["event-info-description"]}>
+                {event.description}
               </div>
             </div>
 
-            {!event.published ? (
-              <div className={classes["delete-submit-buttons"]}>
-                <Button onClick={handlePublishClick}>Publish</Button>
-                <Button onClick={handleDeleteClick}>Delete</Button>
-              </div>
-            ) : null}
-          </Page>
+            <div className={classes["event-card"]}>
+              <EventCard eventIndex={eventIndex} />
+            </div>
+          </div>
+
+          {!event.published ? (
+            <div className={classes["delete-submit-buttons"]}>
+              <Button onClick={handlePublishClick}>Publish</Button>
+              <Button onClick={handleDeleteClick}>Delete</Button>
+            </div>
+          ) : null}
         </div>
-      </div>
+      </Page>
     </>
   );
 };

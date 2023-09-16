@@ -9,7 +9,7 @@ import ClockLogo from "../../../assets/svg/clock.svg";
 import CalendarLogo from "../../../assets/svg/calendar.svg";
 import LocationPinLogo from "../../../assets/svg/location-pin.svg";
 import UrlLogo from "../../../assets/svg/url.svg";
-import EditLogo from "../../../assets/svg/edit.svg";
+import EditIcon from "../../../assets/svg/EditIcon/EditIcon";
 
 import InputFormModal, {
   InputTypes,
@@ -84,8 +84,8 @@ const EventCard = ({ eventIndex }) => {
 
       <div className={classes["event-card"]}>
         {!event.published ? (
-          <div className={classes["edit-button"]} onClick={openEditModal}>
-            <img src={EditLogo} alt="" />
+          <div className={classes["edit-button"]}>
+            <EditIcon onClick={openEditModal} />
           </div>
         ) : null}
 
