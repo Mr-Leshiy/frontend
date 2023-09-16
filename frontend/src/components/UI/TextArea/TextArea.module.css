@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+}
+
+.text-area {
+  width: 100%;
+  box-sizing: border-box;
+
+  background-color: transparent;
+
+  padding: 1vh 1.5vw;
+
+  resize: none;
+  overflow: auto;
+
+  border: 2px solid #dbdbe7;
+  border-radius: 10px;
+
+  font-size: 2.5vh;
+  font-weight: 700;
+}
