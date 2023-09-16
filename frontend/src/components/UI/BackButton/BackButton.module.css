@@ -2,9 +2,6 @@
   display: flex;
   align-items: center;
 
-  height: 100%;
-  width: fit-content;
-
   cursor: pointer;
 
   opacity: 0.6;
