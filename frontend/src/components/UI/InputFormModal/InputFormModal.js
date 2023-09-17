@@ -81,6 +81,9 @@ export class Input {
                 placeholder={this.input_options.placeholder}
                 required={this.input_options.required}
                 defaultValue={this.input_options.defaultValue}
+                min={this.input_options.min}
+                max={this.input_options.max}
+                step={this.input_options.step}
               />
             </div>
           }

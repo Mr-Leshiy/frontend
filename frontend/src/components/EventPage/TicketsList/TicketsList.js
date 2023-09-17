@@ -13,12 +13,13 @@ import InputFormModal, {
 
 const generateTicketsModal = (modalsIsOpen, closeModal) => {
   const inputs = [
-    new Input({
+    new Input(InputTypes.NUMBER, {
       description: "Number of tickets",
       name: "numberOfTickets",
-      type: InputTypes.NUMBER,
-      isRequired: true,
+      required: true,
       placeholder: 0,
+      min: 0,
+      step: 1,
     }),
   ];
 
@@ -26,6 +27,7 @@ const generateTicketsModal = (modalsIsOpen, closeModal) => {
     <InputFormModal
       modalIsOpen={modalsIsOpen}
       closeModal={closeModal}
+      inputs={inputs}
       submitButtonText="Generate"
     />
   );
