@@ -126,10 +126,10 @@ export class Input {
           {
             <div className={classes["input"]}>
               <div className={classes["input-description"]}>
-                {this.description}
+                time
               </div>
               <input
-                name={this.name}
+                name={this.name + "Time"}
                 className={classes["input-data"]}
                 type="time"
                 placeholder={this.placeholder}

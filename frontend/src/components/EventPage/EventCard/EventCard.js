@@ -47,7 +47,7 @@ const EventCard = ({ eventIndex }) => {
     }),
     new Input({
       description: "Event end date",
-      naem: "endDate",
+      name: "endDate",
       type: InputTypes.DATE,
       isRequired: true,
       initialValue: event.endDate,
