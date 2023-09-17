@@ -20,6 +20,7 @@ import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import PageTitle from "../UI/PageTitle/PageTitle";
 import EventDescription from "./EventDescription/EventDescription";
+import TicketsList from "./TicketsList/TicketsList";
 
 const editTitleComponent = (
   title,
@@ -204,7 +205,9 @@ const EventPage = ({ eventIndex }) => {
               <Button onClick={handlePublishClick}>Publish</Button>
               <Button onClick={handleDeleteClick}>Delete</Button>
             </div>
-          ) : null}
+          ) : (
+            <TicketsList />
+          )}
         </div>
       </Page>
     </>
