@@ -7,6 +7,7 @@ import { Pages, usePageContext } from "../../../hooks/PageContext";
 import { formatDate } from "../../../lib/Utils";
 
 import { filterEvents } from "../../UI/EventFilter/EventFilter";
+import Table, { HeadElemenet, RowElement } from "../../UI/Table/Table";
 
 const EventsList = ({ filterOptions }) => {
   const { setActivePage } = usePageContext();
@@ -62,50 +63,28 @@ const EventsList = ({ filterOptions }) => {
     });
   }
 
-  const eventRows = filteredEvents.map((event, _) => (
-    <tr key={event.index} onClick={() => onChooseEvent(event)}>
-      <td>{event.index + 1}</td>
-      <td>{event.title}</td>
-      <td>{formatDate(event.startDate) + " - " + formatDate(event.endDate)}</td>
-      <td>{event.location}</td>
-      <td>{event.published ? "Yes" : "No"}</td>
-    </tr>
-  ));
+  const eventRows = filteredEvents.map(
+    (event, _) =>
+      new RowElement(event.index, () => onChooseEvent(event), [
+        event.index + 1,
+        event.title,
+        formatDate(event.startDate) + " - " + formatDate(event.endDate),
+        event.location,
+        event.published ? "Yes" : "No",
+      ]),
+  );
+
+  const head = [
+    new HeadElemenet("#", () => sortByColumn("index")),
+    new HeadElemenet("Title", () => sortByColumn("title")),
+    new HeadElemenet("Date", () => sortByColumn("date")),
+    new HeadElemenet("Location", () => sortByColumn("location")),
+    new HeadElemenet("Published", () => sortByColumn("published")),
+  ];
 
   return (
     <div className={classes["events-list"]}>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <div>
-                <p onClick={() => sortByColumn("index")}>#</p>
-              </div>
-            </th>
-            <th>
-              <div>
-                <p onClick={() => sortByColumn("title")}>Title</p>
-              </div>
-            </th>
-            <th>
-              <div>
-                <p onClick={() => sortByColumn("date")}>Date</p>
-              </div>
-            </th>
-            <th>
-              <div>
-                <p onClick={() => sortByColumn("location")}>Location</p>
-              </div>
-            </th>
-            <th>
-              <div>
-                <p onClick={() => sortByColumn("published")}>Published</p>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>{eventRows}</tbody>
-      </table>
+      <Table head={head} rows={eventRows} />
     </div>
   );
 };
