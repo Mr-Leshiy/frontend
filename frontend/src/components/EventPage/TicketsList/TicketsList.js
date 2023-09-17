@@ -12,6 +12,16 @@ import InputFormModal, {
 } from "../../UI/InputFormModal/InputFormModal";
 
 const generateTicketsModal = (modalsIsOpen, closeModal) => {
+  const inputs = [
+    new Input({
+      description: "Number of tickets",
+      name: "numberOfTickets",
+      type: InputTypes.NUMBER,
+      isRequired: true,
+      placeholder: 0,
+    }),
+  ];
+
   return (
     <InputFormModal
       modalIsOpen={modalsIsOpen}

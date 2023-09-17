@@ -31,13 +31,12 @@ const editTitleModal = (
   closeModal,
 ) => {
   const inputs = [
-    new Input({
+    new Input(InputTypes.TEXT, {
       description: "Event title",
       name: "title",
-      type: InputTypes.TEXT,
-      isRequired: true,
+      required: true,
       placeholder: "Title",
-      initialValue: title,
+      defaultValue: title,
       maxLength: 50,
     }),
   ];
@@ -62,11 +61,10 @@ const editTitleModal = (
 
 const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   const inputs = [
-    new Input({
+    new Input(InputTypes.IMAGE, {
       description: "Event image",
       name: "image",
-      type: InputTypes.IMAGE,
-      isRequired: true,
+      required: true,
     }),
   ];
 

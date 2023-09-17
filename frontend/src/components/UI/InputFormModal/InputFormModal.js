@@ -18,20 +18,18 @@ export const InputTypes = {
 };
 
 export class Input {
-  constructor(value) {
-    // Iterate over the properties of the 'value' object
-    for (const key in value) {
-      if (value.hasOwnProperty(key)) {
-        // Assign each property to the instance
-        this[key] = value[key];
-      }
-    }
+  constructor(input_type, input_options) {
+    this.input_type = input_type;
+    this.input_options = input_options;
   }
 
   static retrieveValueFromForm(target) {
     let res = {};
     for (let i = 0; i < target.length; i++) {
       if (target[i].type === "text") {
+        res[target[i].name] = target[i].value;
+      }
+      if (target[i].type === "number") {
         res[target[i].name] = target[i].value;
       }
       if (target[i].type === "date") {
@@ -46,96 +44,96 @@ export class Input {
   }
 
   buildComponent(i) {
-    if (this.type === InputTypes.TEXT) {
+    if (this.input_type === InputTypes.TEXT) {
       return (
         <div key={i}>
           {
             <div className={classes["input"]}>
               <div className={classes["input-description"]}>
-                {this.description}
+                {this.input_options.description}
               </div>
               <input
-                name={this.name}
+                name={this.input_options.name}
                 className={classes["input-data"]}
                 type="text"
-                placeholder={this.placeholder}
-                maxLength={this.maxLength}
-                required={this.isRequired}
-                defaultValue={this.initialValue}
+                placeholder={this.input_options.placeholder}
+                maxLength={this.input_options.maxLength}
+                required={this.input_options.required}
+                defaultValue={this.input_options.defaultValue}
               />
             </div>
           }
         </div>
       );
     }
-    if (this.type === InputTypes.NUMBER) {
+    if (this.input_type === InputTypes.NUMBER) {
       return (
         <div key={i}>
           {
             <div className={classes["input"]}>
               <div className={classes["input-description"]}>
-                {this.description}
+                {this.input_options.description}
               </div>
               <input
-                name={this.name}
+                name={this.input_options.name}
                 className={classes["input-data"]}
                 type="number"
-                placeholder={this.placeholder}
-                required={this.isRequired}
-                defaultValue={this.initialValue}
+                placeholder={this.input_options.placeholder}
+                required={this.input_options.required}
+                defaultValue={this.input_options.defaultValue}
               />
             </div>
           }
         </div>
       );
     }
-    if (this.type === InputTypes.IMAGE) {
+    if (this.input_type === InputTypes.IMAGE) {
       return (
         <div className={classes["input"]} key={i}>
-          <div className={classes["input-description"]}>{this.description}</div>
+          <div className={classes["input-description"]}>
+            {this.input_options.description}
+          </div>
           <input
-            name={this.name}
+            name={this.input_options.name}
             className={classes["input-data"]}
             type="file"
             accept=".png, .jpg, .jpeg, .svg"
             multiple={false}
-            required={this.isRequired}
+            required={this.input_options.required}
           />
         </div>
       );
     }
-    if (this.type === InputTypes.DATE) {
+    if (this.input_type === InputTypes.DATE) {
       return (
         <div className={classes["input-date-and-time"]} key={i}>
           {
             <div className={classes["input"]}>
               <div className={classes["input-description"]}>
-                {this.description}
+                {this.input_options.description}
               </div>
               <input
-                name={this.name}
+                name={this.input_options.name}
                 className={classes["input-data"]}
                 type="date"
-                placeholder={this.placeholder}
-                maxLength={this.maxLength}
-                required={this.isRequired}
-                defaultValue={inputFormatDate(this.initialValue)}
+                placeholder={this.input_options.placeholder}
+                maxLength={this.input_options.maxLength}
+                required={this.input_options.required}
+                defaultValue={inputFormatDate(this.input_options.defaultValue)}
               />
             </div>
           }
           {
             <div className={classes["input"]}>
-              <div className={classes["input-description"]}>
-                time
-              </div>
+              <div className={classes["input-description"]}>time</div>
               <input
-                name={this.name + "Time"}
+                name={this.input_options.name + "Time"}
                 className={classes["input-data"]}
                 type="time"
-                placeholder={this.placeholder}
-                maxLength={this.maxLength}
-                required={this.isRequired}
-                defaultValue={inputFormatTime(this.initialValue)}
+                placeholder={this.input_options.placeholder}
+                maxLength={this.input_options.maxLength}
+                required={this.input_options.required}
+                defaultValue={inputFormatTime(this.input_options.defaultValue)}
               />
             </div>
           }
