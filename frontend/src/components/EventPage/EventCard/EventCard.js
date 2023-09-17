@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import classes from "./EventCard.module.css";
 
 import { useEventsContext } from "../../../hooks/EventsContext";
+import { useModalHandler } from "../../../hooks/ModalHandler";
 import { formatDate, formatTime } from "../../../lib/Utils";
 
 import ClockLogo from "../../../assets/svg/clock.svg";
@@ -16,14 +17,15 @@ import InputFormModal, {
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
+const MODALS = {
+  edit: "edit",
+};
+
 const EventCard = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   const event = events[eventIndex];
-
-  const openEditModal = () => setEditModalIsOpen(true);
-  const closeEditModal = () => setEditModalIsOpen(false);
 
   const onSubmitHandler = (eventValue) => {
     setEvents((events) => {
@@ -75,8 +77,8 @@ const EventCard = ({ eventIndex }) => {
   return (
     <>
       <InputFormModal
-        modalIsOpen={editModalIsOpen}
-        closeModal={closeEditModal}
+        modalIsOpen={modalsIsOpen[MODALS.edit]}
+        closeModal={closeModal(MODALS.edit)}
         inputs={editInputs}
         submitHandler={onSubmitHandler}
         submitButtonText="Edit"
@@ -85,7 +87,7 @@ const EventCard = ({ eventIndex }) => {
       <div className={classes["event-card"]}>
         {!event.published ? (
           <div className={classes["edit-button"]}>
-            <EditIcon onClick={openEditModal} />
+            <EditIcon onClick={openModal(MODALS.edit)} />
           </div>
         ) : null}
 

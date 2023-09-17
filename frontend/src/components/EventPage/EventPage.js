@@ -5,6 +5,7 @@ import classes from "./EventPage.module.css";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
+import { useModalHandler } from "../../hooks/ModalHandler";
 import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
@@ -22,7 +23,7 @@ import PageTitle from "../UI/PageTitle/PageTitle";
 import EventDescription from "./EventDescription/EventDescription";
 import TicketsList from "./TicketsList/TicketsList";
 
-const editTitleComponent = (
+const editTitleModal = (
   title,
   eventIndex,
   setEvents,
@@ -59,12 +60,7 @@ const editTitleComponent = (
   );
 };
 
-const editImageComponent = (
-  eventIndex,
-  setEvents,
-  modalsIsOpen,
-  closeModal,
-) => {
+const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
 
   const onSubmitHandler = async (value) => {
@@ -88,20 +84,17 @@ const editImageComponent = (
   );
 };
 
+const MODALS = {
+  editTitle: "editTitle",
+  editImage: "editImage",
+};
+
 const EventPage = ({ eventIndex }) => {
   const { stakeAddress } = useCardano();
   const { events, setEvents } = useEventsContext();
   const { setActivePage } = usePageContext();
   const [eventImage, setEventImage] = useState(null);
-  const [modalsIsOpen, setModalsIsOpen] = useState({
-    editTitle: false,
-    editImage: false,
-  });
-
-  const openModal = (modalType) => () =>
-    setModalsIsOpen((prev) => ({ ...prev, [modalType]: true }));
-  const closeModal = (modalType) => () =>
-    setModalsIsOpen((prev) => ({ ...prev, [modalType]: false }));
+  const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   const event = events[eventIndex];
 
@@ -152,18 +145,18 @@ const EventPage = ({ eventIndex }) => {
 
   return (
     <>
-      {editTitleComponent(
+      {editTitleModal(
         event.title,
         eventIndex,
         setEvents,
-        modalsIsOpen.editTitle,
-        closeModal("editTitle"),
+        modalsIsOpen[MODALS.editTitle],
+        closeModal(MODALS.editTitle),
       )}
-      {editImageComponent(
+      {editImageModal(
         eventIndex,
         setEvents,
-        modalsIsOpen.editImage,
-        closeModal("editImage"),
+        modalsIsOpen[MODALS.editImage],
+        closeModal(MODALS.editImage),
       )}
 
       <Page>
@@ -175,7 +168,7 @@ const EventPage = ({ eventIndex }) => {
           <div className={classes["event-page-title"]}>
             <PageTitle title={event.title} />
             {!event.published ? (
-              <EditIcon onClick={openModal("editTitle")} />
+              <EditIcon onClick={openModal(MODALS.editTitle)} />
             ) : null}
           </div>
 
@@ -186,7 +179,9 @@ const EventPage = ({ eventIndex }) => {
                 style={isActiveCursorStyles}
               >
                 <img
-                  onClick={!event.published ? openModal("editImage") : null}
+                  onClick={
+                    !event.published ? openModal(MODALS.editImage) : null
+                  }
                   src={eventImage ? eventImage : ImageLogo}
                   alt=""
                 />

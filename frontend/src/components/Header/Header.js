@@ -3,30 +3,31 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./Header.module.css";
 
+import { useModalHandler } from "../../hooks/ModalHandler";
+
 import Logo from "../../assets/svg/logo.svg";
 
 import ConnectWallet from "./ConnectWallet/ConnectWallet.js";
 import Button from "../UI/Button/Button.js";
 
+const MODALS = {
+  connectWallet: "connectWallet",
+};
+
 const Header = () => {
   const { isConnected, disconnect } = useCardano();
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   function disconnectWallet() {
     disconnect();
   }
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
     <>
-      <ConnectWallet modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <ConnectWallet
+        modalIsOpen={modalsIsOpen[MODALS.connectWallet]}
+        closeModal={closeModal(MODALS.connectWallet)}
+      />
       <header className={classes["header"]}>
         <img src={Logo} alt="" />
 
@@ -42,7 +43,7 @@ const Header = () => {
         ) : (
           <Button
             className={classes["connect-wallet-button"]}
-            onClick={openModal}
+            onClick={openModal(MODALS.connectWallet)}
           >
             Connect Wallet
           </Button>
