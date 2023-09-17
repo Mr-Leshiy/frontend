@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./EventCard.module.css";
 
@@ -27,12 +27,12 @@ const EventCard = ({ eventIndex }) => {
 
   const event = events[eventIndex];
 
-  const onSubmitHandler = (eventValue) => {
+  const onSubmitHandler = ([startDate, endDate, location, website]) => {
     setEvents((events) => {
-      events[eventIndex].startDate = eventValue.startDate;
-      events[eventIndex].endDate = eventValue.endDate;
-      events[eventIndex].location = eventValue.location;
-      events[eventIndex].website = eventValue.website;
+      events[eventIndex].startDate = startDate;
+      events[eventIndex].endDate = endDate;
+      events[eventIndex].location = location;
+      events[eventIndex].website = website;
       return events;
     });
   };

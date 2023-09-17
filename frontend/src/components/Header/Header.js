@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./Header.module.css";

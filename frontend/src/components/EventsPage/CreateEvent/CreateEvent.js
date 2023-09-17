@@ -10,17 +10,11 @@ import InputFormModal, {
 const CreateEvent = ({ modalIsOpen, closeModal }) => {
   const { setEvents } = useEventsContext();
 
-  const onSubmitHandler = (eventValue) => {
+  const onSubmitHandler = ([title, startDate, endDate, location, website]) => {
     setEvents((events) => {
       return [
         ...events,
-        new Event(
-          eventValue.title,
-          eventValue.startDate,
-          eventValue.endDate,
-          eventValue.location,
-          eventValue.website,
-        ),
+        new Event(title, startDate, endDate, location, website),
       ];
     });
   };

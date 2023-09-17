@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const useModalHandler = (modalTypes) => {
   const [modalsIsOpen, setModalsIsOpen] = useState(

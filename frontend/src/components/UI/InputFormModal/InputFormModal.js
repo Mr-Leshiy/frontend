@@ -24,20 +24,20 @@ export class Input {
   }
 
   static retrieveValueFromForm(target) {
-    let res = {};
+    let res = [];
     for (let i = 0; i < target.length; i++) {
       if (target[i].type === "text") {
-        res[target[i].name] = target[i].value;
+        res.push(target[i].value);
       }
       if (target[i].type === "number") {
-        res[target[i].name] = target[i].value;
+        res.push(target[i].value);
       }
       if (target[i].type === "date") {
         // Date and Time inputs should go one by one
-        res[target[i].name] = dateFromInput(target[i].value, target[++i].value);
+        res.push(dateFromInput(target[i].value, target[++i].value));
       }
       if (target[i].type === "file") {
-        res[target[i].name] = target[i].files[0];
+        res.push(target[i].files[0]);
       }
     }
     return res;

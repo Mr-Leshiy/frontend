@@ -41,9 +41,9 @@ const editTitleModal = (
     }),
   ];
 
-  const onSubmitHandler = (value) => {
+  const onSubmitHandler = ([title]) => {
     setEvents((events) => {
-      events[eventIndex].title = value.title;
+      events[eventIndex].title = title;
       return events;
     });
   };
@@ -68,8 +68,8 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
     }),
   ];
 
-  const onSubmitHandler = async (value) => {
-    let id = await postEventImage(value.image);
+  const onSubmitHandler = async ([image]) => {
+    let id = await postEventImage(image);
     if (id) {
       setEvents((events) => {
         events[eventIndex].image = id;

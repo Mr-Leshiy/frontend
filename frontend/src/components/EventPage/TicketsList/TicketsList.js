@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./TicketsList.module.css";
 
@@ -12,6 +12,10 @@ import InputFormModal, {
 } from "../../UI/InputFormModal/InputFormModal";
 
 const generateTicketsModal = (modalsIsOpen, closeModal) => {
+  const onSubmitHandler = ([ticketsNumber]) => {
+    console.log(ticketsNumber);
+  };
+
   const inputs = [
     new Input(InputTypes.NUMBER, {
       description: "Number of tickets",
@@ -28,6 +32,7 @@ const generateTicketsModal = (modalsIsOpen, closeModal) => {
       modalIsOpen={modalsIsOpen}
       closeModal={closeModal}
       inputs={inputs}
+      submitHandler={onSubmitHandler}
       submitButtonText="Generate"
     />
   );
