@@ -12,50 +12,20 @@ import {
 
 export const InputTypes = {
   TEXT: "text",
+  NUMBER: "number",
   DATE: "date",
   IMAGE: "image",
 };
 
-const inputComponent = (
-  description,
-  name,
-  type,
-  placeholder,
-  maxLength,
-  isRequired,
-  initialValue,
-) => (
-  <div className={classes["input"]}>
-    <div className={classes["input-description"]}>{description}</div>
-    <input
-      name={name}
-      className={classes["input-data"]}
-      type={type}
-      placeholder={placeholder}
-      maxLength={maxLength}
-      required={isRequired}
-      defaultValue={initialValue}
-    />
-  </div>
-);
-
 export class Input {
-  constructor(
-    description,
-    name,
-    type,
-    isRequired,
-    placeholder,
-    initialValue,
-    maxLength,
-  ) {
-    this.description = description;
-    this.name = name;
-    this.type = type;
-    this.placeholder = placeholder;
-    this.maxLength = maxLength;
-    this.isRequired = isRequired;
-    this.initialValue = initialValue;
+  constructor(value) {
+    // Iterate over the properties of the 'value' object
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        // Assign each property to the instance
+        this[key] = value[key];
+      }
+    }
   }
 
   static retrieveValueFromForm(target) {
@@ -79,15 +49,43 @@ export class Input {
     if (this.type === InputTypes.TEXT) {
       return (
         <div key={i}>
-          {inputComponent(
-            this.description,
-            this.name,
-            "text",
-            this.placeholder,
-            this.maxLength,
-            this.isRequired,
-            this.initialValue,
-          )}
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.description}
+              </div>
+              <input
+                name={this.name}
+                className={classes["input-data"]}
+                type="text"
+                placeholder={this.placeholder}
+                maxLength={this.maxLength}
+                required={this.isRequired}
+                defaultValue={this.initialValue}
+              />
+            </div>
+          }
+        </div>
+      );
+    }
+    if (this.type === InputTypes.NUMBER) {
+      return (
+        <div key={i}>
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.description}
+              </div>
+              <input
+                name={this.name}
+                className={classes["input-data"]}
+                type="number"
+                placeholder={this.placeholder}
+                required={this.isRequired}
+                defaultValue={this.initialValue}
+              />
+            </div>
+          }
         </div>
       );
     }
@@ -109,24 +107,38 @@ export class Input {
     if (this.type === InputTypes.DATE) {
       return (
         <div className={classes["input-date-and-time"]} key={i}>
-          {inputComponent(
-            this.description,
-            this.name,
-            "date",
-            this.placeholder,
-            this.maxLength,
-            this.isRequired,
-            this.initialValue ? inputFormatDate(this.initialValue) : "",
-          )}
-          {inputComponent(
-            "time",
-            this.name + "Time",
-            "time",
-            this.placeholder,
-            this.maxLength,
-            this.isRequired,
-            this.initialValue ? inputFormatTime(this.initialValue) : "",
-          )}
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.description}
+              </div>
+              <input
+                name={this.name}
+                className={classes["input-data"]}
+                type="date"
+                placeholder={this.placeholder}
+                maxLength={this.maxLength}
+                required={this.isRequired}
+                defaultValue={inputFormatDate(this.initialValue)}
+              />
+            </div>
+          }
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.description}
+              </div>
+              <input
+                name={this.name}
+                className={classes["input-data"]}
+                type="time"
+                placeholder={this.placeholder}
+                maxLength={this.maxLength}
+                required={this.isRequired}
+                defaultValue={inputFormatTime(this.initialValue)}
+              />
+            </div>
+          }
         </div>
       );
     }

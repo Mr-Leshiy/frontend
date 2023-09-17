@@ -26,27 +26,42 @@ const CreateEvent = ({ modalIsOpen, closeModal }) => {
   };
 
   const inputs = [
-    new Input("Event title", "title", InputTypes.TEXT, true, "Title", null, 50),
-    new Input("Event start date", "startDate", InputTypes.DATE, true),
-    new Input("Event end date", "endDate", InputTypes.DATE, true),
-    new Input(
-      "Event location",
-      "location",
-      InputTypes.TEXT,
-      true,
-      "Location",
-      null,
-      50,
-    ),
-    new Input(
-      "Event website",
-      "website",
-      InputTypes.TEXT,
-      false,
-      "Website link",
-      null,
-      50,
-    ),
+    new Input({
+      description: "Event title",
+      name: "title",
+      type: InputTypes.TEXT,
+      isRequired: true,
+      placeholder: "Title",
+      maxLength: 50,
+    }),
+    new Input({
+      description: "Event start date",
+      name: "startDate",
+      type: InputTypes.DATE,
+      isRequired: true,
+    }),
+    new Input({
+      description: "Event end date",
+      name: "endDate",
+      type: InputTypes.DATE,
+      isRequired: true,
+    }),
+    new Input({
+      description: "Event location",
+      name: "location",
+      type: InputTypes.TEXT,
+      isRequired: true,
+      placeholder: "Location",
+      maxLength: 50,
+    }),
+    new Input({
+      description: "Event website",
+      name: "website",
+      type: InputTypes.TEXT,
+      isRequired: false,
+      placeholder: "Website link",
+      maxLength: 50,
+    }),
   ];
 
   return (

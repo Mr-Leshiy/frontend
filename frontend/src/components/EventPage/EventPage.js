@@ -31,15 +31,15 @@ const editTitleModal = (
   closeModal,
 ) => {
   const inputs = [
-    new Input(
-      "Event title",
-      "title",
-      InputTypes.TEXT,
-      true,
-      "Title",
-      title,
-      50,
-    ),
+    new Input({
+      description: "Event title",
+      name: "title",
+      type: InputTypes.TEXT,
+      isRequired: true,
+      placeholder: "Title",
+      initialValue: title,
+      maxLength: 50,
+    }),
   ];
 
   const onSubmitHandler = (value) => {
@@ -61,7 +61,14 @@ const editTitleModal = (
 };
 
 const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
-  const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
+  const inputs = [
+    new Input({
+      description: "Event image",
+      name: "image",
+      type: InputTypes.IMAGE,
+      isRequired: true,
+    }),
+  ];
 
   const onSubmitHandler = async (value) => {
     let id = await postEventImage(value.image);

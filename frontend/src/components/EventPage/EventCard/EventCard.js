@@ -38,40 +38,38 @@ const EventCard = ({ eventIndex }) => {
   };
 
   const editInputs = [
-    new Input(
-      "Event start date",
-      "startDate",
-      InputTypes.DATE,
-      true,
-      null,
-      event.startDate,
-    ),
-    new Input(
-      "Event end date",
-      "endDate",
-      InputTypes.DATE,
-      true,
-      null,
-      event.endDate,
-    ),
-    new Input(
-      "Event location",
-      "location",
-      InputTypes.TEXT,
-      true,
-      "Location",
-      event.location,
-      50,
-    ),
-    new Input(
-      "Event website",
-      "website",
-      InputTypes.TEXT,
-      false,
-      "Website link",
-      event.website,
-      50,
-    ),
+    new Input({
+      description: "Event start date",
+      name: "startDate",
+      type: InputTypes.DATE,
+      isRequired: true,
+      initialValue: event.startDate,
+    }),
+    new Input({
+      description: "Event end date",
+      naem: "endDate",
+      type: InputTypes.DATE,
+      isRequired: true,
+      initialValue: event.endDate,
+    }),
+    new Input({
+      description: "Event location",
+      name: "location",
+      type: InputTypes.TEXT,
+      isRequired: true,
+      placeholder: "Location",
+      initialValue: event.location,
+      maxLength: 50,
+    }),
+    new Input({
+      description: "Event website",
+      name: "website",
+      type: InputTypes.TEXT,
+      isRequired: false,
+      placeholder: "Website link",
+      initialValue: event.website,
+      maxLength: 50,
+    }),
   ];
 
   return (
