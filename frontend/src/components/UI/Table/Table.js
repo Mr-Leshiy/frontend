@@ -40,12 +40,16 @@ export class RowElement {
 }
 
 const Table = ({ head, rows }) => {
-  head = head.map((element) => {
-    return element.buildComponent();
-  });
-  rows = rows.map((element) => {
-    return element.buildComponent();
-  });
+  head = head
+    ? head.map((element) => {
+        return element.buildComponent();
+      })
+    : [];
+  rows = rows
+    ? rows.map((element) => {
+        return element.buildComponent();
+      })
+    : [];
   return (
     <table className={classes["table"]}>
       <thead>

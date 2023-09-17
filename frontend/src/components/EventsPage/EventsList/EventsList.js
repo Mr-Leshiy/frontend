@@ -63,7 +63,7 @@ const EventsList = ({ filterOptions }) => {
     });
   }
 
-  const eventRows = filteredEvents.map(
+  const rows = filteredEvents.map(
     (event, _) =>
       new RowElement(event.index, () => onChooseEvent(event), [
         event.index + 1,
@@ -84,7 +84,7 @@ const EventsList = ({ filterOptions }) => {
 
   return (
     <div className={classes["events-list"]}>
-      <Table head={head} rows={eventRows} />
+      <Table head={head} rows={rows} />
     </div>
   );
 };
