@@ -1,0 +1,18 @@
+.description {
+  display: flex;
+
+  align-items: center;
+  justify-items: center;
+}
+
+.description h4 {
+  padding: 1vh 0vw;
+
+  font-size: 2vh;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.edit-button {
+  margin-left: auto;
+}

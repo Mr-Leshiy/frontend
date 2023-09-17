@@ -19,6 +19,7 @@ import InputFormModal, {
 import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import PageTitle from "../UI/PageTitle/PageTitle";
+import EventDescription from "./EventDescription/EventDescription";
 
 const editTitleComponent = (
   title,
@@ -86,43 +87,6 @@ const editImageComponent = (
   );
 };
 
-const editDescriptionComponent = (
-  description,
-  eventIndex,
-  setEvents,
-  modalsIsOpen,
-  closeModal,
-) => {
-  const inputs = [
-    new Input(
-      "Event description",
-      "description",
-      InputTypes.TEXT,
-      true,
-      "Description",
-      description,
-      1000,
-    ),
-  ];
-
-  const onSubmitHandler = (value) => {
-    setEvents((events) => {
-      events[eventIndex].description = value.description;
-      return events;
-    });
-  };
-
-  return (
-    <InputFormModal
-      modalIsOpen={modalsIsOpen}
-      closeModal={closeModal}
-      submitButtonText="Edit"
-      inputs={inputs}
-      submitHandler={onSubmitHandler}
-    />
-  );
-};
-
 const EventPage = ({ eventIndex }) => {
   const { stakeAddress } = useCardano();
   const { events, setEvents } = useEventsContext();
@@ -131,7 +95,6 @@ const EventPage = ({ eventIndex }) => {
   const [modalsIsOpen, setModalsIsOpen] = useState({
     editTitle: false,
     editImage: false,
-    editDescription: false,
   });
 
   const openModal = (modalType) => () =>
@@ -156,6 +119,13 @@ const EventPage = ({ eventIndex }) => {
 
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
+  };
+
+  const onSubmitDescription = (description) => {
+    setEvents((events) => {
+      events[eventIndex].description = description;
+      return events;
+    });
   };
 
   const handleDeleteClick = () => {
@@ -194,13 +164,6 @@ const EventPage = ({ eventIndex }) => {
         modalsIsOpen.editImage,
         closeModal("editImage"),
       )}
-      {editDescriptionComponent(
-        event.description,
-        eventIndex,
-        setEvents,
-        modalsIsOpen.editDescription,
-        closeModal("editDescription"),
-      )}
 
       <Page>
         <div className={classes["tab"]}>
@@ -228,18 +191,7 @@ const EventPage = ({ eventIndex }) => {
                 />
               </div>
 
-              <div className={classes["event-info-title"]}>
-                <h4>Description</h4>
-
-                <div className={classes["description-edit-button"]}>
-                  {!event.published ? (
-                    <EditIcon onClick={openModal("editDescription")} />
-                  ) : null}
-                </div>
-              </div>
-              <div className={classes["event-info-description"]}>
-                {event.description}
-              </div>
+              <EventDescription event={event} onSubmit={onSubmitDescription} />
             </div>
 
             <div className={classes["event-card"]}>

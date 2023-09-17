@@ -52,48 +52,6 @@
   height: 100%;
 }
 
-.event-info-title {
-  display: flex;
-
-  align-items: center;
-  justify-items: center;
-}
-
-.event-info-title h4 {
-  padding: 1vh 0vw;
-
-  font-size: 2vh;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.event-info-title img {
-  height: 3vh;
-
-  margin-left: auto;
-
-  cursor: pointer;
-}
-
-.description-edit-button {
-  margin-left: auto;
-}
-
-.event-info-description {
-  height: 25vh;
-
-  border: 2px solid #dbdbe7;
-  border-radius: 10px;
-
-  padding: 1vh 1.5vw;
-
-  font-size: 2.5vh;
-  font-weight: 700;
-
-  overflow-y: scroll;
-  text-overflow: ellipsis;
-}
-
 .event-card {
   width: 30%;
 
