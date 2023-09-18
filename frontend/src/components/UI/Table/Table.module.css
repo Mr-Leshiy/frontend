@@ -8,16 +8,16 @@
   border-bottom: 1px solid #e6ecf0;
 }
 
-.table tr:hover {
-  background-color: #e4e9f6;
-}
-
 .table th {
   font-size: 2vh;
   font-weight: 800;
   color: rgba(0, 0, 0, 0.4);
 
   padding: 1.1vh 0.7vw;
+}
+
+.table tbody tr:hover {
+  background-color: #e4e9f6;
 }
 
 .table th div {
