@@ -55,9 +55,19 @@ export const publishEvent = async (stakeAddress, event) => {
   }
 };
 
-export const getEvents = async (stakeAddress) => {
+export const getUserEvents = async (stakeAddress) => {
   try {
-    const res = await axiosInstance.get(`/events/event/${stakeAddress}`);
+    const res = await axiosInstance.get(`/events/user/${stakeAddress}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
+export const getEvent = async (id) => {
+  try {
+    const res = await axiosInstance.get(`/events/event/${id}`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -80,6 +90,16 @@ export const generateTickets = async (stakeAddress, ticketsAmount, event) => {
         },
       },
     );
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
+export const getUserTickets = async (stakeAddress) => {
+  try {
+    const res = await axiosInstance.get(`/events/tickets/user/${stakeAddress}`);
     return res.data;
   } catch (err) {
     console.log(err);

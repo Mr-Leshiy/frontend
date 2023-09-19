@@ -6,7 +6,12 @@ import classes from "./EventPage.module.css";
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
-import { postEventImage, getEventImage, publishEvent, generateTickets } from "../../lib/Events";
+import {
+  postEventImage,
+  getEventImage,
+  publishEvent,
+  generateTickets,
+} from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageLogo from "../../assets/svg/image.svg";
@@ -88,7 +93,12 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   );
 };
 
-const generateTicketsModal = (modalsIsOpen, closeModal, stakeAddress, event) => {
+const generateTicketsModal = (
+  modalsIsOpen,
+  closeModal,
+  stakeAddress,
+  event,
+) => {
   const onSubmitHandler = async ([ticketsAmount]) => {
     await generateTickets(stakeAddress, ticketsAmount, event);
   };

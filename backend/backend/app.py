@@ -44,8 +44,8 @@ async def publish_event(req: EventRequest):
     user_events.setdefault(req.stakeAddress, set()).add(event_id)
     events[event_id] = req.event
 
-@app.get("/events/event/{stakeAddress}")
-async def get_events(stakeAddress: str):
+@app.get("/events/user/{stakeAddress}")
+async def get_user_events(stakeAddress: str):
     if stakeAddress in user_events:
         events_ids = user_events[stakeAddress]
         res = []
@@ -54,7 +54,14 @@ async def get_events(stakeAddress: str):
             res.append(event) 
         return res
     else:
-        raise HTTPException(status_code = 404, detail = "Image not found")
+        raise HTTPException(status_code = 404, detail = "User events not found")
+
+@app.get("/events/event/{id}")
+async def get_event(id: str):
+    if id in events:
+        return events[id]
+    else:
+        raise HTTPException(status_code = 404, detail = "Event not found")
 
 @app.post("/events/tickets/generate")
 async def generate_tickets(req: GenerateTicketsRequest):
@@ -67,8 +74,14 @@ async def generate_tickets(req: GenerateTicketsRequest):
             ticket = Ticket(event_id, i + cur_tickets_amount)
             event_tickets_.append(ticket)
             user_tickets_.append(ticket)
-        print(f"user_ticket: {user_tickets}")
-        print(f"event_tickets: {event_tickets}")
+
+@app.get("/events/tickets/user/{stakeAddress}")
+async def get_tickets(stakeAddress: str):
+    if stakeAddress in user_tickets:
+        tickets = user_tickets[stakeAddress]
+        return tickets
+    else:
+        raise HTTPException(status_code = 404, detail = "User tickets not found")
 
 
 def main():
