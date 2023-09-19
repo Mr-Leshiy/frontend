@@ -6,7 +6,7 @@ import classes from "./EventPage.module.css";
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
-import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
+import { postEventImage, getEventImage, publishEvent, generateTickets } from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageLogo from "../../assets/svg/image.svg";
@@ -21,7 +21,6 @@ import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import PageTitle from "../UI/PageTitle/PageTitle";
 import EventDescription from "./EventDescription/EventDescription";
-import TicketsList from "./TicketsList/TicketsList";
 
 const editTitleModal = (
   title,
@@ -89,15 +88,15 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   );
 };
 
-const generateTicketsModal = (modalsIsOpen, closeModal) => {
-  const onSubmitHandler = ([ticketsNumber]) => {
-    console.log(ticketsNumber);
+const generateTicketsModal = (modalsIsOpen, closeModal, stakeAddress, event) => {
+  const onSubmitHandler = async ([ticketsAmount]) => {
+    await generateTickets(stakeAddress, ticketsAmount, event);
   };
 
   const inputs = [
     new Input(InputTypes.NUMBER, {
-      description: "Number of tickets",
-      name: "numberOfTickets",
+      description: "Tickets amount",
+      name: "ticketsAmount",
       required: true,
       placeholder: 0,
       min: 0,
@@ -194,6 +193,8 @@ const EventPage = ({ eventIndex }) => {
       {generateTicketsModal(
         modalsIsOpen[MODALS.generateTickets],
         closeModal(MODALS.generateTickets),
+        stakeAddress,
+        event,
       )}
 
       <Page>
@@ -248,8 +249,6 @@ const EventPage = ({ eventIndex }) => {
               )}
             </div>
           </div>
-
-          {/* {event.published ? <TicketsList /> : null} */}
         </div>
       </Page>
     </>
