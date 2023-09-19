@@ -40,7 +40,7 @@ const EventDescription = ({ event, onSubmit }) => {
         </div>
       </div>
       <TextArea
-        rows={10}
+        rows={8}
         maxlength={1000}
         defaultValue={event.description}
         onChange={onChange}

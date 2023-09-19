@@ -52,7 +52,7 @@ const editTitleModal = (
     <InputFormModal
       modalIsOpen={modalsIsOpen}
       closeModal={closeModal}
-      submitButtonText="Edit"
+      submitButtonText="Apply"
       inputs={inputs}
       submitHandler={onSubmitHandler}
     />
@@ -82,9 +82,36 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
     <InputFormModal
       modalIsOpen={modalsIsOpen}
       closeModal={closeModal}
-      submitButtonText="Edit"
+      submitButtonText="Apply"
       inputs={inputs}
       submitHandler={onSubmitHandler}
+    />
+  );
+};
+
+const generateTicketsModal = (modalsIsOpen, closeModal) => {
+  const onSubmitHandler = ([ticketsNumber]) => {
+    console.log(ticketsNumber);
+  };
+
+  const inputs = [
+    new Input(InputTypes.NUMBER, {
+      description: "Number of tickets",
+      name: "numberOfTickets",
+      required: true,
+      placeholder: 0,
+      min: 0,
+      step: 1,
+    }),
+  ];
+
+  return (
+    <InputFormModal
+      modalIsOpen={modalsIsOpen}
+      closeModal={closeModal}
+      inputs={inputs}
+      submitHandler={onSubmitHandler}
+      submitButtonText="Generate"
     />
   );
 };
@@ -92,6 +119,7 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
 const MODALS = {
   editTitle: "editTitle",
   editImage: "editImage",
+  generateTickets: "generateTickets",
 };
 
 const EventPage = ({ eventIndex }) => {
@@ -163,6 +191,10 @@ const EventPage = ({ eventIndex }) => {
         modalsIsOpen[MODALS.editImage],
         closeModal(MODALS.editImage),
       )}
+      {generateTicketsModal(
+        modalsIsOpen[MODALS.generateTickets],
+        closeModal(MODALS.generateTickets),
+      )}
 
       <Page>
         <div className={classes["tab"]}>
@@ -197,17 +229,27 @@ const EventPage = ({ eventIndex }) => {
 
             <div className={classes["event-card"]}>
               <EventCard eventIndex={eventIndex} />
+
+              {!event.published ? (
+                <>
+                  <div className={classes["button"]}>
+                    <Button onClick={handlePublishClick}>Publish</Button>
+                  </div>
+                  <div className={classes["button"]}>
+                    <Button onClick={handleDeleteClick}>Delete</Button>
+                  </div>
+                </>
+              ) : (
+                <div className={classes["button"]}>
+                  <Button onClick={openModal(MODALS.generateTickets)}>
+                    Generate tickets
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
-          {!event.published ? (
-            <div className={classes["delete-submit-buttons"]}>
-              <Button onClick={handlePublishClick}>Publish</Button>
-              <Button onClick={handleDeleteClick}>Delete</Button>
-            </div>
-          ) : (
-            <TicketsList />
-          )}
+          {/* {event.published ? <TicketsList /> : null} */}
         </div>
       </Page>
     </>

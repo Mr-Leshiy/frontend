@@ -75,7 +75,7 @@ const EventCard = ({ eventIndex }) => {
         closeModal={closeModal(MODALS.edit)}
         inputs={editInputs}
         submitHandler={onSubmitHandler}
-        submitButtonText="Edit"
+        submitButtonText="Apply"
       />
 
       <div className={classes["event-card"]}>
