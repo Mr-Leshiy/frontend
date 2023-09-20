@@ -77,11 +77,14 @@ const EventsContextProvider = ({ children }) => {
             event.image,
           ),
       ),
+      ...publishedEvents,
     ]);
   }, [publishedEvents, localStorageEvents]);
 
   return (
-    <EventsContext.Provider value={{ events, setEvents: null }}>
+    <EventsContext.Provider
+      value={{ events, setEvents: setLocalStorageEvents }}
+    >
       {children}
     </EventsContext.Provider>
   );

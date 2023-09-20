@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventPage.module.css";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
+import { useEventImagesContext } from "../../hooks/EventImagesContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
 import {
   postEventImage,
-  getEventImage,
   publishEvent,
   generateTickets,
 } from "../../lib/Events";
@@ -73,7 +73,7 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   ];
 
   const onSubmitHandler = async ([image]) => {
-    let id = await postEventImage(image);
+    let { id } = await postEventImage(image);
     if (id) {
       setEvents((events) => {
         events[eventIndex].image = id;
@@ -134,24 +134,18 @@ const MODALS = {
 const EventPage = ({ eventIndex }) => {
   const { stakeAddress } = useCardano();
   const { events, setEvents } = useEventsContext();
+  const { eventImages, fetchEventImage } = useEventImagesContext();
   const { setActivePage } = usePageContext();
-  const [eventImage, setEventImage] = useState(null);
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   const event = events[eventIndex];
 
   // load image
   useEffect(() => {
-    const fetchEventImage = async () => {
-      const image = await getEventImage(event.image);
-      if (image) {
-        setEventImage(image);
-      }
-    };
     if (event.image) {
-      fetchEventImage();
+      fetchEventImage(event.image);
     }
-  });
+  }, [events]);
 
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
@@ -174,10 +168,6 @@ const EventPage = ({ eventIndex }) => {
 
   const handlePublishClick = async () => {
     await publishEvent(stakeAddress, event);
-    setEvents((events) => {
-      events[eventIndex].published = true;
-      return events;
-    });
     handleBackClick();
   };
 
@@ -230,7 +220,11 @@ const EventPage = ({ eventIndex }) => {
                   onClick={
                     !event.published ? openModal(MODALS.editImage) : null
                   }
-                  src={eventImage ? eventImage : ImageLogo}
+                  src={
+                    eventImages[event.image]
+                      ? eventImages[event.image]
+                      : ImageLogo
+                  }
                   alt=""
                 />
               </div>

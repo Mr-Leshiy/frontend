@@ -8,7 +8,6 @@ const CloseIcon = ({ onClick, height }) => {
       className={classes["close"]}
       onClick={onClick}
       height={height ? height : "3vh"}
-      enable-background="new 0 0 1792 1792"
       viewBox="0 0 1792 1792"
       xmlns="http://www.w3.org/2000/svg"
     >

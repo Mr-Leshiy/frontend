@@ -2,12 +2,13 @@ import React from "react";
 
 import "./App.css";
 
+import EventsContextProvider from "./hooks/EventsContext";
+import EventImagesContextProvider from "./hooks/EventImagesContext";
 import PageContextProvider from "./hooks/PageContext";
 
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
 import PageHandler from "./components/PageHandler/PageHandler";
-import EventsContextProvider from "./hooks/EventsContext";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         <div className="container">
           <Sidebar />
           <EventsContextProvider>
-            <PageHandler />
+            <EventImagesContextProvider>
+              <PageHandler />
+            </EventImagesContextProvider>
           </EventsContextProvider>
         </div>
       </div>
