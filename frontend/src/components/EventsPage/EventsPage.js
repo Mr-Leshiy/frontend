@@ -3,6 +3,8 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventsPage.module.css";
 
+import { useModalHandler } from "../../hooks/ModalHandler";
+
 import EventsList from "./EventsList/EventsList";
 import EventFilter from "../UI/EventFilter/EventFilter";
 import CreateEvent from "./CreateEvent/CreateEvent";
@@ -10,18 +12,14 @@ import Button from "../UI/Button/Button";
 import Page from "../UI/Page/Page";
 import PageTitle from "../UI/PageTitle/PageTitle";
 
+const MODALS = {
+  createEvent: "createEvent",
+};
+
 const EventsPage = () => {
   const { isConnected } = useCardano();
   const [filterOptions, setFilterOptions] = useState({ title: "" });
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   const handleFilter = (newFilterOptions) => {
     setFilterOptions(newFilterOptions);
@@ -35,7 +33,10 @@ const EventsPage = () => {
   };
   return (
     <>
-      <CreateEvent modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <CreateEvent
+        modalIsOpen={modalsIsOpen[MODALS.createEvent]}
+        closeModal={closeModal(MODALS.createEvent)}
+      />
 
       <Page>
         <PageTitle title="Your Events" />
@@ -46,7 +47,7 @@ const EventsPage = () => {
           </div>
           <Button
             className={classes["create-event-button"]}
-            onClick={openModal}
+            onClick={openModal(MODALS.createEvent)}
           >
             + Create Event
           </Button>

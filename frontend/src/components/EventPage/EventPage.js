@@ -5,7 +5,13 @@ import classes from "./EventPage.module.css";
 
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
-import { postEventImage, getEventImage, publishEvent } from "../../lib/Events";
+import { useModalHandler } from "../../hooks/ModalHandler";
+import {
+  postEventImage,
+  getEventImage,
+  publishEvent,
+  generateTickets,
+} from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageLogo from "../../assets/svg/image.svg";
@@ -21,7 +27,7 @@ import BackButton from "../UI/BackButton/BackButton";
 import PageTitle from "../UI/PageTitle/PageTitle";
 import EventDescription from "./EventDescription/EventDescription";
 
-const editTitleComponent = (
+const editTitleModal = (
   title,
   eventIndex,
   setEvents,
@@ -29,20 +35,19 @@ const editTitleComponent = (
   closeModal,
 ) => {
   const inputs = [
-    new Input(
-      "Event title",
-      "title",
-      InputTypes.TEXT,
-      true,
-      "Title",
-      title,
-      50,
-    ),
+    new Input(InputTypes.TEXT, {
+      description: "Event title",
+      name: "title",
+      required: true,
+      placeholder: "Title",
+      defaultValue: title,
+      maxLength: 50,
+    }),
   ];
 
-  const onSubmitHandler = (value) => {
+  const onSubmitHandler = ([title]) => {
     setEvents((events) => {
-      events[eventIndex].title = value.title;
+      events[eventIndex].title = title;
       return events;
     });
   };
@@ -51,23 +56,24 @@ const editTitleComponent = (
     <InputFormModal
       modalIsOpen={modalsIsOpen}
       closeModal={closeModal}
-      submitButtonText="Edit"
+      submitButtonText="Apply"
       inputs={inputs}
       submitHandler={onSubmitHandler}
     />
   );
 };
 
-const editImageComponent = (
-  eventIndex,
-  setEvents,
-  modalsIsOpen,
-  closeModal,
-) => {
-  const inputs = [new Input("Event image", "image", InputTypes.IMAGE, true)];
+const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
+  const inputs = [
+    new Input(InputTypes.IMAGE, {
+      description: "Event image",
+      name: "image",
+      required: true,
+    }),
+  ];
 
-  const onSubmitHandler = async (value) => {
-    let id = await postEventImage(value.image);
+  const onSubmitHandler = async ([image]) => {
+    let id = await postEventImage(image);
     if (id) {
       setEvents((events) => {
         events[eventIndex].image = id;
@@ -80,11 +86,49 @@ const editImageComponent = (
     <InputFormModal
       modalIsOpen={modalsIsOpen}
       closeModal={closeModal}
-      submitButtonText="Edit"
+      submitButtonText="Apply"
       inputs={inputs}
       submitHandler={onSubmitHandler}
     />
   );
+};
+
+const generateTicketsModal = (
+  modalsIsOpen,
+  closeModal,
+  stakeAddress,
+  event,
+) => {
+  const onSubmitHandler = async ([ticketsAmount]) => {
+    await generateTickets(stakeAddress, ticketsAmount, event);
+  };
+
+  const inputs = [
+    new Input(InputTypes.NUMBER, {
+      description: "Tickets amount",
+      name: "ticketsAmount",
+      required: true,
+      placeholder: 0,
+      min: 0,
+      step: 1,
+    }),
+  ];
+
+  return (
+    <InputFormModal
+      modalIsOpen={modalsIsOpen}
+      closeModal={closeModal}
+      inputs={inputs}
+      submitHandler={onSubmitHandler}
+      submitButtonText="Generate"
+    />
+  );
+};
+
+const MODALS = {
+  editTitle: "editTitle",
+  editImage: "editImage",
+  generateTickets: "generateTickets",
 };
 
 const EventPage = ({ eventIndex }) => {
@@ -92,15 +136,7 @@ const EventPage = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
   const { setActivePage } = usePageContext();
   const [eventImage, setEventImage] = useState(null);
-  const [modalsIsOpen, setModalsIsOpen] = useState({
-    editTitle: false,
-    editImage: false,
-  });
-
-  const openModal = (modalType) => () =>
-    setModalsIsOpen((prev) => ({ ...prev, [modalType]: true }));
-  const closeModal = (modalType) => () =>
-    setModalsIsOpen((prev) => ({ ...prev, [modalType]: false }));
+  const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   const event = events[eventIndex];
 
@@ -151,18 +187,24 @@ const EventPage = ({ eventIndex }) => {
 
   return (
     <>
-      {editTitleComponent(
+      {editTitleModal(
         event.title,
         eventIndex,
         setEvents,
-        modalsIsOpen.editTitle,
-        closeModal("editTitle"),
+        modalsIsOpen[MODALS.editTitle],
+        closeModal(MODALS.editTitle),
       )}
-      {editImageComponent(
+      {editImageModal(
         eventIndex,
         setEvents,
-        modalsIsOpen.editImage,
-        closeModal("editImage"),
+        modalsIsOpen[MODALS.editImage],
+        closeModal(MODALS.editImage),
+      )}
+      {generateTicketsModal(
+        modalsIsOpen[MODALS.generateTickets],
+        closeModal(MODALS.generateTickets),
+        stakeAddress,
+        event,
       )}
 
       <Page>
@@ -174,7 +216,7 @@ const EventPage = ({ eventIndex }) => {
           <div className={classes["event-page-title"]}>
             <PageTitle title={event.title} />
             {!event.published ? (
-              <EditIcon onClick={openModal("editTitle")} />
+              <EditIcon onClick={openModal(MODALS.editTitle)} />
             ) : null}
           </div>
 
@@ -185,7 +227,9 @@ const EventPage = ({ eventIndex }) => {
                 style={isActiveCursorStyles}
               >
                 <img
-                  onClick={!event.published ? openModal("editImage") : null}
+                  onClick={
+                    !event.published ? openModal(MODALS.editImage) : null
+                  }
                   src={eventImage ? eventImage : ImageLogo}
                   alt=""
                 />
@@ -196,15 +240,25 @@ const EventPage = ({ eventIndex }) => {
 
             <div className={classes["event-card"]}>
               <EventCard eventIndex={eventIndex} />
+
+              {!event.published ? (
+                <>
+                  <div className={classes["button"]}>
+                    <Button onClick={handlePublishClick}>Publish</Button>
+                  </div>
+                  <div className={classes["button"]}>
+                    <Button onClick={handleDeleteClick}>Delete</Button>
+                  </div>
+                </>
+              ) : (
+                <div className={classes["button"]}>
+                  <Button onClick={openModal(MODALS.generateTickets)}>
+                    Generate tickets
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
-
-          {!event.published ? (
-            <div className={classes["delete-submit-buttons"]}>
-              <Button onClick={handlePublishClick}>Publish</Button>
-              <Button onClick={handleDeleteClick}>Delete</Button>
-            </div>
-          ) : null}
         </div>
       </Page>
     </>

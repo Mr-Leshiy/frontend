@@ -1,17 +1,40 @@
-export function getTickets(accountId) {
-  let tickets = [];
-  for (let i = 1; i < 10; i++) {
-    tickets.push({
-      id:
-        "54e6f9ec6b59431303a801e72a238ebc291142bcc35eefec6d7526b2bebe7ae8" + i,
-      event: {
-        title: "Event " + i,
-        description: "Event " + i + " description",
-        date: new Date(2023, 8, 31),
-        location: "Event " + i + " location",
-        url: "https://www.google.com",
-      },
-    });
+import { useEffect, useState } from "react";
+import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
+
+import { getUserTickets, getEvent } from "./Events";
+
+class Ticket {
+  constructor(id, event) {
+    this.id = id;
+    this.event = event;
   }
-  return tickets;
 }
+
+export const useTickets = () => {
+  const { stakeAddress } = useCardano();
+  const [tickets, setTickets] = useState([]);
+
+  // loading tickets
+  useEffect(() => {
+    if (stakeAddress) {
+      getUserTickets(stakeAddress).then(async (user_tickets) => {
+        if (user_tickets) {
+          let tickets = [];
+          let events = {};
+          for (const ticket of user_tickets) {
+            let event = events[ticket.event_id];
+            if (!event) {
+              console.log("Event not found");
+              event = await getEvent(ticket.event_id);
+              events[ticket.event_id] = event;
+            }
+            tickets.push(new Ticket(ticket.id, event));
+          }
+          setTickets(tickets);
+        }
+      });
+    }
+  }, [stakeAddress]);
+
+  return tickets;
+};

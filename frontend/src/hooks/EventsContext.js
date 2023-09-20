@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
-import { getEvents } from "../lib/Events";
+import { getUserEvents } from "../lib/Events";
 import { usePageContext, Pages } from "./PageContext";
 
 export class Event {
@@ -38,7 +38,7 @@ const EventsContextProvider = ({ children }) => {
   // loading events
   useEffect(() => {
     if (stakeAddress && activePage.type === Pages.events) {
-      getEvents(stakeAddress).then((events) => {
+      getUserEvents(stakeAddress).then((events) => {
         if (events) {
           events = events.map(
             (event) =>

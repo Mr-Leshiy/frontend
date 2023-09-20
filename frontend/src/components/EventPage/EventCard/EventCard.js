@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./EventCard.module.css";
 
 import { useEventsContext } from "../../../hooks/EventsContext";
+import { useModalHandler } from "../../../hooks/ModalHandler";
 import { formatDate, formatTime } from "../../../lib/Utils";
 
 import ClockLogo from "../../../assets/svg/clock.svg";
@@ -16,76 +17,71 @@ import InputFormModal, {
   Input,
 } from "../../UI/InputFormModal/InputFormModal";
 
+const MODALS = {
+  edit: "edit",
+};
+
 const EventCard = ({ eventIndex }) => {
   const { events, setEvents } = useEventsContext();
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   const event = events[eventIndex];
 
-  const openEditModal = () => setEditModalIsOpen(true);
-  const closeEditModal = () => setEditModalIsOpen(false);
-
-  const onSubmitHandler = (eventValue) => {
+  const onSubmitHandler = ([startDate, endDate, location, website]) => {
     setEvents((events) => {
-      events[eventIndex].startDate = eventValue.startDate;
-      events[eventIndex].endDate = eventValue.endDate;
-      events[eventIndex].location = eventValue.location;
-      events[eventIndex].website = eventValue.website;
+      events[eventIndex].startDate = startDate;
+      events[eventIndex].endDate = endDate;
+      events[eventIndex].location = location;
+      events[eventIndex].website = website;
       return events;
     });
   };
 
   const editInputs = [
-    new Input(
-      "Event start date",
-      "startDate",
-      InputTypes.DATE,
-      true,
-      null,
-      event.startDate,
-    ),
-    new Input(
-      "Event end date",
-      "endDate",
-      InputTypes.DATE,
-      true,
-      null,
-      event.endDate,
-    ),
-    new Input(
-      "Event location",
-      "location",
-      InputTypes.TEXT,
-      true,
-      "Location",
-      event.location,
-      50,
-    ),
-    new Input(
-      "Event website",
-      "website",
-      InputTypes.TEXT,
-      false,
-      "Website link",
-      event.website,
-      50,
-    ),
+    new Input(InputTypes.DATE, {
+      description: "Event start date",
+      name: "startDate",
+      required: true,
+      defaultValue: event.startDate,
+    }),
+    new Input(InputTypes.DATE, {
+      description: "Event end date",
+      name: "endDate",
+      required: true,
+      defaultValue: event.endDate,
+    }),
+    new Input(InputTypes.TEXT, {
+      description: "Event location",
+      name: "location",
+      required: true,
+      placeholder: "Location",
+      defaultValue: event.location,
+      maxLength: 50,
+    }),
+    new Input(InputTypes.TEXT, {
+      description: "Event website",
+      name: "website",
+      required: false,
+      placeholder: "Website link",
+      defaultValue: event.website,
+      maxLength: 50,
+    }),
   ];
 
   return (
     <>
       <InputFormModal
-        modalIsOpen={editModalIsOpen}
-        closeModal={closeEditModal}
+        modalIsOpen={modalsIsOpen[MODALS.edit]}
+        closeModal={closeModal(MODALS.edit)}
         inputs={editInputs}
         submitHandler={onSubmitHandler}
-        submitButtonText="Edit"
+        submitButtonText="Apply"
       />
 
       <div className={classes["event-card"]}>
         {!event.published ? (
           <div className={classes["edit-button"]}>
-            <EditIcon onClick={openEditModal} />
+            <EditIcon onClick={openModal(MODALS.edit)} />
           </div>
         ) : null}
 

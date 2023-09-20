@@ -12,121 +12,134 @@ import {
 
 export const InputTypes = {
   TEXT: "text",
+  NUMBER: "number",
   DATE: "date",
   IMAGE: "image",
 };
 
-const inputComponent = (
-  description,
-  name,
-  type,
-  placeholder,
-  maxLength,
-  isRequired,
-  initialValue,
-) => (
-  <div className={classes["input"]}>
-    <div className={classes["input-description"]}>{description}</div>
-    <input
-      name={name}
-      className={classes["input-data"]}
-      type={type}
-      placeholder={placeholder}
-      maxLength={maxLength}
-      required={isRequired}
-      defaultValue={initialValue}
-    />
-  </div>
-);
-
 export class Input {
-  constructor(
-    description,
-    name,
-    type,
-    isRequired,
-    placeholder,
-    initialValue,
-    maxLength,
-  ) {
-    this.description = description;
-    this.name = name;
-    this.type = type;
-    this.placeholder = placeholder;
-    this.maxLength = maxLength;
-    this.isRequired = isRequired;
-    this.initialValue = initialValue;
+  constructor(input_type, input_options) {
+    this.input_type = input_type;
+    this.input_options = input_options;
   }
 
   static retrieveValueFromForm(target) {
-    let res = {};
+    let res = [];
     for (let i = 0; i < target.length; i++) {
       if (target[i].type === "text") {
-        res[target[i].name] = target[i].value;
+        res.push(target[i].value);
+      }
+      if (target[i].type === "number") {
+        res.push(target[i].value);
       }
       if (target[i].type === "date") {
         // Date and Time inputs should go one by one
-        res[target[i].name] = dateFromInput(target[i].value, target[++i].value);
+        res.push(dateFromInput(target[i].value, target[++i].value));
       }
       if (target[i].type === "file") {
-        res[target[i].name] = target[i].files[0];
+        res.push(target[i].files[0]);
       }
     }
     return res;
   }
 
   buildComponent(i) {
-    if (this.type === InputTypes.TEXT) {
+    if (this.input_type === InputTypes.TEXT) {
       return (
         <div key={i}>
-          {inputComponent(
-            this.description,
-            this.name,
-            "text",
-            this.placeholder,
-            this.maxLength,
-            this.isRequired,
-            this.initialValue,
-          )}
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.input_options.description}
+              </div>
+              <input
+                name={this.input_options.name}
+                className={classes["input-data"]}
+                type="text"
+                placeholder={this.input_options.placeholder}
+                maxLength={this.input_options.maxLength}
+                required={this.input_options.required}
+                defaultValue={this.input_options.defaultValue}
+              />
+            </div>
+          }
         </div>
       );
     }
-    if (this.type === InputTypes.IMAGE) {
+    if (this.input_type === InputTypes.NUMBER) {
+      return (
+        <div key={i}>
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.input_options.description}
+              </div>
+              <input
+                name={this.input_options.name}
+                className={classes["input-data"]}
+                type="number"
+                placeholder={this.input_options.placeholder}
+                required={this.input_options.required}
+                defaultValue={this.input_options.defaultValue}
+                min={this.input_options.min}
+                max={this.input_options.max}
+                step={this.input_options.step}
+              />
+            </div>
+          }
+        </div>
+      );
+    }
+    if (this.input_type === InputTypes.IMAGE) {
       return (
         <div className={classes["input"]} key={i}>
-          <div className={classes["input-description"]}>{this.description}</div>
+          <div className={classes["input-description"]}>
+            {this.input_options.description}
+          </div>
           <input
-            name={this.name}
+            name={this.input_options.name}
             className={classes["input-data"]}
             type="file"
             accept=".png, .jpg, .jpeg, .svg"
             multiple={false}
-            required={this.isRequired}
+            required={this.input_options.required}
           />
         </div>
       );
     }
-    if (this.type === InputTypes.DATE) {
+    if (this.input_type === InputTypes.DATE) {
       return (
         <div className={classes["input-date-and-time"]} key={i}>
-          {inputComponent(
-            this.description,
-            this.name,
-            "date",
-            this.placeholder,
-            this.maxLength,
-            this.isRequired,
-            this.initialValue ? inputFormatDate(this.initialValue) : "",
-          )}
-          {inputComponent(
-            "time",
-            this.name + "Time",
-            "time",
-            this.placeholder,
-            this.maxLength,
-            this.isRequired,
-            this.initialValue ? inputFormatTime(this.initialValue) : "",
-          )}
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>
+                {this.input_options.description}
+              </div>
+              <input
+                name={this.input_options.name}
+                className={classes["input-data"]}
+                type="date"
+                placeholder={this.input_options.placeholder}
+                maxLength={this.input_options.maxLength}
+                required={this.input_options.required}
+                defaultValue={inputFormatDate(this.input_options.defaultValue)}
+              />
+            </div>
+          }
+          {
+            <div className={classes["input"]}>
+              <div className={classes["input-description"]}>time</div>
+              <input
+                name={this.input_options.name + "Time"}
+                className={classes["input-data"]}
+                type="time"
+                placeholder={this.input_options.placeholder}
+                maxLength={this.input_options.maxLength}
+                required={this.input_options.required}
+                defaultValue={inputFormatTime(this.input_options.defaultValue)}
+              />
+            </div>
+          }
         </div>
       );
     }
