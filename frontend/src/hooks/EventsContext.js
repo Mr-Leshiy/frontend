@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import { getUserEvents } from "../lib/Events";
+import { useLocalStorage } from "./LocalStorage";
 import { usePageContext, Pages } from "./PageContext";
 
 export class Event {
@@ -31,8 +31,12 @@ const EventsContext = createContext(null);
 
 const EventsContextProvider = ({ children }) => {
   const { activePage } = usePageContext();
-  const [localStorageEvents, setEvents] = useLocalStorage("events", []);
+  const [localStorageEvents, setLocalStorageEvents] = useLocalStorage(
+    "events",
+    [],
+  );
   const [publishedEvents, setPublishedEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const { stakeAddress } = useCardano();
 
   // loading events
@@ -54,29 +58,30 @@ const EventsContextProvider = ({ children }) => {
               ),
           );
           setPublishedEvents(events);
-        } else {
-          setPublishedEvents([]);
         }
       });
     }
   }, [activePage, stakeAddress]);
 
-  let events = localStorageEvents.map(
-    (event) =>
-      new Event(
-        event.title,
-        new Date(event.startDate),
-        new Date(event.endDate),
-        event.location,
-        event.website,
-        event.description,
-        event.image,
+  useEffect(() => {
+    setEvents([
+      ...localStorageEvents.map(
+        (event) =>
+          new Event(
+            event.title,
+            new Date(event.startDate),
+            new Date(event.endDate),
+            event.location,
+            event.website,
+            event.description,
+            event.image,
+          ),
       ),
-  );
-  events.push(...publishedEvents);
+    ]);
+  }, [publishedEvents, localStorageEvents]);
 
   return (
-    <EventsContext.Provider value={{ events, setEvents }}>
+    <EventsContext.Provider value={{ events, setEvents: null }}>
       {children}
     </EventsContext.Provider>
   );
