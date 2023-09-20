@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./TicketsList.module.css";
 
-import { getTickets } from "../../../lib/Tickets";
+import { useTickets } from "../../../lib/Tickets";
 
 import { filterEvents } from "../../UI/EventFilter/EventFilter";
 import TicketCard from "../TicketCard/TicketCard.js";
 
 const TicketsList = (props) => {
-  const [tickets] = useState(getTickets());
+  const tickets = useTickets();
 
   const filteredTickets = filterEvents(
     tickets,

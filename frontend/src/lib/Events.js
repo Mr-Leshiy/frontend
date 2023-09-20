@@ -15,8 +15,7 @@ export const postEventImage = async (image) => {
         },
       },
     );
-    let { id } = res.data;
-    return id;
+    return res.data;
   } catch (err) {
     console.log(err);
     return null;
