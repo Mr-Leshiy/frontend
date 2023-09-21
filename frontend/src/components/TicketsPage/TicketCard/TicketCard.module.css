@@ -55,7 +55,7 @@
 }
 
 .ticket-card-info-element {
-  margin-top: 2.2vh;
+  margin-top: 1vh;
 }
 
 .ticket-card-info-element-container {
@@ -64,5 +64,5 @@
 
 .ticket-card-info-element-container-item {
   display: flex;
-  padding-right: 3.4vw;
+  padding-right: 1.5vw;
 }
