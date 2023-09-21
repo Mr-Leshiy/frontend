@@ -1,7 +1,7 @@
 .ticket-card {
   border-radius: 1.1vh;
 
-  margin: 2.2vh 1.3vw;
+  margin: 1.5vh 1.3vw;
 
   cursor: pointer;
 
@@ -20,7 +20,7 @@
   border-radius: 0.8vh 0.8vh 0 0;
 
   width: 100%;
-  height: 30vh;
+  height: 35vh;
 }
 
 .ticket-card-info {
@@ -54,16 +54,15 @@
   text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
 }
 
-.ticket-card-info-date {
+.ticket-card-info-element {
+  margin-top: 2.2vh;
+}
+
+.ticket-card-info-element-container {
   display: flex;
-
-  margin-top: 2.2vh;
 }
 
-.ticket-card-info-date-data {
+.ticket-card-info-element-container-item {
+  display: flex;
   padding-right: 3.4vw;
-}
-
-.ticket-card-info-location {
-  margin-top: 2.2vh;
 }

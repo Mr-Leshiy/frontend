@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import classes from "./TicketCard.module.css";
 
@@ -10,9 +10,7 @@ import ImageIcon from "../../../assets/svg/ImageIcon";
 const TicketCard = ({ ticket }) => {
   const { eventImages, fetchEventImage } = useEventImagesContext();
 
-  const { title, startDate, location, image } = ticket.event;
-  const formattedDate = formatDate(startDate);
-  const formattedTime = formatTime(startDate);
+  const { title, startDate, endDate, location, image } = ticket.event;
 
   // load image
   useEffect(() => {
@@ -27,25 +25,39 @@ const TicketCard = ({ ticket }) => {
         {eventImages[image] ? (
           <img src={eventImages[image]} alt="" />
         ) : (
-          <ImageIcon height={"30vh"} width={"100%"} />
+          <ImageIcon height={"35vh"} width={"100%"} />
         )}
 
         <div className={classes["ticket-card-info"]}>
           <h3>{title}</h3>
 
-          <div className={classes["ticket-card-info-date"]}>
-            <div className={classes["ticket-card-info-date-data"]}>
-              <h4>Date</h4>
-              <h3>{formattedDate}</h3>
-            </div>
+          <div className={classes["ticket-card-info-element"]}>
+            <h4>Start time</h4>
+            <div className={classes["ticket-card-info-element-container"]}>
+              <div className={classes["ticket-card-info-element-container-item"]}>
+                <h3>{formatDate(startDate)}</h3>
+              </div>
 
-            <div className={classes["ticket-card-info-date-data"]}>
-              <h4>Time</h4>
-              <h3>{formattedTime}</h3>
+              <div className={classes["ticket-card-info-element-container-item"]}>
+                <h3>{formatTime(startDate)}</h3>
+              </div>
             </div>
           </div>
 
-          <div className={classes["ticket-card-info-location"]}>
+          <div className={classes["ticket-card-info-element"]}>
+            <h4>End time</h4>
+            <div className={classes["ticket-card-info-element-container"]}>
+              <div className={classes["ticket-card-info-element-container-item"]}>
+                <h3>{formatDate(endDate)}</h3>
+              </div>
+
+              <div className={classes["ticket-card-info-element-container-item"]}>
+                <h3>{formatTime(endDate)}</h3>
+              </div>
+            </div>
+          </div>
+
+          <div className={classes["ticket-card-info-element"]}>
             <h4>Location</h4>
             <h3>{location}</h3>
           </div>
