@@ -41,7 +41,7 @@ const EventDescription = ({ event, onSubmit }) => {
       </div>
       <TextArea
         rows={8}
-        maxlength={1000}
+        maxLength={1000}
         defaultValue={event.description}
         onChange={onChange}
         readOnly={!isEditing}
