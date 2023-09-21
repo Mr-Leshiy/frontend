@@ -14,7 +14,7 @@ import {
 } from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
-import ImageLogo from "../../assets/svg/image.svg";
+import ImageIcon from "../../assets/svg/ImageIcon";
 
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
@@ -215,18 +215,13 @@ const EventPage = ({ eventIndex }) => {
               <div
                 className={classes["event-info-image"]}
                 style={isActiveCursorStyles}
+                onClick={!event.published ? openModal(MODALS.editImage) : null}
               >
-                <img
-                  onClick={
-                    !event.published ? openModal(MODALS.editImage) : null
-                  }
-                  src={
-                    eventImages[event.image]
-                      ? eventImages[event.image]
-                      : ImageLogo
-                  }
-                  alt=""
-                />
+                {eventImages[event.image] ? (
+                  <img src={eventImages[event.image]} alt="" />
+                ) : (
+                  <ImageIcon height={"100%"} width={"100%"}/>
+                )}
               </div>
 
               <EventDescription event={event} onSubmit={onSubmitDescription} />
