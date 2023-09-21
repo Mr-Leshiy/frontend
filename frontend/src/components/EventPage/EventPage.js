@@ -48,7 +48,7 @@ const editTitleModal = (
   const onSubmitHandler = ([title]) => {
     setEvents((events) => {
       events[eventIndex].title = title;
-      return events;
+      return [...events];
     });
   };
 
@@ -77,7 +77,7 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
     if (id) {
       setEvents((events) => {
         events[eventIndex].image = id;
-        return events;
+        return [...events];
       });
     }
   };
@@ -154,14 +154,14 @@ const EventPage = ({ eventIndex }) => {
   const onSubmitDescription = (description) => {
     setEvents((events) => {
       events[eventIndex].description = description;
-      return events;
+      return [...events];
     });
   };
 
   const handleDeleteClick = () => {
     setEvents((events) => {
       events.splice(eventIndex, 1);
-      return events;
+      return [...events];
     });
     handleBackClick();
   };
