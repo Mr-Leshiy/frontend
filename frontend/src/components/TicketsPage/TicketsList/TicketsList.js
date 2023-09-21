@@ -2,13 +2,13 @@ import React from "react";
 
 import classes from "./TicketsList.module.css";
 
-import { useTickets } from "../../../lib/Tickets";
+import { useTicketsContext } from "../../../hooks/TicketsContext";
 
 import { filterEvents } from "../../UI/EventFilter/EventFilter";
 import TicketCard from "../TicketCard/TicketCard.js";
 
 const TicketsList = (props) => {
-  const tickets = useTickets();
+  const { tickets } = useTicketsContext();
 
   const filteredTickets = filterEvents(
     tickets,

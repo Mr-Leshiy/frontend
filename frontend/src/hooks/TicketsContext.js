@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
-import { getUserTickets, getEvent } from "./Events";
+import { usePageContext, Pages } from "./PageContext";
+import { getUserTickets, getEvent } from "../lib/Events";
 
 class Ticket {
   constructor(id, event) {
@@ -10,13 +11,16 @@ class Ticket {
   }
 }
 
-export const useTickets = () => {
+const TicketsContext = createContext(null);
+
+const TicketsContextProvider = ({ children }) => {
   const { stakeAddress } = useCardano();
+  const { activePage } = usePageContext();
   const [tickets, setTickets] = useState([]);
 
   // loading tickets
   useEffect(() => {
-    if (stakeAddress) {
+    if (stakeAddress && activePage.type === Pages.tickets) {
       getUserTickets(stakeAddress).then(async (user_tickets) => {
         if (user_tickets) {
           let tickets = [];
@@ -24,7 +28,6 @@ export const useTickets = () => {
           for (const ticket of user_tickets) {
             let event = events[ticket.event_id];
             if (!event) {
-              console.log("Event not found");
               event = await getEvent(ticket.event_id);
               events[ticket.event_id] = event;
             }
@@ -34,7 +37,23 @@ export const useTickets = () => {
         }
       });
     }
-  }, [stakeAddress]);
+  }, [stakeAddress, activePage]);
 
-  return tickets;
+  return (
+    <TicketsContext.Provider value={{ tickets }}>
+      {children}
+    </TicketsContext.Provider>
+  );
 };
+
+export const useTicketsContext = () => {
+  const context = useContext(TicketsContext);
+  if (!context) {
+    throw new Error(
+      "useTicketsContext must be used within a TicketsContextProvider",
+    );
+  }
+  return context;
+};
+
+export default TicketsContextProvider;
