@@ -8,7 +8,7 @@ const LeftArrowIcon = ({ height }) => {
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="m0 0h48v48h-48z" fill="#fff" fill-opacity=".01" />
+      <path d="m0 0h48v48h-48z" fill="#fff" fillOpacity=".01" />
       <g
         stroke="#000"
         strokeLinecap="round"
