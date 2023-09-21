@@ -34,11 +34,15 @@ const TicketCard = ({ ticket }) => {
           <div className={classes["ticket-card-info-element"]}>
             <h4>Start time</h4>
             <div className={classes["ticket-card-info-element-container"]}>
-              <div className={classes["ticket-card-info-element-container-item"]}>
+              <div
+                className={classes["ticket-card-info-element-container-item"]}
+              >
                 <h3>{formatDate(startDate)}</h3>
               </div>
 
-              <div className={classes["ticket-card-info-element-container-item"]}>
+              <div
+                className={classes["ticket-card-info-element-container-item"]}
+              >
                 <h3>{formatTime(startDate)}</h3>
               </div>
             </div>
@@ -47,11 +51,15 @@ const TicketCard = ({ ticket }) => {
           <div className={classes["ticket-card-info-element"]}>
             <h4>End time</h4>
             <div className={classes["ticket-card-info-element-container"]}>
-              <div className={classes["ticket-card-info-element-container-item"]}>
+              <div
+                className={classes["ticket-card-info-element-container-item"]}
+              >
                 <h3>{formatDate(endDate)}</h3>
               </div>
 
-              <div className={classes["ticket-card-info-element-container-item"]}>
+              <div
+                className={classes["ticket-card-info-element-container-item"]}
+              >
                 <h3>{formatTime(endDate)}</h3>
               </div>
             </div>
