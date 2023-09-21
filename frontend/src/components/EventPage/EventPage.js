@@ -145,7 +145,7 @@ const EventPage = ({ eventIndex }) => {
     if (event.image) {
       fetchEventImage(event.image);
     }
-  }, [events]);
+  }, [event.image, fetchEventImage]);
 
   const handleBackClick = () => {
     setActivePage({ type: Pages.events, props: {} });
