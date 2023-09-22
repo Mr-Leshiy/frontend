@@ -38,15 +38,15 @@
   background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
   border-radius: 0 0 0.8vh 0.8vh;
 
-  overflow: hidden; /* Hide overflowing content */
+  overflow: hidden;
 }
 
 .ticket-card-info h3 {
   font-size: 2.5vh;
 
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ticket-card-info h4 {
@@ -54,9 +54,10 @@
   font-weight: 500;
 
   color: rgba(0, 0, 0, 0.4);
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ticket-card-info-element {
