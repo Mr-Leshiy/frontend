@@ -25,7 +25,7 @@ const TicketCard = ({ ticket }) => {
         {eventImages[image] ? (
           <img src={eventImages[image]} alt="" />
         ) : (
-          <ImageIcon height={"35vh"} width={"100%"} />
+          <ImageIcon />
         )}
 
         <div className={classes["ticket-card-info"]}>

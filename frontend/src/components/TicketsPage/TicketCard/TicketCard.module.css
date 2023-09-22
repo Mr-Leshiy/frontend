@@ -1,4 +1,6 @@
 .ticket-card {
+  width: 25%;
+
   border-radius: 1.1vh;
 
   margin: 1.5vh 1.3vw;
@@ -16,7 +18,8 @@
   box-shadow: 0px 10px 20px rgba(124, 137, 247, 0.6);
 }
 
-.ticket-card img {
+.ticket-card img,
+.ticket-card svg {
   border-radius: 0.8vh 0.8vh 0 0;
 
   width: 100%;
@@ -34,6 +37,8 @@
 
   background: linear-gradient(135deg, #8edbff, #ffffff 35% 65%, #ffd8e6);
   border-radius: 0 0 0.8vh 0.8vh;
+
+  overflow: hidden; /* Hide overflowing content */
 }
 
 .ticket-card-info h3 {

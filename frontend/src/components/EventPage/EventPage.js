@@ -220,7 +220,7 @@ const EventPage = ({ eventIndex }) => {
                 {eventImages[event.image] ? (
                   <img src={eventImages[event.image]} alt="" />
                 ) : (
-                  <ImageIcon height={"100%"} width={"100%"} />
+                  <ImageIcon />
                 )}
               </div>
 
