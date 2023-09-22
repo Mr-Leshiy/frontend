@@ -14,7 +14,7 @@ import {
 } from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
-import ImageLogo from "../../assets/svg/image.svg";
+import ImageIcon from "../../assets/svg/ImageIcon";
 
 import Page from "../UI/Page/Page";
 import EventCard from "./EventCard/EventCard";
@@ -48,7 +48,7 @@ const editTitleModal = (
   const onSubmitHandler = ([title]) => {
     setEvents((events) => {
       events[eventIndex].title = title;
-      return events;
+      return [...events];
     });
   };
 
@@ -77,7 +77,7 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
     if (id) {
       setEvents((events) => {
         events[eventIndex].image = id;
-        return events;
+        return [...events];
       });
     }
   };
@@ -154,14 +154,14 @@ const EventPage = ({ eventIndex }) => {
   const onSubmitDescription = (description) => {
     setEvents((events) => {
       events[eventIndex].description = description;
-      return events;
+      return [...events];
     });
   };
 
   const handleDeleteClick = () => {
     setEvents((events) => {
       events.splice(eventIndex, 1);
-      return events;
+      return [...events];
     });
     handleBackClick();
   };
@@ -215,18 +215,13 @@ const EventPage = ({ eventIndex }) => {
               <div
                 className={classes["event-info-image"]}
                 style={isActiveCursorStyles}
+                onClick={!event.published ? openModal(MODALS.editImage) : null}
               >
-                <img
-                  onClick={
-                    !event.published ? openModal(MODALS.editImage) : null
-                  }
-                  src={
-                    eventImages[event.image]
-                      ? eventImages[event.image]
-                      : ImageLogo
-                  }
-                  alt=""
-                />
+                {eventImages[event.image] ? (
+                  <img src={eventImages[event.image]} alt="" />
+                ) : (
+                  <ImageIcon />
+                )}
               </div>
 
               <EventDescription event={event} onSubmit={onSubmitDescription} />

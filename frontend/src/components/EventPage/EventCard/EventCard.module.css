@@ -25,6 +25,9 @@
   font-size: 2vh;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.4);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .event-card-info h3 {

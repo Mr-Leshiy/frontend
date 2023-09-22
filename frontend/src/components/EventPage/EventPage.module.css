@@ -40,15 +40,19 @@
   align-items: center;
   justify-content: center;
 
-  width: 50%;
+  width: 99.5%;
+  height: 40vh;
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
 }
 
-.event-info-image img {
+.event-info-image img,
+.event-info-image svg {
   width: 100%;
   height: 100%;
+
+  border-radius: 8px;
 }
 
 .event-card {

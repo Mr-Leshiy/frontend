@@ -2,12 +2,12 @@ import React from "react";
 
 import classes from "./TextArea.module.css";
 
-const TextArea = ({ rows, maxlength, defaultValue, onChange, readOnly }) => {
+const TextArea = ({ rows, maxLength, defaultValue, onChange, readOnly }) => {
   return (
     <div className={classes["container"]}>
       <textarea
         rows={rows}
-        maxlength={maxlength}
+        maxLength={maxLength}
         defaultValue={defaultValue}
         onChange={(event) => {
           if (onChange) {

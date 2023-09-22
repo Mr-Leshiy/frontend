@@ -8,9 +8,9 @@ export class HeadElemenet {
     this.onClick = onClick;
   }
 
-  buildComponent() {
+  buildComponent(index) {
     return (
-      <th>
+      <th key={index}>
         <div>
           <p onClick={this.onClick}>{this.name}</p>
         </div>
@@ -26,13 +26,13 @@ export class RowElement {
     this.values = values;
   }
 
-  buildComponent() {
-    const values = this.values.map((value) => {
-      return <td>{value}</td>;
+  buildComponent(index) {
+    const values = this.values.map((value, i) => {
+      return <td key={i}>{value}</td>;
     });
 
     return (
-      <tr key={this.key} onClick={this.onClick}>
+      <tr key={index} onClick={this.onClick}>
         {values}
       </tr>
     );
@@ -41,13 +41,13 @@ export class RowElement {
 
 const Table = ({ head, rows }) => {
   head = head
-    ? head.map((element) => {
-        return element.buildComponent();
+    ? head.map((element, i) => {
+        return element.buildComponent(i);
       })
     : [];
   rows = rows
-    ? rows.map((element) => {
-        return element.buildComponent();
+    ? rows.map((element, i) => {
+        return element.buildComponent(i);
       })
     : [];
   return (

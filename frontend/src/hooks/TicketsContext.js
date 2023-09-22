@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import { usePageContext, Pages } from "./PageContext";
+import { Event } from "./EventsContext";
 import { getUserTickets, getEvent } from "../lib/Events";
 
 class Ticket {
@@ -29,6 +30,16 @@ const TicketsContextProvider = ({ children }) => {
             let event = events[ticket.event_id];
             if (!event) {
               event = await getEvent(ticket.event_id);
+              event = new Event(
+                event.title,
+                new Date(event.startDate),
+                new Date(event.endDate),
+                event.location,
+                event.website,
+                event.description,
+                event.image,
+                true,
+              );
               events[ticket.event_id] = event;
             }
             tickets.push(new Ticket(ticket.id, event));

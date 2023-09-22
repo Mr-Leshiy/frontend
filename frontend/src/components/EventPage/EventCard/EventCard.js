@@ -33,7 +33,7 @@ const EventCard = ({ eventIndex }) => {
       events[eventIndex].endDate = endDate;
       events[eventIndex].location = location;
       events[eventIndex].website = website;
-      return events;
+      return [...events];
     });
   };
 
