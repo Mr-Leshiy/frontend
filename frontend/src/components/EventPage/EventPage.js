@@ -168,7 +168,7 @@ const EventPage = ({ eventIndex }) => {
 
   const handlePublishClick = async () => {
     await publishEvent(stakeAddress, event);
-    handleBackClick();
+    handleDeleteClick();
   };
 
   const isActiveCursorStyles = {
