@@ -40,7 +40,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 50%;
+  width: 99.5%;
+  height: 40vh;
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
