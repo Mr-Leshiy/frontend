@@ -29,9 +29,6 @@ const ConnectWallet = (props) => {
           Select the wallet you want to connect below.
         </div>
         <div className={classes["wallets-list"]}>{wallets_view}</div>
-        <Button onClick={props.closeModal} className={classes["close-button"]}>
-          Close
-        </Button>
       </div>
     </ModalWindow>
   );
