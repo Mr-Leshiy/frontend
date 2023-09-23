@@ -37,7 +37,7 @@
 }
 
 .event-info {
-  width: 70%;
+  width: 80%;
   box-sizing: border-box;
 }
 
@@ -46,8 +46,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 99.5%;
-  height: 40vh;
+  width: 70%;
+  height: 54.992vh;
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
@@ -61,10 +61,27 @@
   border-radius: 8px;
 }
 
-.event-card {
+.event-info-card {
   width: 30%;
 
-  padding: 0 3vw;
+  padding: 0 0 0 1vw;
+}
+
+.event-info-container {
+  width: 100%;
+  display: flex;
+}
+
+.event-info-description {
+  width: 100%;
+
+  padding: 1vh 0 1vh 0;
+}
+
+.buttons {
+  width: 20%;
+
+  padding-left: 1.2vw;
 }
 
 .button {
@@ -86,8 +103,7 @@
 
   white-space: nowrap;
 
-  padding: 1.4vh 1.2vw;
-  margin: 0 1vw;
+  padding: 3vh 1.2vw;
 
   border-radius: 1.1vh;
 }

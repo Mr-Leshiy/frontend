@@ -212,6 +212,7 @@ const EventPage = ({ eventIndex }) => {
 
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
+              <div className={classes["event-info-container"]}>
               <div
                 className={classes["event-info-image"]}
                 style={isActiveCursorStyles}
@@ -224,12 +225,20 @@ const EventPage = ({ eventIndex }) => {
                 )}
               </div>
 
-              <EventDescription event={event} onSubmit={onSubmitDescription} />
+                <div className={classes["event-info-card"]}>
+                  <EventCard eventIndex={eventIndex} />
+                </div>
+              </div>
+
+              <div className={classes["event-info-description"]}>
+                  <EventDescription
+                    event={event}
+                    onSubmit={onSubmitDescription}
+                  />
+                </div>
             </div>
 
-            <div className={classes["event-card"]}>
-              <EventCard eventIndex={eventIndex} />
-
+            <div className={classes["buttons"]}>
               {!event.published ? (
                 <>
                   <div className={classes["button"]}>
