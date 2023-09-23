@@ -204,7 +204,7 @@ const EventPage = ({ eventIndex }) => {
 
         <div className={classes["event-page"]}>
           <div className={classes["event-page-title"]}>
-            <PageTitle title={event.title} />
+            <h1>{event.title}</h1>
             {!event.published ? (
               <EditIcon onClick={openModal(MODALS.editTitle)} />
             ) : null}
