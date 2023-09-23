@@ -24,8 +24,7 @@ import InputFormModal, {
 } from "../UI/InputFormModal/InputFormModal";
 import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
-import PageTitle from "../UI/PageTitle/PageTitle";
-import EventDescription from "./EventDescription/EventDescription";
+import EventDescription from "../EventDescription/EventDescription";
 
 const editTitleModal = (
   title,

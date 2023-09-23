@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import classes from "./EventDescription.module.css";
 
-import EditIcon from "../../../assets/svg/EditIcon/EditIcon";
+import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 
-import TextArea from "../../UI/TextArea/TextArea";
-import AcceptIcon from "../../../assets/svg/AcceptIcon/AcceptIcon";
+import TextArea from "../UI/TextArea/TextArea";
+import AcceptIcon from "../../assets/svg/AcceptIcon/AcceptIcon";
 
 const EventDescription = ({ event, onSubmit }) => {
   const [eventDescription, setEventDescription] = useState(event.description);
