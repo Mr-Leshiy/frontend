@@ -213,17 +213,19 @@ const EventPage = ({ eventIndex }) => {
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
               <div className={classes["event-info-container"]}>
-              <div
-                className={classes["event-info-image"]}
-                style={isActiveCursorStyles}
-                onClick={!event.published ? openModal(MODALS.editImage) : null}
-              >
-                {eventImages[event.image] ? (
-                  <img src={eventImages[event.image]} alt="" />
-                ) : (
-                  <ImageIcon />
-                )}
-              </div>
+                <div
+                  className={classes["event-info-image"]}
+                  style={isActiveCursorStyles}
+                  onClick={
+                    !event.published ? openModal(MODALS.editImage) : null
+                  }
+                >
+                  {eventImages[event.image] ? (
+                    <img src={eventImages[event.image]} alt="" />
+                  ) : (
+                    <ImageIcon />
+                  )}
+                </div>
 
                 <div className={classes["event-info-card"]}>
                   <EventCard eventIndex={eventIndex} />
@@ -231,11 +233,11 @@ const EventPage = ({ eventIndex }) => {
               </div>
 
               <div className={classes["event-info-description"]}>
-                  <EventDescription
-                    event={event}
-                    onSubmit={onSubmitDescription}
-                  />
-                </div>
+                <EventDescription
+                  event={event}
+                  onSubmit={onSubmitDescription}
+                />
+              </div>
             </div>
 
             <div className={classes["buttons"]}>

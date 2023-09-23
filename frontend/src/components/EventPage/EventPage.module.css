@@ -38,6 +38,7 @@
 
 .event-info {
   width: 80%;
+  height: 55vh;
   box-sizing: border-box;
 }
 
@@ -47,7 +48,7 @@
   justify-content: center;
 
   width: 70%;
-  height: 54.992vh;
+  height: 100%;
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
@@ -63,12 +64,14 @@
 
 .event-info-card {
   width: 30%;
+  height: 100%;
 
   padding: 0 0 0 1vw;
 }
 
 .event-info-container {
   width: 100%;
+  height: 100%;
   display: flex;
 }
 
