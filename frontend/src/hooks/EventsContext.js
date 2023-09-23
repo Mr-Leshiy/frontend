@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import { getUserEvents } from "../lib/Events";
 import { useLocalStorage } from "./LocalStorage";
 import { usePageContext, Pages } from "./PageContext";
+import { useCardanoWalletContext } from "./CardanoWallet";
 
 export class Event {
   constructor(
@@ -37,7 +37,7 @@ const EventsContextProvider = ({ children }) => {
   );
   const [publishedEvents, setPublishedEvents] = useState([]);
   const [events, setEvents] = useState([]);
-  const { stakeAddress } = useCardano();
+  const { stakeAddress } = useCardanoWalletContext();
 
   // loading events
   useEffect(() => {

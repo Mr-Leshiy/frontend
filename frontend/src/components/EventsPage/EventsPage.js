@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventsPage.module.css";
 
+import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
 import { useModalHandler } from "../../hooks/ModalHandler";
 
 import EventsList from "./EventsList/EventsList";
@@ -17,7 +17,7 @@ const MODALS = {
 };
 
 const EventsPage = () => {
-  const { isConnected } = useCardano();
+  const { isConnected } = useCardanoWalletContext();
   const [filterOptions, setFilterOptions] = useState({ title: "" });
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 

@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import { usePageContext, Pages } from "./PageContext";
 import { Event } from "./EventsContext";
 import { getUserTickets, getEvent } from "../lib/Events";
+import { useCardanoWalletContext } from "./CardanoWallet";
 
 class Ticket {
   constructor(id, event) {
@@ -15,7 +15,7 @@ class Ticket {
 const TicketsContext = createContext(null);
 
 const TicketsContextProvider = ({ children }) => {
-  const { stakeAddress } = useCardano();
+  const { stakeAddress } = useCardanoWalletContext();
   const { activePage } = usePageContext();
   const [tickets, setTickets] = useState([]);
 

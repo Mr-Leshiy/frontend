@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./EventPage.module.css";
 
+import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { useEventImagesContext } from "../../hooks/EventImagesContext";
@@ -132,7 +132,7 @@ const MODALS = {
 };
 
 const EventPage = ({ eventIndex }) => {
-  const { stakeAddress } = useCardano();
+  const { stakeAddress } = useCardanoWalletContext();
   const { events, setEvents } = useEventsContext();
   const { eventImages, fetchEventImage } = useEventImagesContext();
   const { setActivePage } = usePageContext();

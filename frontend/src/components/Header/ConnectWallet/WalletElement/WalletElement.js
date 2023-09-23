@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./WalletElement.module.css";
+
+import { useCardanoWalletContext } from "../../../../hooks/CardanoWallet";
 
 import WalletErrorModal from "../WalletError/WalletError.js";
 
 const WalletElement = (props) => {
-  const { connect } = useCardano();
+  const { connect } = useCardanoWalletContext();
   const [errorIsOpen, setErrorIsOpen] = useState(false);
 
   function closeError() {
