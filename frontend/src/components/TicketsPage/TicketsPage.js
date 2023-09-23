@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 import classes from "./TicketsPage.module.css";
+
+import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
 
 import TicketsList from "./TicketsList/TicketsList.js";
 import EventFilter from "../UI/EventFilter/EventFilter";
@@ -9,7 +10,7 @@ import Page from "../UI/Page/Page";
 import PageTitle from "../UI/PageTitle/PageTitle";
 
 const TicketsPage = (props) => {
-  const { isConnected } = useCardano();
+  const { isConnected } = useCardanoWalletContext();
   const [filterOptions, setFilterOptions] = useState({ title: "" });
 
   const handleFilter = (newFilterOptions) => {

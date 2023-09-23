@@ -2,6 +2,7 @@ import React from "react";
 
 import "./App.css";
 
+import CardanoWalletContextProvider from "./hooks/CardanoWallet";
 import PageContextProvider from "./hooks/PageContext";
 
 import Header from "./components/Header/Header.js";
@@ -11,17 +12,19 @@ import ContextHandler from "./components/ContextHandler/ContextHandler";
 
 function App() {
   return (
-    <PageContextProvider>
-      <div className="app">
-        <Header />
-        <div className="container">
-          <Sidebar />
-          <ContextHandler>
-            <PageHandler />
-          </ContextHandler>
+    <CardanoWalletContextProvider>
+      <PageContextProvider>
+        <div className="app">
+          <Header />
+          <div className="container">
+            <Sidebar />
+            <ContextHandler>
+              <PageHandler />
+            </ContextHandler>
+          </div>
         </div>
-      </div>
-    </PageContextProvider>
+      </PageContextProvider>
+    </CardanoWalletContextProvider>
   );
 }
 
