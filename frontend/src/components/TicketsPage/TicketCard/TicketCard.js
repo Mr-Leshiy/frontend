@@ -6,11 +6,17 @@ import { useEventImagesContext } from "../../../hooks/EventImagesContext";
 import { formatTime, formatDate } from "../../../lib/Utils";
 
 import ImageIcon from "../../../assets/svg/ImageIcon";
+import { usePageContext, Pages } from "../../../hooks/PageContext";
 
 const TicketCard = ({ ticket }) => {
+  const { setActivePage } = usePageContext();
   const { eventImages, fetchEventImage } = useEventImagesContext();
 
   const { title, startDate, endDate, location, image } = ticket.event;
+
+  const onChooseTicket = () => {
+    setActivePage({ type: Pages.ticket, props: { ticket: ticket } });
+  };
 
   // load image
   useEffect(() => {
@@ -20,8 +26,7 @@ const TicketCard = ({ ticket }) => {
   }, [image, fetchEventImage]);
 
   return (
-    <>
-      <div className={classes["ticket-card"]}>
+      <div className={classes["ticket-card"]} onClick={onChooseTicket}>
         {eventImages[image] ? (
           <img src={eventImages[image]} alt="" />
         ) : (
@@ -71,7 +76,6 @@ const TicketCard = ({ ticket }) => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
