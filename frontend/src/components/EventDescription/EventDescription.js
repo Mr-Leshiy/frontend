@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import classes from "./EventDescription.module.css";
 
-import EditIcon from "../../../assets/svg/EditIcon/EditIcon";
+import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 
-import TextArea from "../../UI/TextArea/TextArea";
-import AcceptIcon from "../../../assets/svg/AcceptIcon/AcceptIcon";
+import TextArea from "../UI/TextArea/TextArea";
+import AcceptIcon from "../../assets/svg/AcceptIcon/AcceptIcon";
 
 const EventDescription = ({ event, onSubmit }) => {
   const [eventDescription, setEventDescription] = useState(event.description);
@@ -40,7 +40,7 @@ const EventDescription = ({ event, onSubmit }) => {
         </div>
       </div>
       <TextArea
-        rows={8}
+        rows={10}
         maxLength={1000}
         defaultValue={event.description}
         onChange={onChange}

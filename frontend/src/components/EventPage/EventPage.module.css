@@ -16,11 +16,17 @@
 }
 
 .event-page-title {
+  padding: 1vh 0;
+
   display: flex;
   align-items: center;
 }
-.event-page-title div {
-  margin-right: 1vw;
+
+.event-page-title h1 {
+  padding-right: 1vw;
+
+  font-size: 4vh;
+  font-weight: 700;
 }
 
 .event-page-content {
@@ -32,7 +38,12 @@
 
 .event-info {
   width: 70%;
+  height: 50vh;
   box-sizing: border-box;
+}
+
+.event-info-left-tab {
+  width: 30%;
 }
 
 .event-info-image {
@@ -40,8 +51,7 @@
   align-items: center;
   justify-content: center;
 
-  width: 99.5%;
-  height: 40vh;
+  height: 100%;
 
   border: 2px solid #dbdbe7;
   border-radius: 10px;
@@ -55,10 +65,18 @@
   border-radius: 8px;
 }
 
-.event-card {
-  width: 30%;
+.event-info-card {
+  padding: 0 0 0 1vw;
+}
 
-  padding: 0 3vw;
+.event-info-description {
+  width: 100%;
+
+  padding: 1vh 0 1vh 0;
+}
+
+.buttons {
+  padding-left: 1.2vw;
 }
 
 .button {
@@ -80,8 +98,7 @@
 
   white-space: nowrap;
 
-  padding: 1.4vh 1.2vw;
-  margin: 0 1vw;
+  padding: 2.5vh 1.2vw;
 
   border-radius: 1.1vh;
 }

@@ -24,8 +24,7 @@ import InputFormModal, {
 } from "../UI/InputFormModal/InputFormModal";
 import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
-import PageTitle from "../UI/PageTitle/PageTitle";
-import EventDescription from "./EventDescription/EventDescription";
+import EventDescription from "../EventDescription/EventDescription";
 
 const editTitleModal = (
   title,
@@ -204,7 +203,7 @@ const EventPage = ({ eventIndex }) => {
 
         <div className={classes["event-page"]}>
           <div className={classes["event-page-title"]}>
-            <PageTitle title={event.title} />
+            <h1>{event.title}</h1>
             {!event.published ? (
               <EditIcon onClick={openModal(MODALS.editTitle)} />
             ) : null}
@@ -224,28 +223,37 @@ const EventPage = ({ eventIndex }) => {
                 )}
               </div>
 
-              <EventDescription event={event} onSubmit={onSubmitDescription} />
+              <div className={classes["event-info-description"]}>
+                <EventDescription
+                  event={event}
+                  onSubmit={onSubmitDescription}
+                />
+              </div>
             </div>
 
-            <div className={classes["event-card"]}>
-              <EventCard eventIndex={eventIndex} />
+            <div className={classes["event-info-left-tab"]}>
+              <div className={classes["event-info-card"]}>
+                <EventCard eventIndex={eventIndex} />
+              </div>
 
-              {!event.published ? (
-                <>
+              <div className={classes["buttons"]}>
+                {!event.published ? (
+                  <>
+                    <div className={classes["button"]}>
+                      <Button onClick={handlePublishClick}>Publish</Button>
+                    </div>
+                    <div className={classes["button"]}>
+                      <Button onClick={handleDeleteClick}>Delete</Button>
+                    </div>
+                  </>
+                ) : (
                   <div className={classes["button"]}>
-                    <Button onClick={handlePublishClick}>Publish</Button>
+                    <Button onClick={openModal(MODALS.generateTickets)}>
+                      Generate tickets
+                    </Button>
                   </div>
-                  <div className={classes["button"]}>
-                    <Button onClick={handleDeleteClick}>Delete</Button>
-                  </div>
-                </>
-              ) : (
-                <div className={classes["button"]}>
-                  <Button onClick={openModal(MODALS.generateTickets)}>
-                    Generate tickets
-                  </Button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>

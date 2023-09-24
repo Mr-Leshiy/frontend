@@ -2,9 +2,8 @@ import React, { useState } from "react";
 
 import classes from "./ConnectWallet.module.css";
 
-import { walletsInfo } from "../../../lib/Wallets.js";
+import { walletsInfo } from "../../../hooks/CardanoWallet";
 
-import Button from "../../UI/Button/Button.js";
 import ModalWindow from "../../UI/ModalWindow/ModalWindow";
 import WalletElement from "./WalletElement/WalletElement.js";
 
@@ -29,9 +28,6 @@ const ConnectWallet = (props) => {
           Select the wallet you want to connect below.
         </div>
         <div className={classes["wallets-list"]}>{wallets_view}</div>
-        <Button onClick={props.closeModal} className={classes["close-button"]}>
-          Close
-        </Button>
       </div>
     </ModalWindow>
   );

@@ -26,6 +26,7 @@
   font-weight: 600;
   color: rgba(0, 0, 0, 0.4);
 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -54,6 +55,7 @@
 .event-card-info-element a {
   color: inherit;
 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
