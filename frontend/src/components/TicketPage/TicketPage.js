@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 
 import classes from "./TicketPage.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
 import { usePageContext, Pages } from "../../hooks/PageContext";
-import { useEventsContext } from "../../hooks/EventsContext";
 import { useEventImagesContext } from "../../hooks/EventImagesContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
-import { generateTickets } from "../../lib/Events";
 
 import ImageIcon from "../../assets/svg/ImageIcon";
 
@@ -21,24 +18,16 @@ import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import EventDescription from "../EventDescription/EventDescription";
 
-const generateTicketsModal = (
-  modalsIsOpen,
-  closeModal,
-  stakeAddress,
-  event,
-) => {
-  const onSubmitHandler = async ([ticketsAmount]) => {
-    await generateTickets(stakeAddress, ticketsAmount, event);
+const sendTicketModal = (modalsIsOpen, closeModal) => {
+  const onSubmitHandler = async ([address]) => {
+    // await generateTickets(stakeAddress, ticketsAmount, event);
   };
 
   const inputs = [
-    new Input(InputTypes.NUMBER, {
-      description: "Tickets amount",
-      name: "ticketsAmount",
+    new Input(InputTypes.TEXT, {
+      description: "Receiver's account address",
+      name: "accountAddress",
       required: true,
-      placeholder: 0,
-      min: 0,
-      step: 1,
     }),
   ];
 
@@ -48,15 +37,13 @@ const generateTicketsModal = (
       closeModal={closeModal}
       inputs={inputs}
       submitHandler={onSubmitHandler}
-      submitButtonText="Generate"
+      submitButtonText="Send"
     />
   );
 };
 
 const MODALS = {
-  editTitle: "editTitle",
-  editImage: "editImage",
-  generateTickets: "generateTickets",
+  sendTicket: "sendTicket",
 };
 
 const TicketPage = ({ ticket }) => {
@@ -79,6 +66,11 @@ const TicketPage = ({ ticket }) => {
 
   return (
     <>
+      {sendTicketModal(
+        modalsIsOpen[MODALS.sendTicket],
+        closeModal(MODALS.sendTicket),
+      )}
+
       <Page>
         <div className={classes["tab"]}>
           <BackButton onClick={handleBackClick} />
@@ -86,7 +78,7 @@ const TicketPage = ({ ticket }) => {
 
         <div className={classes["ticket-page"]}>
           <div className={classes["ticket-page-title"]}>
-            <h1>{event.title}</h1>
+            <h1>{event.title + " #"}</h1>
           </div>
 
           <div className={classes["ticket-page-content"]}>
@@ -109,7 +101,13 @@ const TicketPage = ({ ticket }) => {
                 <EventCard event={event} />
               </div>
 
-              <div className={classes["buttons"]}></div>
+              <div className={classes["buttons"]}>
+                <div className={classes["button"]}>
+                  <Button onClick={openModal(MODALS.sendTicket)}>
+                    Send ticket
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
