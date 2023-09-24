@@ -2,20 +2,20 @@ import React from "react";
 
 import classes from "./EventCard.module.css";
 
-import { useEventsContext } from "../../../hooks/EventsContext";
-import { useModalHandler } from "../../../hooks/ModalHandler";
-import { formatDate, formatTime } from "../../../lib/Utils";
+import { useEventsContext } from "../../hooks/EventsContext";
+import { useModalHandler } from "../../hooks/ModalHandler";
+import { formatDate, formatTime } from "../../lib/Utils";
 
-import ClockLogo from "../../../assets/svg/clock.svg";
-import CalendarLogo from "../../../assets/svg/calendar.svg";
-import LocationPinLogo from "../../../assets/svg/location-pin.svg";
-import UrlLogo from "../../../assets/svg/url.svg";
-import EditIcon from "../../../assets/svg/EditIcon/EditIcon";
+import ClockLogo from "../../assets/svg/clock.svg";
+import CalendarLogo from "../../assets/svg/calendar.svg";
+import LocationPinLogo from "../../assets/svg/location-pin.svg";
+import UrlLogo from "../../assets/svg/url.svg";
+import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 
 import InputFormModal, {
   InputTypes,
   Input,
-} from "../../UI/InputFormModal/InputFormModal";
+} from "../UI/InputFormModal/InputFormModal";
 
 const MODALS = {
   edit: "edit",

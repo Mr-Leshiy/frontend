@@ -17,7 +17,7 @@ import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageIcon from "../../assets/svg/ImageIcon";
 
 import Page from "../UI/Page/Page";
-import EventCard from "./EventCard/EventCard";
+import EventCard from "./../EventCard/EventCard";
 import InputFormModal, {
   InputTypes,
   Input,
