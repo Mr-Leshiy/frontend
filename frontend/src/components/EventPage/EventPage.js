@@ -211,24 +211,16 @@ const EventPage = ({ eventIndex }) => {
 
           <div className={classes["event-page-content"]}>
             <div className={classes["event-info"]}>
-              <div className={classes["event-info-container"]}>
-                <div
-                  className={classes["event-info-image"]}
-                  style={isActiveCursorStyles}
-                  onClick={
-                    !event.published ? openModal(MODALS.editImage) : null
-                  }
-                >
-                  {eventImages[event.image] ? (
-                    <img src={eventImages[event.image]} alt="" />
-                  ) : (
-                    <ImageIcon />
-                  )}
-                </div>
-
-                <div className={classes["event-info-card"]}>
-                  <EventCard eventIndex={eventIndex} />
-                </div>
+              <div
+                className={classes["event-info-image"]}
+                style={isActiveCursorStyles}
+                onClick={!event.published ? openModal(MODALS.editImage) : null}
+              >
+                {eventImages[event.image] ? (
+                  <img src={eventImages[event.image]} alt="" />
+                ) : (
+                  <ImageIcon />
+                )}
               </div>
 
               <div className={classes["event-info-description"]}>
@@ -239,23 +231,29 @@ const EventPage = ({ eventIndex }) => {
               </div>
             </div>
 
-            <div className={classes["buttons"]}>
-              {!event.published ? (
-                <>
+            <div className={classes["event-info-left-tab"]}>
+              <div className={classes["event-info-card"]}>
+                <EventCard eventIndex={eventIndex} />
+              </div>
+
+              <div className={classes["buttons"]}>
+                {!event.published ? (
+                  <>
+                    <div className={classes["button"]}>
+                      <Button onClick={handlePublishClick}>Publish</Button>
+                    </div>
+                    <div className={classes["button"]}>
+                      <Button onClick={handleDeleteClick}>Delete</Button>
+                    </div>
+                  </>
+                ) : (
                   <div className={classes["button"]}>
-                    <Button onClick={handlePublishClick}>Publish</Button>
+                    <Button onClick={openModal(MODALS.generateTickets)}>
+                      Generate tickets
+                    </Button>
                   </div>
-                  <div className={classes["button"]}>
-                    <Button onClick={handleDeleteClick}>Delete</Button>
-                  </div>
-                </>
-              ) : (
-                <div className={classes["button"]}>
-                  <Button onClick={openModal(MODALS.generateTickets)}>
-                    Generate tickets
-                  </Button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
