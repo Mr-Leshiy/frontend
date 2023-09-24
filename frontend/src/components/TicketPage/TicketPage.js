@@ -106,7 +106,7 @@ const TicketPage = ({ ticket }) => {
 
             <div className={classes["event-info-left-tab"]}>
               <div className={classes["event-info-card"]}>
-                {/* <EventCard eventIndex={eventIndex} /> */}
+                <EventCard event={event} />
               </div>
 
               <div className={classes["buttons"]}></div>

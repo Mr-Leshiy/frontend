@@ -29,15 +29,15 @@ const EventDescription = ({ event, onSubmit }) => {
       <div className={classes["description"]}>
         <h4>Description</h4>
 
-        <div className={classes["edit-button"]}>
-          {!event.published ? (
-            isEditing ? (
+        {!event.published ? (
+          <div className={classes["edit-button"]}>
+            {isEditing ? (
               <AcceptIcon onClick={onAccept} />
             ) : (
               <EditIcon onClick={onEdit} />
-            )
-          ) : null}
-        </div>
+            )}
+          </div>
+        ) : null}
       </div>
       <TextArea
         rows={10}
