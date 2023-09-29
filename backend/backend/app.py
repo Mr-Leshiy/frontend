@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 import secrets
 
-from .types.models import EventImage, EventRequest, GenerateTicketsRequest, Ticket
+from .types.models import EventImage, EventRequest, GenerateTicketsRequest, Ticket, SendTicketRequest
 
 events = {}
 event_tickets = {}
@@ -82,6 +82,15 @@ async def get_tickets(stakeAddress: str):
         return tickets
     else:
         raise HTTPException(status_code = 404, detail = "User tickets not found")
+
+@app.post("/events/tickets/send")
+async def send_ticket(req: SendTicketRequest):
+    # remove from sender
+    tickets = user_tickets.setdefault(req.senderStakeAddress, [])
+    if req.ticket in tickets:
+        tickets.remove(req.ticket)
+        # add to receiver
+        user_tickets.setdefault(req.receiverStakeAddress, []).append(req.ticket)
 
 
 def main():

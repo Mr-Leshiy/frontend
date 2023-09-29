@@ -42,3 +42,9 @@ class Ticket:
     def __init__(self, event_id: str, index: int):
         self.event_id = event_id
         self.id = hashlib.sha256(f"{event_id}:{index}".encode('utf-8')).hexdigest()
+
+@dataclass
+class SendTicketRequest:
+    senderStakeAddress: str
+    receiverStakeAddress: str
+    ticket: Ticket
