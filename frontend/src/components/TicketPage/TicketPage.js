@@ -78,7 +78,10 @@ const TicketPage = ({ ticket }) => {
 
         <div className={classes["ticket-page"]}>
           <div className={classes["ticket-page-title"]}>
-            <h1>{event.title + " #"}</h1>
+            <h1>{event.title}</h1>
+            <a className={classes["ticket-page-title-id"]} href={null}>
+              {"#" + ticket.id}
+            </a>
           </div>
 
           <div className={classes["ticket-page-content"]}>
