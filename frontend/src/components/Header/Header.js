@@ -31,23 +31,23 @@ const Header = () => {
       <header className={classes["header"]}>
         <img src={Logo} alt="" />
 
-        {isConnected ? (
-          <>
+        <div className={classes["left-tab"]}>
+          {isConnected ? (
             <Button
               className={classes["connect-wallet-button"]}
               onClick={disconnectWallet}
             >
               Disconnect Wallet
             </Button>
-          </>
-        ) : (
-          <Button
-            className={classes["connect-wallet-button"]}
-            onClick={openModal(MODALS.connectWallet)}
-          >
-            Connect Wallet
-          </Button>
-        )}
+          ) : (
+            <Button
+              className={classes["connect-wallet-button"]}
+              onClick={openModal(MODALS.connectWallet)}
+            >
+              Connect Wallet
+            </Button>
+          )}
+        </div>
       </header>
     </>
   );
