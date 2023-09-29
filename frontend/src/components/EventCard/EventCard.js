@@ -2,39 +2,31 @@ import React from "react";
 
 import classes from "./EventCard.module.css";
 
-import { useEventsContext } from "../../../hooks/EventsContext";
-import { useModalHandler } from "../../../hooks/ModalHandler";
-import { formatDate, formatTime } from "../../../lib/Utils";
+import { useModalHandler } from "../../hooks/ModalHandler";
+import { formatDate, formatTime } from "../../lib/Utils";
 
-import ClockLogo from "../../../assets/svg/clock.svg";
-import CalendarLogo from "../../../assets/svg/calendar.svg";
-import LocationPinLogo from "../../../assets/svg/location-pin.svg";
-import UrlLogo from "../../../assets/svg/url.svg";
-import EditIcon from "../../../assets/svg/EditIcon/EditIcon";
+import ClockLogo from "../../assets/svg/clock.svg";
+import CalendarLogo from "../../assets/svg/calendar.svg";
+import LocationPinLogo from "../../assets/svg/location-pin.svg";
+import UrlLogo from "../../assets/svg/url.svg";
+import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 
 import InputFormModal, {
   InputTypes,
   Input,
-} from "../../UI/InputFormModal/InputFormModal";
+} from "../UI/InputFormModal/InputFormModal";
 
 const MODALS = {
   edit: "edit",
 };
 
-const EventCard = ({ eventIndex }) => {
-  const { events, setEvents } = useEventsContext();
+const EventCard = ({ onSubmit, event }) => {
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
-  const event = events[eventIndex];
-
   const onSubmitHandler = ([startDate, endDate, location, website]) => {
-    setEvents((events) => {
-      events[eventIndex].startDate = startDate;
-      events[eventIndex].endDate = endDate;
-      events[eventIndex].location = location;
-      events[eventIndex].website = website;
-      return [...events];
-    });
+    if (onSubmit) {
+      onSubmit(startDate, endDate, location, website);
+    }
   };
 
   const editInputs = [
@@ -70,13 +62,15 @@ const EventCard = ({ eventIndex }) => {
 
   return (
     <>
-      <InputFormModal
-        modalIsOpen={modalsIsOpen[MODALS.edit]}
-        closeModal={closeModal(MODALS.edit)}
-        inputs={editInputs}
-        submitHandler={onSubmitHandler}
-        submitButtonText="Apply"
-      />
+      {!event.published ? (
+        <InputFormModal
+          modalIsOpen={modalsIsOpen[MODALS.edit]}
+          closeModal={closeModal(MODALS.edit)}
+          inputs={editInputs}
+          submitHandler={onSubmitHandler}
+          submitButtonText="Apply"
+        />
+      ) : null}
 
       <div className={classes["event-card"]}>
         {!event.published ? (

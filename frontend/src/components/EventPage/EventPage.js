@@ -17,7 +17,7 @@ import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageIcon from "../../assets/svg/ImageIcon";
 
 import Page from "../UI/Page/Page";
-import EventCard from "./EventCard/EventCard";
+import EventCard from "./../EventCard/EventCard";
 import InputFormModal, {
   InputTypes,
   Input,
@@ -157,6 +157,16 @@ const EventPage = ({ eventIndex }) => {
     });
   };
 
+  const onSubmitEventCard = (startDate, endDate, location, website) => {
+    setEvents((events) => {
+      events[eventIndex].startDate = startDate;
+      events[eventIndex].endDate = endDate;
+      events[eventIndex].location = location;
+      events[eventIndex].website = website;
+      return [...events];
+    });
+  };
+
   const handleDeleteClick = () => {
     setEvents((events) => {
       events.splice(eventIndex, 1);
@@ -233,7 +243,11 @@ const EventPage = ({ eventIndex }) => {
 
             <div className={classes["event-info-left-tab"]}>
               <div className={classes["event-info-card"]}>
-                <EventCard eventIndex={eventIndex} />
+                <EventCard
+                  event={event}
+                  onSubmit={onSubmitEventCard}
+                  eventIndex={eventIndex}
+                />
               </div>
 
               <div className={classes["buttons"]}>
