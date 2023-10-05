@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./Header.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/WalletContext";
+import { useWalletContext } from "../../hooks/WalletContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
 
 import Logo from "../../assets/svg/logo.svg";
@@ -15,7 +15,7 @@ const MODALS = {
 };
 
 const Header = () => {
-  const { isConnected, disconnect } = useCardanoWalletContext();
+  const { isConnected, disconnect } = useWalletContext();
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   function disconnectWallet() {

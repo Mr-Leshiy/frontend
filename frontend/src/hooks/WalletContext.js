@@ -40,9 +40,9 @@ export const walletsInfo = () => {
   }
 };
 
-const CardanoWalletContext = createContext(null);
+const WalletContext = createContext(null);
 
-const CardanoWalletContextProvider = ({ children }) => {
+const WalletContextProvider = ({ children }) => {
   const [connectedWallet, setConnectedWallet] = useState(null);
   const [stakeAddress, setStakeAddress] = useState(null);
 
@@ -77,22 +77,22 @@ const CardanoWalletContextProvider = ({ children }) => {
   };
 
   return (
-    <CardanoWalletContext.Provider
+    <WalletContext.Provider
       value={{ isConnected, stakeAddress, disconnect, connect }}
     >
       {children}
-    </CardanoWalletContext.Provider>
+    </WalletContext.Provider>
   );
 };
 
-export const useCardanoWalletContext = () => {
-  const context = useContext(CardanoWalletContext);
+export const useWalletContext = () => {
+  const context = useContext(WalletContext);
   if (!context) {
     throw new Error(
-      "useCardanoWalletContexxt must be used within a CardanoWalletContextProvider",
+      "useWalletContexxt must be used within a WalletContextProvider",
     );
   }
   return context;
 };
 
-export default CardanoWalletContextProvider;
+export default WalletContextProvider;

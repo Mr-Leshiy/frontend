@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import classes from "./EventPage.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/WalletContext";
+import { useWalletContext } from "../../hooks/WalletContext";
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { useEventImagesContext } from "../../hooks/EventImagesContext";
@@ -131,7 +131,7 @@ const MODALS = {
 };
 
 const EventPage = ({ eventIndex }) => {
-  const { stakeAddress } = useCardanoWalletContext();
+  const { stakeAddress } = useWalletContext();
   const { events, setEvents } = useEventsContext();
   const { eventImages, fetchEventImage } = useEventImagesContext();
   const { setActivePage } = usePageContext();

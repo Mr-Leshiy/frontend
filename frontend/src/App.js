@@ -2,7 +2,7 @@ import React from "react";
 
 import "./App.css";
 
-import CardanoWalletContextProvider from "./hooks/WalletContext";
+import WalletContextProvider from "./hooks/WalletContext";
 import PageContextProvider from "./hooks/PageContext";
 
 import Header from "./components/Header/Header.js";
@@ -12,7 +12,7 @@ import ContextHandler from "./components/ContextHandler/ContextHandler";
 
 function App() {
   return (
-    <CardanoWalletContextProvider>
+    <WalletContextProvider>
       <PageContextProvider>
         <div className="app">
           <Header />
@@ -24,7 +24,7 @@ function App() {
           </div>
         </div>
       </PageContextProvider>
-    </CardanoWalletContextProvider>
+    </WalletContextProvider>
   );
 }
 

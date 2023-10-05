@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./TicketsPage.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/WalletContext";
+import { useWalletContext } from "../../hooks/WalletContext";
 
 import TicketsList from "./TicketsList/TicketsList.js";
 import EventFilter from "../UI/EventFilter/EventFilter";
@@ -10,7 +10,7 @@ import Page from "../UI/Page/Page";
 import PageTitle from "../UI/PageTitle/PageTitle";
 
 const TicketsPage = (props) => {
-  const { isConnected } = useCardanoWalletContext();
+  const { isConnected } = useWalletContext();
   const [filterOptions, setFilterOptions] = useState({ title: "" });
 
   const handleFilter = (newFilterOptions) => {

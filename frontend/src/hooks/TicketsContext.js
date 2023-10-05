@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { usePageContext, Pages } from "./PageContext";
 import { Event } from "./EventsContext";
 import { getUserTickets, getEvent } from "../lib/Events";
-import { useCardanoWalletContext } from "./WalletContext";
+import { useWalletContext } from "./WalletContext";
 
 class Ticket {
   constructor(id, event) {
@@ -15,7 +15,7 @@ class Ticket {
 const TicketsContext = createContext(null);
 
 const TicketsContextProvider = ({ children }) => {
-  const { stakeAddress } = useCardanoWalletContext();
+  const { stakeAddress } = useWalletContext();
   const { activePage } = usePageContext();
   const [tickets, setTickets] = useState([]);
 

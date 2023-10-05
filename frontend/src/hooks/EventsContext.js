@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { getUserEvents } from "../lib/Events";
 import { useLocalStorage } from "./LocalStorage";
 import { usePageContext, Pages } from "./PageContext";
-import { useCardanoWalletContext } from "./WalletContext";
+import { useWalletContext } from "./WalletContext";
 
 export class Event {
   constructor(
@@ -37,7 +37,7 @@ const EventsContextProvider = ({ children }) => {
   );
   const [publishedEvents, setPublishedEvents] = useState([]);
   const [events, setEvents] = useState([]);
-  const { stakeAddress } = useCardanoWalletContext();
+  const { stakeAddress } = useWalletContext();
 
   // loading events
   useEffect(() => {
