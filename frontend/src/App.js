@@ -2,7 +2,7 @@ import React from "react";
 
 import "./App.css";
 
-import CardanoWalletContextProvider from "./hooks/CardanoWallet";
+import CardanoWalletContextProvider from "./hooks/WalletContext";
 import PageContextProvider from "./hooks/PageContext";
 
 import Header from "./components/Header/Header.js";

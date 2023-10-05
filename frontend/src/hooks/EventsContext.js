@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { getUserEvents } from "../lib/Events";
 import { useLocalStorage } from "./LocalStorage";
 import { usePageContext, Pages } from "./PageContext";
-import { useCardanoWalletContext } from "./CardanoWallet";
+import { useCardanoWalletContext } from "./WalletContext";
 
 export class Event {
   constructor(

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./WalletElement.module.css";
 
-import { useCardanoWalletContext } from "../../../../hooks/CardanoWallet";
+import { useCardanoWalletContext } from "../../../../hooks/WalletContext";
 
 import WalletErrorModal from "../WalletError/WalletError.js";
 

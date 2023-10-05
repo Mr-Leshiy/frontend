@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./Header.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
+import { useCardanoWalletContext } from "../../hooks/WalletContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
 
 import Logo from "../../assets/svg/logo.svg";

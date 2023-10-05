@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { usePageContext, Pages } from "./PageContext";
 import { Event } from "./EventsContext";
 import { getUserTickets, getEvent } from "../lib/Events";
-import { useCardanoWalletContext } from "./CardanoWallet";
+import { useCardanoWalletContext } from "./WalletContext";
 
 class Ticket {
   constructor(id, event) {

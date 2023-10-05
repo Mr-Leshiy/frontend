@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./EventsPage.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
+import { useCardanoWalletContext } from "../../hooks/WalletContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
 
 import EventsList from "./EventsList/EventsList";

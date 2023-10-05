@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./TicketsPage.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
+import { useCardanoWalletContext } from "../../hooks/WalletContext";
 
 import TicketsList from "./TicketsList/TicketsList.js";
 import EventFilter from "../UI/EventFilter/EventFilter";
