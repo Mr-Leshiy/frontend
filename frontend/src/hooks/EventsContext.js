@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { getUserEvents } from "../lib/Events";
 import { useLocalStorage } from "./LocalStorage";
 import { usePageContext, Pages } from "./PageContext";
 import { useWalletContext } from "./WalletContext";
@@ -37,7 +36,7 @@ const EventsContextProvider = ({ children }) => {
   );
   const [publishedEvents, setPublishedEvents] = useState([]);
   const [events, setEvents] = useState([]);
-  const { stakeAddress, wallet } = useWalletContext();
+  const { wallet } = useWalletContext();
 
   // loading events
   useEffect(() => {
