@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./EventPage.module.css";
 
@@ -25,6 +25,7 @@ import InputFormModal, {
 import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import EventDescription from "../EventDescription/EventDescription";
+import ErrorModalWindow from "../UI/ErrorModalWindow/ErrorModalWindow";
 
 const editTitleModal = (
   title,
@@ -136,6 +137,7 @@ const EventPage = ({ eventIndex }) => {
   const { eventImages, fetchEventImage } = useEventImagesContext();
   const { setActivePage } = usePageContext();
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
+  const [isOpen, setIsOpen] = useState(false);
 
   const event = events[eventIndex];
 
@@ -176,12 +178,16 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    await publishEvent(stakeAddress, event);
-    handleDeleteClick();
+    if ((await publishEvent(stakeAddress, event)) == null) {
+      setIsOpen(true);
+    } else {
+      handleDeleteClick();
+    }
   };
 
   const isActiveCursorStyles = {
     cursor: !event.published ? "pointer" : "auto",
+    // 111
   };
 
   return (
@@ -205,6 +211,13 @@ const EventPage = ({ eventIndex }) => {
         stakeAddress,
         event,
       )}
+      <ErrorModalWindow
+        isOpen={isOpen}
+        onRequestClose={() => {
+          setIsOpen(false);
+        }}
+        errorMessage={"Cannot publish event. Server issues"}
+      />
 
       <Page>
         <div className={classes["tab"]}>
