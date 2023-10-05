@@ -30,9 +30,7 @@ const ErrorModalWindow = ({
       <div>
         <div className={classes["error-modal-text"]}>
           <h1>Error!</h1>
-          <h3>
-          {errorMessage}
-          </h3>
+          <h3>{errorMessage}</h3>
         </div>
         <button onClick={onRequestClose} className={classes["accept-button"]}>
           Accept
