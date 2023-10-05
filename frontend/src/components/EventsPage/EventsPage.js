@@ -26,8 +26,8 @@ const EventsPage = () => {
   };
 
   const inlineStyles = {
-    pointerEvents: isConnected ? "auto" : "none",
-    opacity: isConnected ? "1" : "0.5",
+    pointerEvents: isConnected() ? "auto" : "none",
+    opacity: isConnected() ? "1" : "0.5",
     display: "flex",
     padding: "1.1vh 0px",
   };
@@ -53,7 +53,7 @@ const EventsPage = () => {
           </Button>
         </div>
 
-        {isConnected ? (
+        {isConnected() ? (
           <EventsList filterOptions={filterOptions} />
         ) : (
           <div className={classes["inform-message"]}>

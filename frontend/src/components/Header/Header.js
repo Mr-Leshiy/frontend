@@ -32,7 +32,7 @@ const Header = () => {
         <img src={Logo} alt="" />
 
         <div className={classes["left-tab"]}>
-          {isConnected ? (
+          {isConnected() ? (
             <Button
               className={classes["connect-wallet-button"]}
               onClick={disconnectWallet}

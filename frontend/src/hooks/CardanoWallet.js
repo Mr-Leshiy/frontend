@@ -43,11 +43,14 @@ export const walletsInfo = () => {
 const CardanoWalletContext = createContext(null);
 
 const CardanoWalletContextProvider = ({ children }) => {
-  const [isConnected, setIsConnected] = useState(false);
+  const [connectedWallet, setConnectedWallet] = useState(null);
   const [stakeAddress, setStakeAddress] = useState(null);
 
+  const isConnected = () => {
+    return connectedWallet != null;
+  }
+
   const disconnect = () => {
-    setIsConnected(false);
     setStakeAddress(null);
   };
 
@@ -62,7 +65,7 @@ const CardanoWalletContextProvider = ({ children }) => {
           setStakeAddress(hexAddresses[0]);
         }
 
-        setIsConnected(true);
+        setConnectedWallet(api);
         onConnect();
       } catch (e) {
         console.log(e);

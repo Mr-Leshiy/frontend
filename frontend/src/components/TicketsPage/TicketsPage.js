@@ -18,8 +18,8 @@ const TicketsPage = (props) => {
   };
 
   const inlineStyles = {
-    pointerEvents: isConnected ? "auto" : "none",
-    opacity: isConnected ? "1" : "0.5",
+    pointerEvents: isConnected() ? "auto" : "none",
+    opacity: isConnected() ? "1" : "0.5",
     padding: "1.1vh 0",
   };
   return (
@@ -27,9 +27,9 @@ const TicketsPage = (props) => {
       <PageTitle title="Your Tickets Collection" />
 
       <div style={inlineStyles}>
-        <EventFilter isEnabled={isConnected} onFilter={handleFilter} />
+        <EventFilter isEnabled={isConnected()} onFilter={handleFilter} />
       </div>
-      {isConnected ? (
+      {isConnected() ? (
         <TicketsList filterOptions={filterOptions} />
       ) : (
         <div className={classes["inform-message"]}>
