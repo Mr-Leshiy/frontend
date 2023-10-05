@@ -68,10 +68,10 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   ];
 
   const onSubmitHandler = async ([image]) => {
-    let { id } = await postEventImage(image);
-    if (id) {
+    let res = await postEventImage(image);
+    if (res) {
       setEvents((events) => {
-        events[eventIndex].image = id;
+        events[eventIndex].image = res.id;
         return [...events];
       });
     }
