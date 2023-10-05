@@ -3,8 +3,6 @@ import Modal from "react-modal";
 
 import classes from "./ErrorModalWindow.module.css";
 
-import Button from "../Button/Button";
-
 const customStyles = {
   content: {
     top: "50%",
