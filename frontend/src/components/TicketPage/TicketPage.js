@@ -19,9 +19,7 @@ import BackButton from "../UI/BackButton/BackButton";
 import EventDescription from "../EventDescription/EventDescription";
 
 const sendTicketModal = (modalsIsOpen, closeModal) => {
-  const onSubmitHandler = async ([address]) => {
-    // await generateTickets(stakeAddress, ticketsAmount, event);
-  };
+  const onSubmitHandler = async ([address]) => {};
 
   const inputs = [
     new Input(InputTypes.TEXT, {

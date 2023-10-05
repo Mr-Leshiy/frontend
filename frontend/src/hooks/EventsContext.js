@@ -37,12 +37,12 @@ const EventsContextProvider = ({ children }) => {
   );
   const [publishedEvents, setPublishedEvents] = useState([]);
   const [events, setEvents] = useState([]);
-  const { stakeAddress } = useWalletContext();
+  const { stakeAddress, wallet } = useWalletContext();
 
   // loading events
   useEffect(() => {
-    if (stakeAddress && activePage.type === Pages.events) {
-      getUserEvents(stakeAddress).then((events) => {
+    if (wallet && activePage.type === Pages.events) {
+      wallet.getUserEvents().then((events) => {
         if (events) {
           events = events.map(
             (event) =>
@@ -61,7 +61,7 @@ const EventsContextProvider = ({ children }) => {
         }
       });
     }
-  }, [activePage, stakeAddress]);
+  }, [activePage, wallet]);
 
   useEffect(() => {
     setEvents([

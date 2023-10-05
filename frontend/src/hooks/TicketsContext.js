@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 import { usePageContext, Pages } from "./PageContext";
 import { Event } from "./EventsContext";
-import { getUserTickets, getEvent } from "../lib/Events";
+import { getEvent } from "../lib/Events";
 import { useWalletContext } from "./WalletContext";
 
 class Ticket {
@@ -15,14 +15,14 @@ class Ticket {
 const TicketsContext = createContext(null);
 
 const TicketsContextProvider = ({ children }) => {
-  const { stakeAddress } = useWalletContext();
+  const { wallet } = useWalletContext();
   const { activePage } = usePageContext();
   const [tickets, setTickets] = useState([]);
 
   // loading tickets
   useEffect(() => {
-    if (stakeAddress && activePage.type === Pages.tickets) {
-      getUserTickets(stakeAddress).then(async (user_tickets) => {
+    if (wallet && activePage.type === Pages.tickets) {
+      wallet.getUserTickets().then(async (user_tickets) => {
         if (user_tickets) {
           let tickets = [];
           let events = {};
@@ -48,7 +48,7 @@ const TicketsContextProvider = ({ children }) => {
         }
       });
     }
-  }, [stakeAddress, activePage]);
+  }, [wallet, activePage]);
 
   return (
     <TicketsContext.Provider value={{ tickets }}>
