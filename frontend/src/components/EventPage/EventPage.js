@@ -178,7 +178,7 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    if ((await publishEvent(stakeAddress, event)) == null) {
+    if (await publishEvent(stakeAddress, event) == null) {
       setIsOpen(true);
     } else {
       handleDeleteClick();
