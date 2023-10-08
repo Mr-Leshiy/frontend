@@ -169,7 +169,7 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    if ((await publishEvent(stakeAddress, event)) == null) {
+    if ((await wallet.publishEvent(event)) == null) {
       openModal(MODALS.publishErrorModal)();
     } else {
       handleDeleteClick();
