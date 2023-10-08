@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { getUserEvents } from "../lib/Events";
 import { useLocalStorage } from "./LocalStorage";
 import { usePageContext, Pages } from "./PageContext";
-import { useCardanoWalletContext } from "./CardanoWallet";
+import { useWalletContext } from "./WalletContext";
 
 export class Event {
   constructor(
@@ -37,12 +36,12 @@ const EventsContextProvider = ({ children }) => {
   );
   const [publishedEvents, setPublishedEvents] = useState([]);
   const [events, setEvents] = useState([]);
-  const { stakeAddress } = useCardanoWalletContext();
+  const { wallet } = useWalletContext();
 
   // loading events
   useEffect(() => {
-    if (stakeAddress && activePage.type === Pages.events) {
-      getUserEvents(stakeAddress).then((events) => {
+    if (wallet && activePage.type === Pages.events) {
+      wallet.getUserEvents().then((events) => {
         if (events) {
           events = events.map(
             (event) =>
@@ -61,7 +60,7 @@ const EventsContextProvider = ({ children }) => {
         }
       });
     }
-  }, [activePage, stakeAddress]);
+  }, [activePage, wallet]);
 
   useEffect(() => {
     setEvents([

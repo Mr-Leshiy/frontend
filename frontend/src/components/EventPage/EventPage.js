@@ -2,16 +2,12 @@ import React, { useEffect } from "react";
 
 import classes from "./EventPage.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
+import { useWalletContext } from "../../hooks/WalletContext";
 import { usePageContext, Pages } from "../../hooks/PageContext";
 import { useEventsContext } from "../../hooks/EventsContext";
 import { useEventImagesContext } from "../../hooks/EventImagesContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
-import {
-  postEventImage,
-  publishEvent,
-  generateTickets,
-} from "../../lib/Events";
+import { postEventImage } from "../../lib/Events";
 
 import EditIcon from "../../assets/svg/EditIcon/EditIcon";
 import ImageIcon from "../../assets/svg/ImageIcon";
@@ -73,10 +69,10 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   ];
 
   const onSubmitHandler = async ([image]) => {
-    let { id } = await postEventImage(image);
-    if (id) {
+    let res = await postEventImage(image);
+    if (res) {
       setEvents((events) => {
-        events[eventIndex].image = id;
+        events[eventIndex].image = res.id;
         return [...events];
       });
     }
@@ -93,14 +89,9 @@ const editImageModal = (eventIndex, setEvents, modalsIsOpen, closeModal) => {
   );
 };
 
-const generateTicketsModal = (
-  modalsIsOpen,
-  closeModal,
-  stakeAddress,
-  event,
-) => {
+const generateTicketsModal = (modalsIsOpen, closeModal, wallet, event) => {
   const onSubmitHandler = async ([ticketsAmount]) => {
-    await generateTickets(stakeAddress, ticketsAmount, event);
+    await wallet.generateTickets(ticketsAmount, event);
   };
 
   const inputs = [
@@ -133,7 +124,7 @@ const MODALS = {
 };
 
 const EventPage = ({ eventIndex }) => {
-  const { stakeAddress } = useCardanoWalletContext();
+  const { wallet } = useWalletContext();
   const { events, setEvents } = useEventsContext();
   const { eventImages, fetchEventImage } = useEventImagesContext();
   const { setActivePage } = usePageContext();
@@ -178,7 +169,7 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    if ((await publishEvent(stakeAddress, event)) == null) {
+    if ((await wallet.publishEvent(event)) == null) {
       openModal(MODALS.publishErrorModal)();
     } else {
       handleDeleteClick();
@@ -207,7 +198,7 @@ const EventPage = ({ eventIndex }) => {
       {generateTicketsModal(
         modalsIsOpen[MODALS.generateTickets],
         closeModal(MODALS.generateTickets),
-        stakeAddress,
+        wallet,
         event,
       )}
       <ErrorModal

@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./Header.module.css";
 
-import { useCardanoWalletContext } from "../../hooks/CardanoWallet";
+import { useWalletContext } from "../../hooks/WalletContext";
 import { useModalHandler } from "../../hooks/ModalHandler";
 
 import Logo from "../../assets/svg/logo.svg";
@@ -15,7 +15,7 @@ const MODALS = {
 };
 
 const Header = () => {
-  const { isConnected, disconnect } = useCardanoWalletContext();
+  const { isConnected, disconnect } = useWalletContext();
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
 
   function disconnectWallet() {
@@ -31,23 +31,23 @@ const Header = () => {
       <header className={classes["header"]}>
         <img src={Logo} alt="" />
 
-        {isConnected ? (
-          <>
+        <div className={classes["left-tab"]}>
+          {isConnected() ? (
             <Button
               className={classes["connect-wallet-button"]}
               onClick={disconnectWallet}
             >
               Disconnect Wallet
             </Button>
-          </>
-        ) : (
-          <Button
-            className={classes["connect-wallet-button"]}
-            onClick={openModal(MODALS.connectWallet)}
-          >
-            Connect Wallet
-          </Button>
-        )}
+          ) : (
+            <Button
+              className={classes["connect-wallet-button"]}
+              onClick={openModal(MODALS.connectWallet)}
+            >
+              Connect Wallet
+            </Button>
+          )}
+        </div>
       </header>
     </>
   );

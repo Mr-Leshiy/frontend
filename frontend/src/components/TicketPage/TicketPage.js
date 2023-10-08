@@ -19,9 +19,7 @@ import BackButton from "../UI/BackButton/BackButton";
 import EventDescription from "../EventDescription/EventDescription";
 
 const sendTicketModal = (modalsIsOpen, closeModal) => {
-  const onSubmitHandler = async ([address]) => {
-    // await generateTickets(stakeAddress, ticketsAmount, event);
-  };
+  const onSubmitHandler = async ([address]) => {};
 
   const inputs = [
     new Input(InputTypes.TEXT, {
@@ -78,7 +76,8 @@ const TicketPage = ({ ticket }) => {
 
         <div className={classes["ticket-page"]}>
           <div className={classes["ticket-page-title"]}>
-            <h1>{event.title + " #"}</h1>
+            <h1>{event.title}</h1>
+            <a className={classes["ticket-page-title-id"]}>{"#" + ticket.id}</a>
           </div>
 
           <div className={classes["ticket-page-content"]}>

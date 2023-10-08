@@ -15,12 +15,17 @@
   margin-left: 3%;
 }
 
+.left-tab {
+  display: flex;
+  align-items: center;
+
+  margin-left: auto;
+}
+
 .connect-wallet-button {
   font-size: 2vh;
   font-weight: 600;
 
   padding: 2.2vh 2.5vw;
   border-radius: 1.5vw;
-
-  margin-left: auto;
 }

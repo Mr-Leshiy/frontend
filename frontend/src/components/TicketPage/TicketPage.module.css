@@ -19,14 +19,27 @@
   padding: 1vh 0;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .ticket-page-title h1 {
-  padding-right: 1vw;
-
   font-size: 4vh;
   font-weight: 700;
+
+  width: 20ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ticket-page-title a {
+  color: inherit;
+
+  font-size: 3vh;
+  font-weight: 700;
+
+  width: 20ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .ticket-page-content {

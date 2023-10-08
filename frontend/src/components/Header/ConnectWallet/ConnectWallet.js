@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./ConnectWallet.module.css";
 
-import { walletsInfo } from "../../../hooks/CardanoWallet";
+import { walletsInfo } from "../../../hooks/WalletContext";
 
 import ModalWindow from "../../UI/ModalWindow/ModalWindow";
 import WalletElement from "./WalletElement/WalletElement.js";
