@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-import classes from "./ErrorModalWindow.module.css";
+import classes from "./ErrorModal.module.css";
 
 const customStyles = {
   content: {
@@ -17,12 +17,7 @@ const customStyles = {
   },
 };
 
-const ErrorModalWindow = ({
-  isOpen,
-  onRequestClose,
-  errorMessage,
-  isError,
-}) => {
+const ErrorModal = ({ isOpen, onRequestClose, errorMessage }) => {
   return (
     <Modal isOpen={isOpen} style={customStyles}>
       <div>
@@ -38,4 +33,4 @@ const ErrorModalWindow = ({
   );
 };
 
-export default ErrorModalWindow;
+export default ErrorModal;

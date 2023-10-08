@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import classes from "./EventPage.module.css";
 
@@ -25,7 +25,7 @@ import InputFormModal, {
 import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import EventDescription from "../EventDescription/EventDescription";
-import ErrorModalWindow from "../UI/ErrorModalWindow/ErrorModalWindow";
+import ErrorModal from "../UI/ErrorModal/ErrorModal";
 
 const editTitleModal = (
   title,
@@ -129,6 +129,7 @@ const MODALS = {
   editTitle: "editTitle",
   editImage: "editImage",
   generateTickets: "generateTickets",
+  publishErrorModal: "publishErrorModal",
 };
 
 const EventPage = ({ eventIndex }) => {
@@ -137,7 +138,6 @@ const EventPage = ({ eventIndex }) => {
   const { eventImages, fetchEventImage } = useEventImagesContext();
   const { setActivePage } = usePageContext();
   const { modalsIsOpen, openModal, closeModal } = useModalHandler(MODALS);
-  const [isOpen, setIsOpen] = useState(false);
 
   const event = events[eventIndex];
 
@@ -178,8 +178,8 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    if (await publishEvent(stakeAddress, event) == null) {
-      setIsOpen(true);
+    if ((await publishEvent(stakeAddress, event)) == null) {
+      openModal(MODALS.publishErrorModal)();
     } else {
       handleDeleteClick();
     }
@@ -187,7 +187,6 @@ const EventPage = ({ eventIndex }) => {
 
   const isActiveCursorStyles = {
     cursor: !event.published ? "pointer" : "auto",
-    // 111
   };
 
   return (
@@ -211,11 +210,9 @@ const EventPage = ({ eventIndex }) => {
         stakeAddress,
         event,
       )}
-      <ErrorModalWindow
-        isOpen={isOpen}
-        onRequestClose={() => {
-          setIsOpen(false);
-        }}
+      <ErrorModal
+        isOpen={modalsIsOpen[MODALS.publishErrorModal]}
+        onRequestClose={closeModal(MODALS.publishErrorModal)}
         errorMessage={"Cannot publish event. Server issues"}
       />
 
