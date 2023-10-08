@@ -21,6 +21,7 @@ import InputFormModal, {
 import Button from "../UI/Button/Button";
 import BackButton from "../UI/BackButton/BackButton";
 import EventDescription from "../EventDescription/EventDescription";
+import ErrorModal from "../UI/ErrorModal/ErrorModal";
 
 const editTitleModal = (
   title,
@@ -119,6 +120,7 @@ const MODALS = {
   editTitle: "editTitle",
   editImage: "editImage",
   generateTickets: "generateTickets",
+  publishErrorModal: "publishErrorModal",
 };
 
 const EventPage = ({ eventIndex }) => {
@@ -167,8 +169,11 @@ const EventPage = ({ eventIndex }) => {
   };
 
   const handlePublishClick = async () => {
-    await wallet.publishEvent(event);
-    handleDeleteClick();
+    if ((await publishEvent(stakeAddress, event)) == null) {
+      openModal(MODALS.publishErrorModal)();
+    } else {
+      handleDeleteClick();
+    }
   };
 
   const isActiveCursorStyles = {
@@ -196,6 +201,11 @@ const EventPage = ({ eventIndex }) => {
         wallet,
         event,
       )}
+      <ErrorModal
+        isOpen={modalsIsOpen[MODALS.publishErrorModal]}
+        onRequestClose={closeModal(MODALS.publishErrorModal)}
+        errorMessage={"Cannot publish event. Server issues"}
+      />
 
       <Page>
         <div className={classes["tab"]}>
